@@ -1,0 +1,8 @@
+.Scenario__wrapper{
+    display:flex;
+    flex-direction:row;
+}
+.Scenario__icon{
+    width:1em;
+    height:1em; 
+}

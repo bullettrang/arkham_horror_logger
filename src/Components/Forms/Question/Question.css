@@ -1,0 +1,10 @@
+.Question__wrapper{
+    display:flex;
+    justify-content: center;
+    flex-direction:column;
+}
+
+.Question__header{
+    display:block;
+    margin-bottom:.3rem;
+}

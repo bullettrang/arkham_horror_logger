@@ -1,0 +1,47 @@
+.Login__main{
+   color:black;
+   font-family:"Lato", sans-serif;
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items:center;
+   background:purple;
+   width:18rem;
+   height:15rem;
+   padding:1.5rem 3rem;
+   border-radius:.8rem;
+}
+
+.Login__main--textBox{
+    text-align:center;
+    padding:1rem;
+}
+
+#Login__main--textBox--heading{
+    font-size:1rem;
+    letter-spacing: .08em;
+}
+
+#Login__main--textBox--subheading{
+    margin:.5em;
+    font-size:1rem;
+}
+
+
+.Login__main--content{
+    width:10rem;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+}
+
+#Login__main--userName{
+    margin:.5rem;
+    font-size:1rem;
+}
+
+#Login__main--userPassword{
+    margin:.5rem;
+    font-size:1rem;
+}

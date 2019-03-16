@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {CampaignMenu} from './Components/Campaign/CampaignMenu';
+import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      selectedCampaign:""
+    }
+  }
+
+  campaignSelectionHandler=(campaign)=>{
+    this.setState({selectedCampaign:campaign});
+  }
+  
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <CampaignMenu campaignSelectionHandler={this.campaignSelectionHandler}/>
+        {this.state.selectedCampaign.length>0?<ScenarioMenu campaignTitle={this.state.selectedCampaign}/>:null}
       </div>
     );
   }

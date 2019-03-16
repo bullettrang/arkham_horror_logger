@@ -6,3 +6,17 @@
 .Radio__userInputs{
     padding:1rem;
 }
+
+.Affirmitive{
+    margin-right:1rem;
+    padding:1rem;
+    background-color:green;
+    border-radius:.4rem;
+}
+
+.Decline{
+    background-color:red;
+    border-radius:.4rem;
+    padding:1rem;
+    box-shadow: 1rem 2rem 1rem 0rem rgba(black,.4);
+}

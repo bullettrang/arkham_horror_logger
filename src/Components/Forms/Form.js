@@ -7,7 +7,7 @@ export const Form =(props)=>{
     return(
         <div className="Form-Wrapper">
             <Question qString={"Question stuff DID YOU BURN DOWN THE HOUSE?"}/>
-            <RadioButtons choices={data['The Gathering'].questions[0].choices}/>
+            <RadioButtons type={data['The Gathering'].questions[0].type} choices={data['The Gathering'].questions[0].choices}/>
         </div>
     )
 }

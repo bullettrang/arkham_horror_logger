@@ -24,12 +24,8 @@ export class RadioButtons extends Component{
             <div className="Radio__wrapper">
             <form className="Radio__userInputs" onSubmit={this.handleSubmit}>
                 <div className="Radio__form--choices">
-                {this.props.choices.map((e,idx,arr)=>{
+                {this.props.choices.map((e)=>{
                         return( 
-                            // <span className="Radio__choice" key={idx} >
-                            //     <input  type="radio" id={e.description} name={e.description} value={e.value} onChange={this.handleChange} checked={this.state.current==e.value}/>
-                            //     <label htmlFor={e.description}>{e.description}</label>
-                            // </span>
                             <RadioButton
                                 key={e.description}
                                 description={e.description} 

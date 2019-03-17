@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {data} from '../../../constants/constants';
+import {CheckBoxes} from './CheckBoxes';
 import {CheckBox} from './CheckBox';
 import "./CheckBoxesContainer.css";
 export class CheckBoxesContainer extends Component{
@@ -34,20 +35,11 @@ export class CheckBoxesContainer extends Component{
         return(
             <div className="CheckBoxes__wrapper">
             <form onSubmit={this.handleSubmit} >
-                <React.Fragment>
-                {
-                data["The Midnight Masks"].questions[3].choices.map(item => (
-                    <label key={item.key}>
-                    {item.description}
-                    <CheckBox 
-                        description={item.description} 
-                        checked={this.state.checkedItems.get(item.description)} 
-                        onChange={this.handleChange} 
-                        />
-                    </label>
-                ))
-                }
-            </React.Fragment>
+                <CheckBoxes 
+                    choices={data["The Midnight Masks"].questions[3].choices}
+                    handleChange={this.handleChange}
+                    checkedItems={this.state.checkedItems}
+                />
             <button>SUBMIT</button>
           </form>
           </div>

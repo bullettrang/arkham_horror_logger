@@ -3,7 +3,6 @@ import {RadioButtons} from './RadioButtons';
 import './RadioButtonContainer.css';
 import {data} from '../../../constants/constants';
 export class RadioButtonContainer extends Component{
-
     state={
         current:null
     }
@@ -16,6 +15,7 @@ export class RadioButtonContainer extends Component{
     handleSubmit=(e)=>{
         e.preventDefault();
         alert(this.state.current);
+        //TODO: SEND DATA BACK TO USER FILE SUBMISSION OBJECT
     }
 
     render(){

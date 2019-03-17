@@ -116,27 +116,33 @@ export const data ={
             choices:[
               {
                 description:"Wolf Man Drew",
-                value:0
+                value:0,
+                key:'checkbox0'
               },
               {
                 description:"Herman Collins",
-                value:1
+                value:1,
+                key:'checkbox1'
               },
               {
                 description:"Peter Warren",
-                value:2
+                value:2,
+                key:'checkbox2'
               },
               {
                 description:"Victoria Devereux",
-                value:3
+                value:3,
+                key:'checkbox3'
               },
               {
                 description:"Ruth Turner",
-                value:4
+                value:4,
+                key:'checkbox4'
               },
               {
                 description:"Masked Hunter",
-                value:5
+                value:5,
+                key:'checkbox5'
               }
             ]
           },

@@ -1,0 +1,15 @@
+.Radio__wrapper{
+    display:flex;
+    flex-direction:column;
+}
+
+.Radio__form--submission{
+
+    display:flex;
+    justify-content: center;
+}
+
+.Radio__userInputs{
+    padding:.5rem;
+    background-color:#575757;
+}

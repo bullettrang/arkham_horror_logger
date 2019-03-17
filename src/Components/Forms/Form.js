@@ -5,6 +5,7 @@ import {data} from '../../constants/constants';
 import "./Form.css";
 
 export const Form =(props)=>{
+    
     return(
         <div className="Form-Wrapper">
             <Question qString={"Question stuff DID YOU BURN DOWN THE HOUSE?"}/>

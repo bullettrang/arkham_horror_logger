@@ -6,6 +6,7 @@ const Scenarios=(props)=>{
         <div className="Scenario__wrapper">
             {props.scenarios.map((e)=>{
                 return(<Scenario 
+                        chosen={props.chosen}
                         key={e.title} 
                         icon={e.pic}
                         title={e.title} 

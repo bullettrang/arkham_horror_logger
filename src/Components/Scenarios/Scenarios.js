@@ -6,11 +6,11 @@ const Scenarios=(props)=>{
         <div className="Scenarios__wrapper">
             {props.scenarios.map((e)=>{
                 return(<Scenario 
-                        chosen={props.chosen}
-                        key={e.title} 
-                        icon={e.pic}
-                        title={e.title} 
-                        clicked={()=>props.clicked(e.title)}
+                            chosen={props.chosen}
+                            key={e.title} 
+                            icon={e.pic}
+                            title={e.title} 
+                            clicked={()=>props.clicked(e.title)}
                         />);
             })}
         </div>

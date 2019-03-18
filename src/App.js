@@ -4,7 +4,7 @@ import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 //import {Form} from './Components/Forms/Form';
 //import {CheckBoxesContainer} from './Components/Forms/CheckBoxes/CheckBoxesContainer';
 import './App.css';
-//import {data} from './constants/constants';
+import {data} from './constants/constants';
 
 class App extends Component {
 
@@ -14,6 +14,7 @@ class App extends Component {
       selectedCampaign:"",
       selectedScenario:"",
       currentQuestion:null,
+      currentQuestionIdx:0,
       totalQuestions:null,
       userAnswers:new Map()
     }
@@ -23,8 +24,15 @@ class App extends Component {
     this.setState({selectedCampaign:campaign});
   }
 
-  scenarioSelectionHandler=(scenario)=>{
-    this.setState({selectedScenario:scenario})
+  scenarioSelectionHandler=(scenarioTitle)=>{
+    this.setState({selectedScenario:scenarioTitle },()=>this.setQuestionHandler(this.state.selectedScenario))
+  }
+
+  setQuestionHandler=(sc)=>{
+   let {questions} =data[sc];
+    if(this.state.selectedScenario.length>0){
+      this.setState({currentQuestion:questions[this.state.currentQuestionIdx]},()=>console.log(this.state.currentQuestion));
+    }
   }
   
   render() {
@@ -32,8 +40,10 @@ class App extends Component {
     return (
       <div className="App">
         <CampaignMenu campaignSelectionHandler={this.campaignSelectionHandler}/>
-        {this.state.selectedCampaign.length>0?<ScenarioMenu campaignTitle={this.state.selectedCampaign} selectionHandler={this.scenarioSelectionHandler} />:null}
-        
+        {this.state.selectedCampaign.length>0?<ScenarioMenu 
+                                                  campaignTitle={this.state.selectedCampaign} 
+                                                  selectionHandler={this.scenarioSelectionHandler} 
+                                                  setQuestionHandler={this.setQuestionHandler}/> :null}
       </div>
     );
   }

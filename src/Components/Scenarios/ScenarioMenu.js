@@ -19,11 +19,15 @@ class ScenarioMenu extends Component{
     selectHandler=(sc)=>{
         console.log('selectHandler [ScenarioMenu.js]')
         this.setState({selected:sc})
+        
     }
 
     submitHandler=(e)=>{
         e.preventDefault();
-        this.props.selectionHandler(this.state.selected);
+        if(this.state.selected){
+            this.props.selectionHandler(this.state.selected);
+        }
+        
     }
 
     render(){

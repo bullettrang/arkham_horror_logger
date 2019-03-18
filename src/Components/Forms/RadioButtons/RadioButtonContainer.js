@@ -8,7 +8,6 @@ export class RadioButtonContainer extends Component{
     }
 
     handleChange=(e)=>{
-        //console.log(e.target.value);
         this.setState({current:parseInt(e.target.value)});
     }
 
@@ -17,6 +16,7 @@ export class RadioButtonContainer extends Component{
         alert(this.state.current);
         //TODO: SEND DATA BACK TO USER FILE SUBMISSION OBJECT
         //TODO: GO TO NEXT QUESTION
+        //use map set?
     }
 
     render(){

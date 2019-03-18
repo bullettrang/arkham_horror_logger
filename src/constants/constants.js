@@ -7,6 +7,7 @@ export const data ={
         total_questions:4,
         questions:[
           {
+            id:'NZ0101',
             q_string:"Agenda reached full doom?",
             type:"radio",
             choices:[
@@ -23,6 +24,7 @@ export const data ={
           {
             q_string:"All investigators resigned or defeated",
             type:"radio",
+            id:'NZ0102',
             choices:[
               {
                 description:"TRUE",
@@ -37,6 +39,7 @@ export const data ={
           {
             q_string:"Ghoul priest defeated?",
             type:"radio",
+            id:'NZ0103',
             choices:[
               {
                 description:"TRUE",
@@ -51,6 +54,7 @@ export const data ={
           {
             q_string:"House was burnt down?",
             type:"radio",
+            id:'NZ0104',
             choices:[
               {
                 description:"TRUE",
@@ -73,6 +77,7 @@ export const data ={
           {
             q_string:"Agenda reached full doom?",
             type:"radio",
+            id:'NZ0201',
             choices:[
               {
                 description:"TRUE",
@@ -87,6 +92,7 @@ export const data ={
           {
             q_string:"All investigators resigned or defeated",
             type:"radio",
+            id:'NZ0202',
             choices:[
               {
                 description:"TRUE",
@@ -101,6 +107,7 @@ export const data ={
           {
             q_string:"Ghoul priest defeated in this scenario?",
             type:"radio",
+            id:'NZ0203',
             choices:[
               {
                 description:"TRUE",
@@ -115,6 +122,7 @@ export const data ={
           {
             q_string:"Cultists Interrogated: ",
             type:"checkbox",
+            id:'NZ0204',
             choices:[
               {
                 description:"Wolf Man Drew",
@@ -155,6 +163,7 @@ export const data ={
         user_resolution:null,
         user_answers:[],
         total_questions:4,
+        id:'NZ0301',
         questions:[
           {
             q_string:"Agenda reached full doom?",
@@ -173,6 +182,7 @@ export const data ={
           {
             q_string:"All investigators resigned or defeated",
             type:"radio",
+            id:'NZ0302',
             choices:[
               {
                 description:"TRUE",
@@ -187,6 +197,7 @@ export const data ={
           {
             q_string:"What was the fate of Arkham?",
             type:"radio",
+            id:'NZ0303',
             choices:[
               {
                 description:"Stopped the Ritual",

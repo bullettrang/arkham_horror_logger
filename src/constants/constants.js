@@ -4,6 +4,7 @@ export const data ={
         title:"The Gathering",
         user_resolution:null,
         user_answers:[],
+        total_questions:4,
         questions:[
           {
             q_string:"Agenda reached full doom?",
@@ -67,6 +68,7 @@ export const data ={
         title:"The Midnight Masks",
         user_resolution:null,
         user_answers:[],
+        total_questions:4,
         questions:[
           {
             q_string:"Agenda reached full doom?",
@@ -145,7 +147,61 @@ export const data ={
                 key:'checkbox5'
               }
             ]
+          }
+        ],
+      },
+      "The Devourer Below":{
+        title:"The Devourer Below",
+        user_resolution:null,
+        user_answers:[],
+        total_questions:4,
+        questions:[
+          {
+            q_string:"Agenda reached full doom?",
+            type:"radio",
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ]
           },
+          {
+            q_string:"All investigators resigned or defeated",
+            type:"radio",
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ]
+          },
+          {
+            q_string:"What was the fate of Arkham?",
+            type:"radio",
+            choices:[
+              {
+                description:"Stopped the Ritual",
+                value:0
+              },
+              {
+                description:"Repelled Umordhoth",
+                value:1
+              },
+              {
+                description:"Sacrificed Lita Chandler",
+                value:2
+              }
+            ]
+          }
         ],
       }
   }

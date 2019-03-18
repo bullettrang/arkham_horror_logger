@@ -28,7 +28,9 @@ export class CheckBoxesContainer extends Component{
         }).map(e=>e.description);
         this.setState({decisions:choices});
 
-        //SEND DATA BACK TO STORE
+        
+        //TODO: SEND DATA BACK TO USER FILE SUBMISSION OBJECT
+        //TODO: GO TO NEXT QUESTION
     }
 
     render(){

@@ -5,10 +5,15 @@ const Scenarios=(props)=>{
     return(
         <div className="Scenario__wrapper">
             {props.scenarios.map((e)=>{
-                return(<Scenario key={e.title} icon={e.pic}title={e.title}/>);
+                return(<Scenario 
+                        key={e.title} 
+                        icon={e.pic}
+                        title={e.title} 
+                        clicked={()=>props.clicked(e.title)}
+                        />);
             })}
         </div>
     );
 }
 
-export default Scenarios;
+export default Scenarios;  

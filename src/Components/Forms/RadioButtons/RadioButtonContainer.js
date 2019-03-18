@@ -16,6 +16,7 @@ export class RadioButtonContainer extends Component{
         e.preventDefault();
         alert(this.state.current);
         //TODO: SEND DATA BACK TO USER FILE SUBMISSION OBJECT
+        //TODO: GO TO NEXT QUESTION
     }
 
     render(){

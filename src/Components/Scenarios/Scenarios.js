@@ -3,7 +3,7 @@ import Scenario from './Scenario';
 import './Scenarios.css';
 const Scenarios=(props)=>{
     return(
-        <div className="Scenario__wrapper">
+        <div className="Scenarios__wrapper">
             {props.scenarios.map((e)=>{
                 return(<Scenario 
                         chosen={props.chosen}

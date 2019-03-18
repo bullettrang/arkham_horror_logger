@@ -1,7 +1,6 @@
-.Scenario__wrapper{
+.Scenarios__wrapper{
     display:flex;
     flex-direction: column;
     padding:1rem;
-    border:1px solid black;
-    
+    border-radius:.8rem;
 }

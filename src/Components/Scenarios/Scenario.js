@@ -5,7 +5,7 @@ import './Scenario.css';
 const Scenario = (props)=>{
     return(
         <div className="Scenario__wrapper" onClick={props.clicked} style={props.chosen===props.title ?{backgroundColor:'yellow'}:null}>
-            <div>
+            <div className="Scenario__header">
                 <h1>{props.title}</h1>
             </div>
             <div className="Scenario__icon-wrapper">

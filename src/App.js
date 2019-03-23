@@ -16,12 +16,13 @@ class App extends Component {
       currentQuestion:null,
       currentQuestionIdx:0,
       totalQuestions:null,
-      userAnswers:new Map()
+      userAnswers:new Map(),
+      showCampaign:true
     }
   }
 
   campaignSelectionHandler=(campaign)=>{
-    this.setState({selectedCampaign:campaign});
+    this.setState({selectedCampaign:campaign,showCampaign:false});
   }
 
   scenarioSelectionHandler=(scenarioTitle)=>{
@@ -60,7 +61,7 @@ class App extends Component {
     const {currentQuestion} = this.state;
     return (
       <div className="App">
-        {this.state.selectedCampaign? null:<CampaignMenu campaignSelectionHandler={this.campaignSelectionHandler}/>}
+        {this.state.showCampaign? <CampaignMenu campaignSelectionHandler={this.campaignSelectionHandler}/>:null}
         {this.state.selectedScenario?null:<ScenarioMenu 
                                               campaignTitle={this.state.selectedCampaign} 
                                               selectionHandler={this.scenarioSelectionHandler} 

@@ -17,7 +17,6 @@ class ScenarioMenu extends Component{
     }
 
     selectHandler=(sc)=>{
-        console.log('selectHandler [ScenarioMenu.js]')
         this.setState({selected:sc})
         
     }
@@ -32,6 +31,10 @@ class ScenarioMenu extends Component{
 
     render(){
         const {campaignTitle}=this.props;
+        if(!campaignTitle){
+            return null;
+        }
+        
         return(
             <div className="ScenarioMenu__wrapper">
                 <div className="ScenarioMenu__main">

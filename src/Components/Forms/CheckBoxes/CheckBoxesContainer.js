@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import {data} from '../../../constants/constants';
 import {CheckBoxes} from './CheckBoxes';
-import {CheckBox} from './CheckBox';
 import "./CheckBoxesContainer.css";
 export class CheckBoxesContainer extends Component{
 
@@ -21,14 +20,13 @@ export class CheckBoxesContainer extends Component{
     }
 
     handleSubmit=(e)=>{
+        const {question}=this.props;
         let choices=[];
         e.preventDefault();
-        choices = data["The Midnight Masks"].questions[3].choices.filter(item=>{
+        choices = data[this.props.scenarioTitle].questions[3].choices.filter(item=>{
             return this.state.checkedItems.get(item.description);
         }).map(e=>e.description);
-        this.setState({decisions:choices});
-
-        
+        this.setState({decisions:choices},()=>this.props.submit(question.id,this.state.decisions));
         //TODO: SEND DATA BACK TO USER FILE SUBMISSION OBJECT
         //TODO: GO TO NEXT QUESTION
     }
@@ -38,7 +36,7 @@ export class CheckBoxesContainer extends Component{
             <div className="CheckBoxes__wrapper">
             <form onSubmit={this.handleSubmit} >
                 <CheckBoxes 
-                    choices={data["The Midnight Masks"].questions[3].choices}
+                    choices={data[this.props.scenarioTitle].questions[3].choices}
                     handleChange={this.handleChange}
                     checkedItems={this.state.checkedItems}
                 />

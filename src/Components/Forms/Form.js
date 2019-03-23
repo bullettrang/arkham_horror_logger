@@ -10,19 +10,29 @@ import "./Form.css";
 //1. Radio Buttons
 //OR
 //2. Check Boxes    
+//props: type,choices,qString
+//
 export const Form =(props)=>{
+    const {question,scenarioTitle,submit}=props;
     let answers=null;
-    if(props.type==='radio'){
-        answers=<RadioButtonContainer choices={props.choices}/>
+    if(question.type==='radio'){
+        answers=<RadioButtonContainer
+                    question={question} 
+                    scenarioTitle={scenarioTitle} 
+                    choices={question.choices}
+                    submit={submit}/>
     }
     else{
-        answers=<CheckBoxesContainer choices={props.choices}/>
+        answers=<CheckBoxesContainer
+                        question={question}  
+                        scenarioTitle={scenarioTitle} 
+                        choices={question.choices}
+                        submit={submit}/>
     }
     
     return(
         <div className="Form-Wrapper">
-            <Question qString={"Question stuff DID YOU BURN DOWN THE HOUSE?"}/>
-            {/* <RadioButtons type={data['The Gathering'].questions[0].type} choices={data['The Gathering'].questions[0].choices}/> */}
+            <Question qString={question.qString}/>
             {answers}
         </div>
     )

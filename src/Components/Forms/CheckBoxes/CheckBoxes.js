@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React from 'react';
 import {CheckBox} from './CheckBox';
 export const  CheckBoxes =(props)=>{
 

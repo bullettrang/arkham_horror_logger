@@ -8,7 +8,7 @@ export const data ={
         questions:[
           {
             id:'NZ0101',
-            q_string:"Agenda reached full doom?",
+            qString:"Agenda reached full doom?",
             type:"radio",
             choices:[
               {
@@ -22,7 +22,7 @@ export const data ={
             ]
           },
           {
-            q_string:"All investigators resigned or defeated",
+            qString:"All investigators resigned or defeated",
             type:"radio",
             id:'NZ0102',
             choices:[
@@ -37,7 +37,7 @@ export const data ={
             ]
           },
           {
-            q_string:"Ghoul priest defeated?",
+            qString:"Ghoul priest defeated?",
             type:"radio",
             id:'NZ0103',
             choices:[
@@ -52,7 +52,7 @@ export const data ={
             ]
           },
           {
-            q_string:"House was burnt down?",
+            qString:"House was burnt down?",
             type:"radio",
             id:'NZ0104',
             choices:[
@@ -75,7 +75,7 @@ export const data ={
         total_questions:4,
         questions:[
           {
-            q_string:"Agenda reached full doom?",
+            qString:"Agenda reached full doom?",
             type:"radio",
             id:'NZ0201',
             choices:[
@@ -90,7 +90,7 @@ export const data ={
             ]
           },
           {
-            q_string:"All investigators resigned or defeated",
+            qString:"All investigators resigned or defeated",
             type:"radio",
             id:'NZ0202',
             choices:[
@@ -105,7 +105,7 @@ export const data ={
             ]
           },
           {
-            q_string:"Ghoul priest defeated in this scenario?",
+            qString:"Ghoul priest defeated in this scenario?",
             type:"radio",
             id:'NZ0203',
             choices:[
@@ -120,7 +120,7 @@ export const data ={
             ]
           },
           {
-            q_string:"Cultists Interrogated: ",
+            qString:"Cultists Interrogated: ",
             type:"checkbox",
             id:'NZ0204',
             choices:[
@@ -166,7 +166,7 @@ export const data ={
         id:'NZ0301',
         questions:[
           {
-            q_string:"Agenda reached full doom?",
+            qString:"Agenda reached full doom?",
             type:"radio",
             choices:[
               {
@@ -180,7 +180,7 @@ export const data ={
             ]
           },
           {
-            q_string:"All investigators resigned or defeated",
+            qString:"All investigators resigned or defeated",
             type:"radio",
             id:'NZ0302',
             choices:[
@@ -195,7 +195,7 @@ export const data ={
             ]
           },
           {
-            q_string:"What was the fate of Arkham?",
+            qString:"What was the fate of Arkham?",
             type:"radio",
             id:'NZ0303',
             choices:[

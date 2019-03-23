@@ -17,17 +17,18 @@ class App extends Component {
       currentQuestionIdx:0,
       totalQuestions:null,
       userAnswers:new Map(),
-      showCampaign:true
+      showCampaign:true,
+      showScenario:false
     }
   }
 
   campaignSelectionHandler=(campaign)=>{
-    this.setState({selectedCampaign:campaign,showCampaign:false});
+    this.setState({selectedCampaign:campaign,showCampaign:false,showScenario:true});
   }
 
   scenarioSelectionHandler=(scenarioTitle)=>{
     //select scenario, load current question
-    this.setState({selectedScenario:scenarioTitle },()=>this.setQuestionHandler(this.state.selectedScenario))
+    this.setState({selectedScenario:scenarioTitle,showScenario:!this.state.showScenario },()=>this.setQuestionHandler(this.state.selectedScenario))
   }
 
   setQuestionHandler=(sc)=>{
@@ -62,11 +63,11 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.showCampaign? <CampaignMenu campaignSelectionHandler={this.campaignSelectionHandler}/>:null}
-        {this.state.selectedScenario?null:<ScenarioMenu 
+        {this.state.showScenario?<ScenarioMenu 
                                               campaignTitle={this.state.selectedCampaign} 
                                               selectionHandler={this.scenarioSelectionHandler} 
                                               setQuestionHandler={this.setQuestionHandler}
-                                              /> }
+                                              />:null }
         {this.state.currentQuestion? <Form
                                         question={currentQuestion}
                                         scenarioTitle={this.state.selectedScenario} 

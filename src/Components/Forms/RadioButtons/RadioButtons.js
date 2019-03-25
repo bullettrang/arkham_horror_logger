@@ -15,6 +15,7 @@ export const RadioButtons =(props)=>{
                                 description={e.description} 
                                 value={e.value} 
                                 changed={props.handleChange}
+                                type={props.type}
                                 checked={props.current===e.value}/>
                             );  
                 })}

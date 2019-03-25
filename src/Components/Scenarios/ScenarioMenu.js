@@ -47,7 +47,6 @@ class ScenarioMenu extends Component{
                     <Scenarios
                         chosen={this.state.selected} 
                         clicked={this.selectHandler} 
-                        // scenarios={this.state.scenarios[campaignTitle]}
                         scenarios={scenarioMenu[campaignTitle]}/>
                         <button>SUBMIT</button>
                     </form>

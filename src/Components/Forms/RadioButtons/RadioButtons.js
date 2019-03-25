@@ -3,9 +3,7 @@ import {RadioButton} from './RadioButton';
 import './RadioButtons.css';
 
 
-//radio buttons not working
 export const RadioButtons =(props)=>{
-
         return (
                 <div className="Radio__form--choices">
                 {props.choices.map((e)=>{

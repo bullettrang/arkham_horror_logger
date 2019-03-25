@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import Scenarios from './Scenarios';
 import {NOZ_icons} from '../../constants/icons';
 import {DWL_icons} from '../../constants/icons';
+import scenarioMenu from '../../constants/scenarioConstants';
 import "./ScenarioMenu.css"
 class ScenarioMenu extends Component{
     constructor(props){
@@ -46,7 +47,8 @@ class ScenarioMenu extends Component{
                     <Scenarios
                         chosen={this.state.selected} 
                         clicked={this.selectHandler} 
-                        scenarios={this.state.scenarios[campaignTitle]}/>
+                        // scenarios={this.state.scenarios[campaignTitle]}
+                        scenarios={scenarioMenu[campaignTitle]}/>
                         <button>SUBMIT</button>
                     </form>
                 </div>

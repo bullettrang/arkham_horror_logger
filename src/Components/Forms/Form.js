@@ -5,13 +5,6 @@ import {CheckBoxesContainer} from './CheckBoxes/CheckBoxesContainer';
 import "./Form.css";
 
 
-//TODO: Form gets props of type and decides
-//to render EITHER:
-//1. Radio Buttons
-//OR
-//2. Check Boxes    
-//props: type,choices,qString
-//
 export const Form =(props)=>{
     const {question,scenarioTitle,submit}=props;
     let answers=null;

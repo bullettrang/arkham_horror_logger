@@ -3,6 +3,7 @@ import {RadioButtons} from './RadioButtons';
 import './RadioButtonContainer.css';
 import {data} from '../../../constants/constants';
 export class RadioButtonContainer extends Component{
+
     state={
         current:null
     }
@@ -12,12 +13,8 @@ export class RadioButtonContainer extends Component{
     }
 
     handleSubmit=(e)=>{
+        const {question} =this.props; 
         e.preventDefault();
-        const {question} =this.props;
-        //TODO: SEND DATA BACK TO USER FILE SUBMISSION OBJECT
-        //TODO: GO TO NEXT QUESTION
-        //use map set?
-        
         this.props.submit(question.id,this.state.current);
     }
 

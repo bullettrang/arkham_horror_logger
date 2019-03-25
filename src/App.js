@@ -39,9 +39,6 @@ class App extends Component {
   }
 
   submitAnswerHandler=(question,answer)=>{
-    //save answer
-    //move to next question
-    //this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
     this.setState(prevState=>({userAnswers:prevState.userAnswers.set(question,answer)}));
     this.setNextQuestion();
   }
@@ -52,9 +49,11 @@ class App extends Component {
     if(this.state.totalQuestions - 1 === this.state.currentQuestionIdx){
       //submit all answers
       console.log('submit all questions');
+      
     }
     else{
-      this.setState(prevState=>({currentQuestionIdx: prevState.currentQuestionIdx +1 }),()=>this.setState({currentQuestion:questions[this.state.currentQuestionIdx]}))
+      this.setState(prevState=>({currentQuestionIdx: prevState.currentQuestionIdx +1 }),
+        ()=>this.setState({currentQuestion:questions[this.state.currentQuestionIdx]}))
     }
   }
   

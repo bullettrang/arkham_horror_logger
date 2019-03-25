@@ -27,21 +27,19 @@ export class CheckBoxesContainer extends Component{
             return this.state.checkedItems.get(item.description);
         }).map(e=>e.description);
         this.setState({decisions:choices},()=>this.props.submit(question.id,this.state.decisions));
-        //TODO: SEND DATA BACK TO USER FILE SUBMISSION OBJECT
-        //TODO: GO TO NEXT QUESTION
     }
 
     render(){
         return(
             <div className="CheckBoxes__wrapper">
-            <form onSubmit={this.handleSubmit} >
-                <CheckBoxes 
-                    choices={data[this.props.scenarioTitle].questions[3].choices}
-                    handleChange={this.handleChange}
-                    checkedItems={this.state.checkedItems}
-                />
-            <button>SUBMIT</button>
-          </form>
+                <form onSubmit={this.handleSubmit} >
+                    <CheckBoxes 
+                        choices={data[this.props.scenarioTitle].questions[3].choices}
+                        handleChange={this.handleChange}
+                        checkedItems={this.state.checkedItems}
+                    />
+                <button>SUBMIT</button>
+            </form>
           </div>
         )
     }

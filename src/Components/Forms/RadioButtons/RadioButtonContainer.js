@@ -15,6 +15,9 @@ export class RadioButtonContainer extends Component{
     handleSubmit=(e)=>{
         const {question} =this.props; 
         e.preventDefault();
+        if(!this.state.current){
+            return;
+        }
         this.props.submit(question.id,this.state.current);
     }
 

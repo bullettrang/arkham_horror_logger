@@ -53,6 +53,9 @@ export class CampaignMenu extends Component{
 
     submitHandler=(e)=>{
         e.preventDefault();
+        if(this.state.selection===''){
+          return;
+        }
         this.props.campaignSelectionHandler(this.state.selection);
     }
 

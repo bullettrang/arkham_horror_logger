@@ -3,6 +3,7 @@
     justify-content: center;
     flex-direction: row;
     margin-top:2rem;
+    
 }
 
 .ScenarioMenu__main{
@@ -20,3 +21,4 @@
     text-align:center;
     font-size:2em;
 }
+

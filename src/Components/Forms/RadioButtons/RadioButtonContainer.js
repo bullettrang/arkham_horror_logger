@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {RadioButtons} from './RadioButtons'; 
+import SubmitButton from '../Button/SubmitButton';
 import './RadioButtonContainer.css';
 export class RadioButtonContainer extends Component{
 
@@ -35,7 +36,7 @@ export class RadioButtonContainer extends Component{
                     />
                 </div>
                 <div className="Radio__form--submission">
-                    <button>Submit</button>
+                    <SubmitButton/>
                 </div>
             </form>
         </div>

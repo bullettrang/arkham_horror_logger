@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {data} from '../../../constants/constants';
 import {CheckBoxes} from './CheckBoxes';
+import SubmitButton from '../Button/SubmitButton';
 import "./CheckBoxesContainer.css";
 export class CheckBoxesContainer extends Component{
 
@@ -39,7 +40,7 @@ export class CheckBoxesContainer extends Component{
                         handleChange={this.handleChange}
                         checkedItems={this.state.checkedItems}
                     />
-                <button>SUBMIT</button>
+                <SubmitButton/>
             </form>
           </div>
         )

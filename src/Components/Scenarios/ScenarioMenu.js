@@ -3,6 +3,7 @@ import Scenarios from './Scenarios';
 import {NOZ_icons} from '../../constants/icons';
 import {DWL_icons} from '../../constants/icons';
 import scenarioMenu from '../../constants/scenarioConstants';
+import SubmitButton from '../Forms/Button/SubmitButton';
 import "./ScenarioMenu.css"
 class ScenarioMenu extends Component{
     constructor(props){
@@ -47,8 +48,9 @@ class ScenarioMenu extends Component{
                     <Scenarios
                         chosen={this.state.selected} 
                         clicked={this.selectHandler} 
-                        scenarios={scenarioMenu[campaignTitle]}/>
-                        <button>SUBMIT</button>
+                        scenarios={scenarioMenu[campaignTitle]}
+                    />
+                        <SubmitButton/>
                     </form>
                 </div>
                 

@@ -61,12 +61,15 @@ class App extends Component {
     const {currentQuestion} = this.state;
     return (
       <div className="App">
-        {this.state.showCampaign? <CampaignMenu campaignSelectionHandler={this.campaignSelectionHandler}/>:null}
+        {this.state.showCampaign? <CampaignMenu 
+                                      campaignSelectionHandler={this.campaignSelectionHandler}/>:
+                                    null}
         {this.state.showScenario?<ScenarioMenu 
-                                              campaignTitle={this.state.selectedCampaign} 
-                                              selectionHandler={this.scenarioSelectionHandler} 
-                                              setQuestionHandler={this.setQuestionHandler}
-                                              />:null }
+                                      campaignTitle={this.state.selectedCampaign} 
+                                      selectionHandler={this.scenarioSelectionHandler} 
+                                      setQuestionHandler={this.setQuestionHandler}
+                                      />:
+                                  null }
         {this.state.currentQuestion? <Form
                                         question={currentQuestion}
                                         scenarioTitle={this.state.selectedScenario} 

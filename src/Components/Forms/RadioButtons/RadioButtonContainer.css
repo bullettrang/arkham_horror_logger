@@ -6,10 +6,18 @@
 .Radio__form--submission{
     display:flex;
     justify-content: center;
+
+    margin:1rem;
+    border-radius:.2rem;
+    padding: .5rem 1rem;
 }
 
 .Radio__userInputs{
     padding:.5rem;
     background-color:#575757;
     border-radius:4px;
+}
+
+.Radio__form--button{
+    background:rgb(117, 230, 117);
 }

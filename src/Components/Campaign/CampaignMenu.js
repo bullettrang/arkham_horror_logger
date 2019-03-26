@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 
 import DropDown from '../Menu/DropDown';
+import SubmitButton from '../Forms/Button/SubmitButton';
 import './CampaignMenu.css';
 //shows menu of campaigns
 
@@ -71,7 +72,7 @@ export class CampaignMenu extends Component{
                         list={this.state.campaign}
                         resetThenSet={this.resetThenSet}
                     />
-                    <button type="submit">SUBMIT</button>
+                    <SubmitButton/>
                 </form>
               </div>
             </div> 

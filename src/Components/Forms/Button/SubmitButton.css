@@ -3,4 +3,6 @@
     border-radius:.2rem;
     padding: .5rem 1rem;
     background:rgb(117, 230, 117);
+    cursor: pointer;
+    font-family: 'Crimson Text', serif;
 }

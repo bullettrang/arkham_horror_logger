@@ -16,7 +16,8 @@ export const RadioButton=(props)=>{
     return(
         <div className={`Radio__choice `}>
             <div className={chosenClass}>
-                <input 
+                <input
+                    className="Radio__choice--input" 
                     type="radio" 
                     id={props.description} 
                     name={props.description} 

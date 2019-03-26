@@ -1,6 +1,11 @@
-.RadioButton-Wrapper{
-    background-color: green;
-    padding:1.2rem;
+
+
+.Radio__choice{
+    font-family: 'Crimson Text', serif;
+    cursor:pointer;
+}
+.Radio__choice--input{
+    cursor:pointer;
 }
 
 .Radio__userInputs{

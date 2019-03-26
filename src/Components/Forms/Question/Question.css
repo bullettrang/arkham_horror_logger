@@ -7,4 +7,6 @@
 .Question__header{
     display:block;
     margin-bottom:.3rem;
+    font-family: 'teutonicregular';
+    font-size:2em;
 }

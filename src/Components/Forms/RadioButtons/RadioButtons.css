@@ -10,6 +10,7 @@
     align-items: baseline;
 }
 
+
 .Radio__form--submission{
 
     display:flex;
@@ -18,5 +19,4 @@
 
 .Radio__userInputs{
     padding:.5rem;
-    background-color:#575757;
 }

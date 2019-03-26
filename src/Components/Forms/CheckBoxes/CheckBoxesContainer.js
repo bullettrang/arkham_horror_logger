@@ -13,7 +13,6 @@ export class CheckBoxesContainer extends Component{
         }
     }
 
-
     handleChange=(e)=> {
         const item = e.target.value;
         const isChecked = e.target.checked;

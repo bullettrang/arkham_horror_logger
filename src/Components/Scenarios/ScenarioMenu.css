@@ -1,9 +1,6 @@
 .ScenarioMenu__wrapper{
     display:flex;
     justify-content: center;
-
-    
-
 }
 
 .ScenarioMenu__main{
@@ -16,7 +13,6 @@
 }
 
 .ScenarioMenu__header{
-    
+    font-family: 'teutonicregular';
     text-align:center;
-    
 }

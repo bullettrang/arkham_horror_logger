@@ -1,6 +1,6 @@
 .Scenarios__wrapper{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     padding:1rem;
     border-radius:.2rem;
 }

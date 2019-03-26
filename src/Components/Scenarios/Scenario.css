@@ -1,6 +1,6 @@
 .Scenario__wrapper{
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
     margin-bottom:1.4rem;
     border-radius:.2rem;
     box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),
@@ -9,11 +9,15 @@
     transition: all .2s;
     background-color:#e7e7e7;
     padding:1rem;
+    opacity: 1;
+    margin-left:.5rem;
+    width:10rem;
 }
 
 .Scenario__wrapper:hover {
     transform: translateY(-0.4rem);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); 
+
 }
 
 .Scenario__wrapper:hover::after {
@@ -30,14 +34,16 @@
 .Scenario__header{
     margin-right:.5rem;
     font-family: 'teutonicregular';
-}
-
-.Scenario__icon{
-    width:1rem;
-    height:1rem; 
+    text-align:center;
 }
 
 .Scenario__icon-wrapper{
     width:1rem;
     height:1rem;
+    margin:0 auto;
+}
+.Scenario__icon{
+    width:1rem;
+    height:1rem; 
+    
 }

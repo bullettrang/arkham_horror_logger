@@ -44,13 +44,15 @@ class ScenarioMenu extends Component{
                     <div className="ScenarioMenu__header">
                         <h1>{campaignTitle}</h1>
                     </div>
-                    <form onSubmit={this.submitHandler}>
-                    <Scenarios
-                        chosen={this.state.selected} 
-                        clicked={this.selectHandler} 
-                        scenarios={scenarioMenu[campaignTitle]}
-                    />
-                        <SubmitButton/>
+                    <form className="ScenarioMenu__form" onSubmit={this.submitHandler}>
+                        <div className="ScenarioMenu__form--items">
+                            <Scenarios
+                                chosen={this.state.selected} 
+                                clicked={this.selectHandler} 
+                                scenarios={scenarioMenu[campaignTitle]}
+                            />
+                        </div>
+                            <SubmitButton/>
                     </form>
                 </div>
                 

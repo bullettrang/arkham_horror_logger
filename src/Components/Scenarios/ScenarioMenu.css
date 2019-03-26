@@ -1,6 +1,8 @@
 .ScenarioMenu__wrapper{
     display:flex;
     justify-content: center;
+    flex-direction: row;
+    margin-top:2rem;
 }
 
 .ScenarioMenu__main{
@@ -9,8 +11,9 @@
     0px 5px 8px 0px rgba(0,0,0,0.14),
     0px 1px 14px 0px rgba(0,0,0,0.12);
     border-radius:.4rem;
-    border:1px solid #dfdfdf;
+    border:1px solid #dfdfdf;  
 }
+
 
 .ScenarioMenu__header{
     font-family: 'teutonicregular';

@@ -67,9 +67,9 @@ export class CampaignMenu extends Component{
             <div className="campaign-menu__wrapper">
               <div className="campaign-menu__main">
                 <div className="campaign-menu__header">
-                    <h1>Select a Campaign</h1>
+                    <h1 className="campaign-menu__header--title">Select a Campaign</h1>
                 </div>
-                <form onSubmit={this.submitHandler}>
+                <form className="campaign-menu_main" onSubmit={this.submitHandler}>
                     <DropDown
                         title={"Select Campaign"}
                         list={this.state.campaign}

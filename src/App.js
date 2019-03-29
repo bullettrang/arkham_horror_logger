@@ -3,6 +3,8 @@ import {CampaignMenu} from './Components/Campaign/CampaignMenu';
 import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import {Form} from './Components/Forms/Form';
 // import { BrowserRouter, Route, Link } from "react-router-dom";
+import {connect} from 'react-redux';
+import * as actions from './actions/';
 import './App.css';
 import {data} from './constants/constants';
 
@@ -40,6 +42,12 @@ class App extends Component {
 
   submitAnswerHandler=(question,answer)=>{
     this.setState(prevState=>({userAnswers:prevState.userAnswers.set(question,answer)}));
+
+    let obj ={
+      [question]:answer
+    };
+
+    this.props.setAnswer(obj);
     this.setNextQuestion();
   }
 
@@ -47,9 +55,7 @@ class App extends Component {
     let {questions} = data[this.state.selectedScenario];
     //is this the last question of scenario?
     if(this.state.totalQuestions - 1 === this.state.currentQuestionIdx){
-      //submit all answers
       console.log('submit all questions');
-      
     }
     else{
       this.setState(prevState=>({currentQuestionIdx: prevState.currentQuestionIdx +1 }),
@@ -58,21 +64,21 @@ class App extends Component {
   }
   
   render() {
-    const {currentQuestion} = this.state;
+    const {currentQuestion,selectedCampaign,selectedScenario} = this.state;
     return (
-      <div className="App">
+      <div className="App ">
         {this.state.showCampaign? <CampaignMenu 
                                       campaignSelectionHandler={this.campaignSelectionHandler}/>:
                                     null}
         {this.state.showScenario?<ScenarioMenu 
-                                      campaignTitle={this.state.selectedCampaign} 
+                                      campaignTitle={selectedCampaign} 
                                       selectionHandler={this.scenarioSelectionHandler} 
                                       setQuestionHandler={this.setQuestionHandler}
                                       />:
                                   null }
         {this.state.currentQuestion? <Form
                                         question={currentQuestion}
-                                        scenarioTitle={this.state.selectedScenario} 
+                                        scenarioTitle={selectedScenario} 
                                         submit={this.submitAnswerHandler}/>
                                         :null}
       </div>
@@ -80,4 +86,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    answer: state.answers
+  }
+}
+
+export default connect(mapStateToProps,actions)(App);

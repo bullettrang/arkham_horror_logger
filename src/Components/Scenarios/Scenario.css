@@ -12,7 +12,8 @@
     opacity: 1;
     margin-left:.5rem;
     margin-right:.5rem;
-    width:10rem;
+    min-width:10rem;
+    box-sizing: content-box;
 }
 
 .Scenario__wrapper:hover {

@@ -47,5 +47,12 @@
 .Scenario__icon{
     width:1rem;
     height:1rem; 
+}
+
+.ScenarioMenu__form{
+    text-align:center;
+}
+
+.Scenario__main--card{
     
 }

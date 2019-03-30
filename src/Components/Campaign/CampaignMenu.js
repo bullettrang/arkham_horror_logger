@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 
 import DropDown from '../Menu/DropDown';
 import SubmitButton from '../Forms/Button/SubmitButton';
+import NOZ_IMG from '../../Assets/NOZ_form_img.png';
 import './CampaignMenu.css';
 //shows menu of campaigns
 
@@ -10,7 +11,6 @@ export class CampaignMenu extends Component{
     constructor(props){
         super(props);
         this.state={
-            
             campaign:[
                 {
                     id: 0,
@@ -39,6 +39,7 @@ export class CampaignMenu extends Component{
             ],
             selection:''
         }
+       
     }
 
     resetThenSet = (id, key) => {
@@ -62,18 +63,25 @@ export class CampaignMenu extends Component{
     selectHandler=(e)=>{
         this.setState({selection:e.target.value});
     }
+
     render(){
         return(
             <div className="campaign-menu__wrapper">
               <div className="campaign-menu__main">
-                <div className="campaign-menu__header">
+              <div className="campaign-menu__header">
                     <h1 className="campaign-menu__header--title">Select a Campaign</h1>
                 </div>
-                <form className="campaign-menu_main" onSubmit={this.submitHandler}>
+                <div className="campaign-menu__card" >
+                  <img className="campaign-menu__card--image" src={NOZ_IMG}/>
+                </div>
+
+                <form className="campaign-menu_main--form" onSubmit={this.submitHandler}>
                     <DropDown
                         title={"Select Campaign"}
                         list={this.state.campaign}
                         resetThenSet={this.resetThenSet}
+                        mouseEnter={this.props.modalOn} 
+                        mouseLeave={this.props.modalOff}
                     />
                     <SubmitButton/>
                 </form>

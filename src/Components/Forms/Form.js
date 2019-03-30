@@ -13,14 +13,16 @@ export const Form =(props)=>{
                     question={question} 
                     scenarioTitle={scenarioTitle} 
                     choices={question.choices}
-                    submit={submit}/>
+                    submit={submit}
+                />
     }
     else{
         answers=<CheckBoxesContainer
-                        question={question}  
-                        scenarioTitle={scenarioTitle} 
-                        choices={question.choices}
-                        submit={submit}/>
+                    question={question}  
+                    scenarioTitle={scenarioTitle} 
+                    choices={question.choices}
+                    submit={submit}
+                />
     }
     
     return(

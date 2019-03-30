@@ -20,8 +20,7 @@ class ScenarioMenu extends Component{
     }
 
     selectHandler=(sc)=>{
-        this.setState({selected:sc})
-        
+        this.setState({selected:sc});
     }
 
     submitHandler=(e)=>{
@@ -29,7 +28,6 @@ class ScenarioMenu extends Component{
         if(this.state.selected){
             this.props.selectionHandler(this.state.selected);
         }
-        
     }
 
     render(){

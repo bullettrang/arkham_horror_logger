@@ -5,11 +5,17 @@ import {Form} from './Components/Forms/Form';
 // import { BrowserRouter, Route, Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actions from './actions/';
+import RuleBookArt from './Assets/Rulebook_art.jpg';
 import './App.css';
 import {data} from './constants/constants';
 
+const noModalStyle= {
+background:`linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${RuleBookArt})`,
+};
 
-
+const ModalStyle ={
+  background:`linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(${RuleBookArt})`,
+}
 class App extends Component {
 
   constructor(props){
@@ -22,7 +28,8 @@ class App extends Component {
       totalQuestions:null,
       userAnswers:new Map(),
       showCampaign:true,
-      showScenario:false
+      showScenario:false,
+      showModal:false
     }
   }
 
@@ -65,18 +72,24 @@ class App extends Component {
     }
   }
 
-  triggerModal=()=>{
+  modalOn=()=>{
+    this.setState({showModal:true});
+  }
 
+  modalOff=()=>{
+    this.setState({showModal:false});
   }
   
   render() {
-    const {currentQuestion,selectedCampaign,selectedScenario} = this.state;
+    const {currentQuestion,selectedCampaign,selectedScenario,showModal} = this.state;
     return (
-      <div className="App ">
+      <div className="App" style={showModal?ModalStyle:noModalStyle}>
         <div className="App__header">
           <h1 className="App__header--title">ARKHAM HORROR LOGGER</h1>
         </div>
-        {this.state.showCampaign? <CampaignMenu 
+        {this.state.showCampaign? <CampaignMenu
+                                      modalOn ={this.modalOn}
+                                      modalOff={this.modalOff}  
                                       campaignSelectionHandler={this.campaignSelectionHandler}/>:
                                     null}
         {this.state.showScenario?<ScenarioMenu 
@@ -87,7 +100,7 @@ class App extends Component {
                                   null }
         {this.state.currentQuestion? <Form
                                         question={currentQuestion}
-                                        scenarioTitle={selectedScenario} 
+                                        scenarioTitle={selectedScenario}
                                         submit={this.submitAnswerHandler}/>
                                         :null}
       </div>

@@ -7,10 +7,17 @@
 }
 
 .Radio__form--choices{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: baseline
+}
+
+.Radio__form--choices:nth-child(1){
     margin:.5rem;
     display:flex;
     justify-content: space-evenly;
     align-items: baseline;
+
 }
 
 

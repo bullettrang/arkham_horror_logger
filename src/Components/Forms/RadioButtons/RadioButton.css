@@ -7,23 +7,33 @@
     justify-content: center;
     align-items: center;
     font-size:1rem;
-    padding:1em;
-
+    font-weight:900;
+    color:#d3d3d3;
 }
+
+.Radio__choice:nth-child(1){
+    font-family: 'Crimson Text', serif;
+    cursor:pointer;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:1rem;
+    font-weight:900;
+    color:#d3d3d3;
+    background-image: linear-gradient(to right bottom, #00a67a3b, #00ab7538, #00b17067, #00b6676e, #0dbb5ea2);
+}
+
+
 .Radio__choice--input{
     cursor:pointer;
 }
 
 .Affirmitive{
     margin-right:1rem;
-    padding:1rem;
-    background-color:green;
-    border-radius:.4rem;
+    border-radius:3px;
 }
 
 .Decline{
     background-color:red;
-    border-radius:.4rem;
-    padding:1rem;
     box-shadow: 1rem 2rem 1rem 0rem rgba(black,.4);
 }

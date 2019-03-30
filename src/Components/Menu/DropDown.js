@@ -32,26 +32,29 @@ class Dropdown extends Component{
       this.setState({
         listOpen: false
       })
+      
     }
   
     selectItem(title, id, stateKey){
       this.setState({
         headerTitle: title,
         listOpen: false
-      }, this.props.resetThenSet(id, stateKey))
+      }, this.props.resetThenSet(id, stateKey));
+      this.props.mouseLeave()
     }
   
     toggleList(){
       this.setState(prevState => ({
         listOpen: !prevState.listOpen
       }))
+      
     }
   
     render(){
       const{list} = this.props
       const{listOpen, headerTitle} = this.state
       return(
-        <div className="dd-wrapper">
+        <div className="dd-wrapper" onMouseEnter={this.props.mouseEnter} onMouseLeave={this.props.mouseLeave}>
           <div className="dd-header" onClick={() => this.toggleList()}>
             <div className="dd-header-title">{headerTitle}</div>
             {listOpen

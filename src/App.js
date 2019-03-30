@@ -38,6 +38,7 @@ class App extends Component {
 
   campaignSelectionHandler=(campaign)=>{
     this.setState({selectedCampaign:campaign,showCampaign:false,showScenario:true});
+    this.props.setCampaign(campaign);
   }
 
   scenarioSelectionHandler=(scenarioTitle)=>{
@@ -91,6 +92,7 @@ class App extends Component {
   
   render() {
     const {currentQuestion,selectedCampaign,selectedScenario,showModal} = this.state;
+
     return (
       <div className="App" style={showModal?MODAL_ON_STYLE:MODAL_OFF_STYLE}>
         <div className="App__header">

@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER} from '../actions/types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO} from '../actions/types';
 
 
 const initialState = {
@@ -10,10 +10,14 @@ const initialState = {
 export default (state=initialState,action)=>{
     switch(action.type){
         case UPDATE_ANSWER:
-            let answer =action.payload;
             return {
                 ...state,
                 answers:[...state.answers,action.payload]
+            }
+        case SET_CAMPAIGN:
+            return{
+                ...state,
+                selectedCampaign:action.payload
             }
         default:
             return state;

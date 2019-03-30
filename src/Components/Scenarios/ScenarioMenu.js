@@ -4,6 +4,8 @@ import {NOZ_icons} from '../../constants/icons';
 import {DWL_icons} from '../../constants/icons';
 import scenarioMenu from '../../constants/scenarioConstants';
 import SubmitButton from '../Forms/Button/SubmitButton';
+import * as actions from '../../actions/index';
+import {connect} from 'react-redux';
 import "./ScenarioMenu.css"
 class ScenarioMenu extends Component{
     constructor(props){
@@ -31,8 +33,9 @@ class ScenarioMenu extends Component{
     }
 
     render(){
-        const {campaignTitle}=this.props;
-        if(!campaignTitle){
+        console.log(this.props);
+        const {selectedCampaign}=this.props;
+        if(!selectedCampaign){
             return null;
         }
         
@@ -40,14 +43,14 @@ class ScenarioMenu extends Component{
             <div className="ScenarioMenu__wrapper">
                 <div className="ScenarioMenu__main">
                     <div className="ScenarioMenu__header">
-                        <h1>{campaignTitle}</h1>
+                        <h1>{selectedCampaign}</h1>
                     </div>
                     <form className="ScenarioMenu__form" onSubmit={this.submitHandler}>
                         <div className="ScenarioMenu__form--items">
                             <Scenarios
                                 chosen={this.state.selected} 
                                 clicked={this.selectHandler} 
-                                scenarios={scenarioMenu[campaignTitle]}
+                                scenarios={scenarioMenu[selectedCampaign]}
                             />
                         </div>
                             <SubmitButton/>
@@ -59,4 +62,10 @@ class ScenarioMenu extends Component{
     }
 }
 
-export default ScenarioMenu;
+const mapStateToProps = (state) => {
+    return {
+      selectedCampaign: state.answer.selectedCampaign
+    }
+  }
+
+export default connect(mapStateToProps,actions)(ScenarioMenu);

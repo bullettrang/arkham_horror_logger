@@ -27,7 +27,7 @@ export const Form =(props)=>{
     
     return(
         <div className="Form-Wrapper">
-            <Question qString={question.qString}/>
+            <Question qString={question.qString} getQuestionKey={props.getQuestionKey}/>
             {answers}
         </div>
     )

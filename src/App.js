@@ -9,13 +9,16 @@ import RuleBookArt from './Assets/Rulebook_art.jpg';
 import './App.css';
 import {data} from './constants/constants';
 
-const noModalStyle= {
+import shortid from "shortid";  //for animations
+
+const MODAL_OFF_STYLE= {
 background:`linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${RuleBookArt})`,
 };
 
-const ModalStyle ={
+const MODAL_ON_STYLE ={
   background:`linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(${RuleBookArt})`,
 }
+
 class App extends Component {
 
   constructor(props){
@@ -79,11 +82,17 @@ class App extends Component {
   modalOff=()=>{
     this.setState({showModal:false});
   }
+
+  getId = () => {
+    const id = shortid.generate();
+    console.log(id);
+    return id;
+  };
   
   render() {
     const {currentQuestion,selectedCampaign,selectedScenario,showModal} = this.state;
     return (
-      <div className="App" style={showModal?ModalStyle:noModalStyle}>
+      <div className="App" style={showModal?MODAL_ON_STYLE:MODAL_OFF_STYLE}>
         <div className="App__header">
           <h1 className="App__header--title">ARKHAM HORROR LOGGER</h1>
         </div>
@@ -100,6 +109,8 @@ class App extends Component {
                                   null }
         {this.state.currentQuestion? <Form
                                         question={currentQuestion}
+                                        getid={this.getId}
+                                        getQuestionKey={this.getId}
                                         scenarioTitle={selectedScenario}
                                         submit={this.submitAnswerHandler}/>
                                         :null}

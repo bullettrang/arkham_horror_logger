@@ -23,6 +23,10 @@
     max-height:250px;
 }
 
+.campaign-menu__card--title{
+    font-size:1.6rem;
+}
+
 .campaign-menu__card--image{
     border-radius:3px;
     position: absolute;

@@ -4,6 +4,7 @@ export const RadioButton=(props)=>{
 
    const greenClass='Affirmitive';
    const redClass= 'Decline';
+   const selectedClass='Radio__choice--selected';
    let chosenClass;
    
     if(props.type==='radio' && props.description==='TRUE'){
@@ -24,7 +25,7 @@ export const RadioButton=(props)=>{
                     onChange={(e)=>{props.changed(e)}}
                     checked={props.checked}
                 />
-                <label htmlFor={props.description}>{props.description}</label>
+                <label htmlFor={props.description} className={props.checked? selectedClass:null}>{props.description}</label>
         </div>
         );
     

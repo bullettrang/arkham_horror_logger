@@ -11,6 +11,13 @@
     color:#d3d3d3;
 }
 
+.Radio__choice--selected{
+    opacity:.8;
+    color:black;
+    border-top:4px solid orange;
+    border-bottom:4px solid orange;
+}
+
 .Radio__choice:nth-child(1){
     font-family: 'Crimson Text', serif;
     cursor:pointer;

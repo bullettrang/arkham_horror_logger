@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 
 import DropDown from '../Menu/DropDown';
 import SubmitButton from '../Forms/Button/SubmitButton';
-import NOZ_IMG from '../../Assets/NOZ_form_img.png';
+import NOZ_IMG from '../../Assets/CAMPAIGN_COVER/NOZ_form_img.png';
+import DWL_IMG from '../../Assets/CAMPAIGN_COVER/DWL_form_img.jpg';
 import './CampaignMenu.css';
 //shows menu of campaigns
 
@@ -72,7 +73,8 @@ export class CampaignMenu extends Component{
                     <h1 className="campaign-menu__header--title">Select a Campaign</h1>
                 </div>
                 <div className="campaign-menu__card" >
-                  <img className="campaign-menu__card--image" src={NOZ_IMG}/>
+                  <img className="campaign-menu__card--image" src={DWL_IMG}/>
+                  <span className="campaign-menu__card--title">{this.state.selection}</span>
                 </div>
 
                 <form className="campaign-menu_main--form" onSubmit={this.submitHandler}>

@@ -8,6 +8,8 @@ import * as actions from './actions/';
 import './App.css';
 import {data} from './constants/constants';
 
+
+
 class App extends Component {
 
   constructor(props){
@@ -62,11 +64,18 @@ class App extends Component {
         ()=>this.setState({currentQuestion:questions[this.state.currentQuestionIdx]}))
     }
   }
+
+  triggerModal=()=>{
+
+  }
   
   render() {
     const {currentQuestion,selectedCampaign,selectedScenario} = this.state;
     return (
       <div className="App ">
+        <div className="App__header">
+          <h1 className="App__header--title">ARKHAM HORROR LOGGER</h1>
+        </div>
         {this.state.showCampaign? <CampaignMenu 
                                       campaignSelectionHandler={this.campaignSelectionHandler}/>:
                                     null}

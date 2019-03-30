@@ -3,23 +3,15 @@
 .Radio__choice{
     font-family: 'Crimson Text', serif;
     cursor:pointer;
-    /* padding:1rem;
-    width:12rem;
-    height:6rem; */
-    background-color:orange;
     display:flex;
     justify-content: center;
     align-items: center;
-    font-size:1em;
+    font-size:1rem;
     padding:1em;
 
 }
 .Radio__choice--input{
     cursor:pointer;
-}
-
-.Radio__userInputs{
-    /* padding:1rem; */
 }
 
 .Affirmitive{

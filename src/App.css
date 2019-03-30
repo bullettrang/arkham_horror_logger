@@ -5,16 +5,49 @@
     padding:0;
     margin:0;
     box-sizing:inherit;
+    
 }
 .App {
   font-size:62.5%;
   /* max-width:960px; */
   margin:0 auto;
+  height:100%;
+  width:100%;
+  background:     linear-gradient(
+    rgba(0, 0, 0, 0.25), 
+    rgba(0, 0, 0, 0.25)
+  ),url('./Assets/Rulebook_art.jpg');
+  background-size:cover;
+  overflow: auto;
+  position:fixed;
+  z-index:1;
+  /* display:none;
+  position:fixed;
+  z-index: 1;
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  overflow:auto;
+  background-color: rgba(0,0,0,0.5); */
+}
 
+.App__header--title{
+  position:relative;
+  z-index:9000;
+  text-align:center;
+  font-size:3rem;
+  letter-spacing:.08em;
+  color: #d3d3d3;
+}
+
+.App__header--title{
+  font-family: 'teutonicregular';
 }
 
 .modal{
-  display:block;
+  /* display:block; */
+  display:none;
   position:fixed;
   z-index: 1;
   left:0;

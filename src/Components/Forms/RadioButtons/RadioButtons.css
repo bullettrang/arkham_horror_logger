@@ -3,6 +3,7 @@
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    padding:1rem 1rem;
 }
 
 .Radio__form--choices{
@@ -14,7 +15,6 @@
 
 
 .Radio__form--submission{
-
     display:flex;
     justify-content: center;
 }

@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO} from './types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION} from './types';
 
 export const setAnswer =(obj)=>{
     return{
@@ -17,6 +17,20 @@ export const setCampaign =(obj)=>{
 export const setScenario =(obj)=>{
     return{
         type: SET_SCENARIO,
+        payload:obj
+    }
+}
+
+export const setQuestions =(obj)=>{
+    return{
+        type: SET_QUESTIONS,
+        payload:obj
+    }
+}
+
+export const setQuestion =(obj)=>{
+    return{
+        type: SET_QUESTION,
         payload:obj
     }
 }

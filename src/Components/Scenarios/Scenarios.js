@@ -2,6 +2,9 @@ import React from 'react';
 import Scenario from './Scenario';
 import './Scenarios.css';
 const Scenarios=(props)=>{
+    if(!props.scenarios){
+        return null;
+    }
     return(
         <div className="Scenarios__wrapper">
             {props.scenarios.map((e)=>{

@@ -7,6 +7,7 @@ import SubmitButton from '../Forms/Button/SubmitButton';
 import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
 import "./ScenarioMenu.css"
+
 class ScenarioMenu extends Component{
     constructor(props){
         super(props);
@@ -29,15 +30,16 @@ class ScenarioMenu extends Component{
         e.preventDefault();
         if(this.state.selected){
             this.props.selectionHandler(this.state.selected);
+            this.props.setScenario(this.state.selected);
         }
     }
 
     render(){
-        console.log(this.props);
-        const {selectedCampaign}=this.props;
-        if(!selectedCampaign){
+        const {selectedScenario,selectedCampaign}=this.props;
+        
+        if(selectedScenario!==null){
             return null;
-        }
+          }
         
         return(
             <div className="ScenarioMenu__wrapper">
@@ -56,15 +58,15 @@ class ScenarioMenu extends Component{
                             <SubmitButton/>
                     </form>
                 </div>
-                
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({choices}) => {
     return {
-      selectedCampaign: state.answer.selectedCampaign
+      selectedCampaign:choices.selectedCampaign,
+      selectedScenario: choices.selectedScenario
     }
   }
 

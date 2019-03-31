@@ -4,10 +4,11 @@ import DropDown from '../Menu/DropDown';
 import SubmitButton from '../Forms/Button/SubmitButton';
 import NOZ_IMG from '../../Assets/CAMPAIGN_COVER/NOZ_form_img.png';
 import DWL_IMG from '../../Assets/CAMPAIGN_COVER/DWL_form_img.jpg';
+import {connect} from 'react-redux';
 import './CampaignMenu.css';
 //shows menu of campaigns
 
-export class CampaignMenu extends Component{ 
+  class CampaignMenu extends Component{ 
 
     constructor(props){
         super(props);
@@ -66,29 +67,47 @@ export class CampaignMenu extends Component{
     }
 
     render(){
-        return(
-            <div className="campaign-menu__wrapper">
-              <div className="campaign-menu__main">
-              <div className="campaign-menu__header">
-                    <h1 className="campaign-menu__header--title">Select a Campaign</h1>
-                </div>
-                <div className="campaign-menu__card" >
-                  <img className="campaign-menu__card--image" src={DWL_IMG}/>
-                  <span className="campaign-menu__card--title">{this.state.selection}</span>
-                </div>
+      const {selectedCampaign} = this.props;
+      console.log(this.props);
 
-                <form className="campaign-menu_main--form" onSubmit={this.submitHandler}>
-                    <DropDown
-                        title={"Select Campaign"}
-                        list={this.state.campaign}
-                        resetThenSet={this.resetThenSet}
-                        mouseEnter={this.props.modalOn} 
-                        mouseLeave={this.props.modalOff}
-                    />
-                    <SubmitButton/>
-                </form>
+      if(selectedCampaign!==null){
+        console.log('DONT DISPLAY CAMPAIGN MENU')
+        return null;
+      }
+      
+        return(
+          <div className="campaign-menu__wrapper">
+            <div className="campaign-menu__main">
+            <div className="campaign-menu__header">
+                  <h1 className="campaign-menu__header--title">Select a Campaign</h1>
               </div>
-            </div> 
-            );
+              <div className="campaign-menu__card" >
+                <img className="campaign-menu__card--image" src={DWL_IMG}/>
+                <span className="campaign-menu__card--title">{this.state.selection}</span>
+              </div>
+
+              <form className="campaign-menu_main--form" onSubmit={this.submitHandler}>
+                  <DropDown
+                      title={"Select Campaign"}
+                      list={this.state.campaign}
+                      resetThenSet={this.resetThenSet}
+                      mouseEnter={this.props.modalOn} 
+                      mouseLeave={this.props.modalOff}
+                  />
+                  <SubmitButton/>
+              </form>
+            </div>
+          </div> 
+          );
+      
     }
 }
+
+const mapStateToProps=({choices})=>{
+  return{
+    selectedCampaign:choices.selectedCampaign
+  }
+  
+}
+
+export default connect(mapStateToProps,null)(CampaignMenu);

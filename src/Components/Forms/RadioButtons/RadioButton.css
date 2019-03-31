@@ -13,9 +13,10 @@
 
 .Radio__choice--selected{
     opacity:.8;
-    color:black;
+    
     border-top:4px solid orange;
     border-bottom:4px solid orange;
+    color:#d3d3d3;
 }
 
 .Radio__choice:nth-child(1){
@@ -26,8 +27,7 @@
     align-items: center;
     font-size:1rem;
     font-weight:900;
-    color:#d3d3d3;
-    background-image: linear-gradient(to right bottom, #00a67a3b, #00ab7538, #00b17067, #00b6676e, #0dbb5ea2);
+    color:black;
 }
 
 

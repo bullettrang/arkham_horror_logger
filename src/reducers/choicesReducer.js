@@ -19,6 +19,11 @@ export default (state=initialState,action)=>{
                 ...state,
                 selectedCampaign:action.payload
             }
+        case SET_SCENARIO:
+            return{
+                ...state,
+                selectedScenario:action.payload
+            }
         default:
             return state;
     }

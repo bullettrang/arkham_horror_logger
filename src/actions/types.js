@@ -1,3 +1,6 @@
 export const UPDATE_ANSWER ='UPDATE_ANSWER';
 export const SET_CAMPAIGN ='SET_CAMPAIGN';
 export const SET_SCENARIO ='SET_SCENARIO';
+
+export const SET_CHOICES = 'SET_CHOICES';
+export const SET_QUESTION ='SET_QUESTION';

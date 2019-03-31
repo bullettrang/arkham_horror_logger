@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {CampaignMenu} from './Components/Campaign/CampaignMenu';
+import CampaignMenu from './Components/Campaign/CampaignMenu';
 import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import {Form} from './Components/Forms/Form';
 // import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -84,31 +84,31 @@ class App extends Component {
     this.setState({showModal:false});
   }
 
+  /**this is for generating ids for animations */
   getId = () => {
     const id = shortid.generate();
-    console.log(id);
     return id;
   };
   
   render() {
     const {currentQuestion,selectedCampaign,selectedScenario,showModal} = this.state;
-
+    console.log(this.props);
     return (
       <div className="App" style={showModal?MODAL_ON_STYLE:MODAL_OFF_STYLE}>
         <div className="App__header">
           <h1 className="App__header--title">ARKHAM HORROR LOGGER</h1>
         </div>
-        {this.state.showCampaign? <CampaignMenu
-                                      modalOn ={this.modalOn}
-                                      modalOff={this.modalOff}  
-                                      campaignSelectionHandler={this.campaignSelectionHandler}/>:
-                                    null}
-        {this.state.showScenario?<ScenarioMenu 
-                                      campaignTitle={selectedCampaign} 
-                                      selectionHandler={this.scenarioSelectionHandler} 
-                                      setQuestionHandler={this.setQuestionHandler}
-                                      />:
-                                  null }
+        <CampaignMenu
+          modalOn ={this.modalOn}
+          modalOff={this.modalOff}  
+          campaignSelectionHandler={this.campaignSelectionHandler}/>
+                                   
+              {this.state.showScenario?<ScenarioMenu 
+                campaignTitle={selectedCampaign} 
+                selectionHandler={this.scenarioSelectionHandler} 
+                setQuestionHandler={this.setQuestionHandler}
+              />:null}
+                                  
         {this.state.currentQuestion? <Form
                                         question={currentQuestion}
                                         getid={this.getId}
@@ -121,9 +121,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({choices}) => {
   return {
-    answer: state.answers
+    answers: choices.answers
   }
 }
 

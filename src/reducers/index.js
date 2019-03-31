@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux';
-import answerReducer from './answerReducer';
+import choicesReducer from './choicesReducer';
+import formReducer from './formReducer';
 
 export default combineReducers({
-    answer:answerReducer
+    choices:choicesReducer,
+    form:formReducer
 }
 );

@@ -17,11 +17,15 @@ export default (state=initialState,action)=>{
             }
         case NEXT_QUESTION:
             if(state.qIdx-1 === state.questions.totalQuestions) return state;       //reached last question
+
             return{
                 ...state,
                 qIdx:state.qIdx+1
             }
         case SET_QUESTION:
+            if(state.questions[state.qIdx].hasOwnProperty("askAgain")){
+                console.log('inside reducer, you should skip question');
+            }
             return{
                 ...state,
                 currentQuestion:state.questions[state.qIdx]

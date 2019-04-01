@@ -64,7 +64,6 @@ import './CampaignMenu.css';
     }
 
     selectHandler=(e)=>{
-        // this.setState({selection:e.target.value});
         this.setState({selection:e});
     }
 

@@ -38,7 +38,7 @@ class ScenarioMenu extends Component{
 
     render(){
         const {selectedScenario,selectedCampaign}=this.props;
-        console.log(this.props)
+
         if(selectedCampaign ===null || selectedScenario!==null  ){
             return null;
           }

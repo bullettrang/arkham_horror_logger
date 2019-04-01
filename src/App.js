@@ -42,13 +42,37 @@ class App extends Component {
 
   scenarioSelectionHandler=(scenarioTitle)=>{
     //select scenario, load current question
-    this.setState({selectedScenario:scenarioTitle,showScenario:!this.state.showScenario },()=>this.setQuestionHandler(this.state.selectedScenario))
+    this.setState({selectedScenario:scenarioTitle,showScenario:!this.state.showScenario },()=>{this.setQuestionHandler(this.state.selectedScenario)
+                                                                                              this.props.setQuestion()
+    })
   }
 
   setQuestionHandler=(sc)=>{
    let {questions} =data[sc];
     if(this.state.selectedScenario.length>0){
-      this.setState({currentQuestion:questions[this.state.currentQuestionIdx]});
+      this.setState({currentQuestion:questions[this.state.currentQuestionIdx]},()=>this.askQuestionAgainHandler(this.state.currentQuestion));
+    }
+  }
+
+  askQuestionAgainHandler=(q)=>{
+    if(q.hasOwnProperty('askAgain')){
+      console.log("this qurestion has the ask again property");
+    }
+  }
+
+
+
+  setNextQuestion=()=>{
+    let {questions} = data[this.state.selectedScenario];
+    //is this the last question of scenario?
+    if(this.state.totalQuestions - 1 === this.state.currentQuestionIdx){
+      console.log('submit all questions');
+    }
+    else{
+      this.setState(prevState=>({currentQuestionIdx: prevState.currentQuestionIdx +1 }),  
+        ()=>this.setState({currentQuestion:questions[this.state.currentQuestionIdx]},()=>this.askQuestionAgainHandler(this.state.currentQuestion)))
+        this.props.nextQuestion();
+        this.props.setQuestion();
     }
   }
 
@@ -61,18 +85,6 @@ class App extends Component {
 
     this.props.setAnswer(obj);
     this.setNextQuestion();
-  }
-
-  setNextQuestion=()=>{
-    let {questions} = data[this.state.selectedScenario];
-    //is this the last question of scenario?
-    if(this.state.totalQuestions - 1 === this.state.currentQuestionIdx){
-      console.log('submit all questions');
-    }
-    else{
-      this.setState(prevState=>({currentQuestionIdx: prevState.currentQuestionIdx +1 }),
-        ()=>this.setState({currentQuestion:questions[this.state.currentQuestionIdx]}))
-    }
   }
 
   modalOn=()=>{
@@ -90,8 +102,8 @@ class App extends Component {
   };
   
   render() {
-    const {currentQuestion,selectedScenario,showModal} = this.state;
-    const {selectedCampaign} = this.props;
+    const {selectedScenario,showModal} = this.state;
+    const {currentQuestion,selectedCampaign} = this.props;
     console.log(this.props);
     return (
       <div className="App" style={showModal?MODAL_ON_STYLE:MODAL_OFF_STYLE}>
@@ -105,15 +117,13 @@ class App extends Component {
           modalOn ={this.modalOn}
           modalOff={this.modalOff}  
           campaignSelectionHandler={this.campaignSelectionHandler}/>                           
-              <ScenarioMenu 
-                campaignTitle={selectedCampaign} 
-                selectionHandler={this.scenarioSelectionHandler} 
-                setQuestionHandler={this.setQuestionHandler}
-              />
-                                  
-        {this.state.currentQuestion? <Form
+        <ScenarioMenu 
+          campaignTitle={selectedCampaign} 
+          selectionHandler={this.scenarioSelectionHandler} 
+          setQuestionHandler={this.setQuestionHandler}
+        />                         
+        {this.props.currentQuestion? <Form
                                         question={currentQuestion}
-                                        getid={this.getId}
                                         getQuestionKey={this.getId}
                                         scenarioTitle={selectedScenario}
                                         submit={this.submitAnswerHandler}/>
@@ -123,10 +133,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({choices}) => {
+const mapStateToProps = ({choices,form}) => {
   return {
     answers: choices.answers,
-    selectedCampaign:choices.selectedCampaign
+    selectedCampaign:choices.selectedCampaign,
+    currentQuestion:form.currentQuestion
   }
 }
 

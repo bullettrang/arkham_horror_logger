@@ -1,5 +1,11 @@
 
 export const data ={
+      /*
+      *
+      *
+      * NIGHT OF ZEALOT
+      * 
+      */
       "The Gathering":{
         title:"The Gathering",
         user_resolution:null,
@@ -19,7 +25,7 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ]
+            ],
           },
           {
             qString:"All investigators resigned or defeated",
@@ -34,7 +40,7 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ]
+            ],
           },
           {
             qString:"Ghoul priest defeated?",
@@ -49,7 +55,8 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ]
+            ],
+            askAgain:true
           },
           {
             qString:"House was burnt down?",
@@ -117,7 +124,8 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ]
+            ],
+            askAgain:true
           },
           {
             qString:"Cultists Interrogated: ",
@@ -195,9 +203,88 @@ export const data ={
             ]
           },
           {
+            qString:"Ghoul priest defeated in this scenario?",
+            type:"radio",
+            id:'NZ0203',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ],
+            askAgain:true
+          },
+          {
             qString:"What was the fate of Arkham?",
             type:"radio",
             id:'NZ0303',
+            choices:[
+              {
+                description:"Stopped the Ritual",
+                value:0
+              },
+              {
+                description:"Repelled Umordhoth",
+                value:1
+              },
+              {
+                description:"Sacrificed Lita Chandler",
+                value:2
+              }
+            ]
+          }
+        ],
+      },
+      /*
+      *
+      *
+      * DUNWICH
+      * 
+      */
+      "Extracurricular Activities":{
+        title:"Extracurricular Activities",
+        user_resolution:null,
+        user_answers:[],
+        total_questions:4,
+        id:'DW0101',
+        questions:[
+          {
+            qString:"Agenda reached full doom?",
+            type:"radio",
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"All investigators resigned or defeated",
+            type:"radio",
+            id:'DW0102',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"What was the fate of Arkham?",
+            type:"radio",
+            id:'DW0103',
             choices:[
               {
                 description:"Stopped the Ritual",

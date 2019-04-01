@@ -4,7 +4,6 @@ import "./Grid.css";
 
 
  const Grid = (props)=>{
-
      let camps = props.campaigns.map((e)=>{
 
         let isModal;

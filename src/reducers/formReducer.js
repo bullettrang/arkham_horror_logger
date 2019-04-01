@@ -3,7 +3,7 @@ import {data} from '../constants/constants';
 const initialState={
     currentQuestion:null,
     questions:[],
-    qIdx:0,
+    qIdx:null,
     totalQuestions:null
 }
 
@@ -17,18 +17,33 @@ export default (state=initialState,action)=>{
             }
         case NEXT_QUESTION:
             if(state.qIdx-1 === state.questions.totalQuestions) return state;       //reached last question
-
+            
             return{
                 ...state,
                 qIdx:state.qIdx+1
             }
         case SET_QUESTION:
-            if(state.questions[state.qIdx].hasOwnProperty("askAgain")){
-                console.log('inside reducer, you should skip question');
+            if(state.qIdx===null){          //very first question
+                console.log('is null ');
+                return{
+                    ...state,
+                    qIdx:0,
+                    currentQuestion:state.questions[0]
+                };
+            }
+            const nextQuestionIdx = state.qIdx+1;
+            // if(state.questions[state.qIdx].hasOwnProperty("askAgain")){
+            //     console.log('inside reducer, you should skip question');
+            // }
+            
+            if(nextQuestionIdx  === state.questions.totalQuestions -1){
+                console.log('reached last question')
+                return state;       //reached last question
             }
             return{
                 ...state,
-                currentQuestion:state.questions[state.qIdx]
+                qIdx:nextQuestionIdx,
+                currentQuestion:state.questions[nextQuestionIdx]
             }
 
         default:

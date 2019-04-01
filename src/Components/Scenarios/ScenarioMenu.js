@@ -32,7 +32,7 @@ class ScenarioMenu extends Component{
             this.props.selectionHandler(this.state.selected);
             this.props.setScenario(this.state.selected);
             this.props.setQuestions(this.state.selected)
-            
+            this.props.setQuestion();
         }
     }
 

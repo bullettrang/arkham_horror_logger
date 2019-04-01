@@ -28,10 +28,9 @@ export const setQuestions =(obj)=>{
     }
 }
 
-export const setQuestion =(obj)=>{
+export const setQuestion =()=>{
     return{
-        type: SET_QUESTION,
-        payload:obj
+        type: SET_QUESTION
     }
 }
 

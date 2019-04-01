@@ -1,5 +1,5 @@
 import React from 'react';
-import Scenario from './Scenario';
+import Scenario from './Scenario/Scenario';
 import './Scenarios.css';
 const Scenarios=(props)=>{
     if(!props.scenarios){

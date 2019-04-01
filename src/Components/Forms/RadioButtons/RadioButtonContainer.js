@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
-import {RadioButtons} from './RadioButtons'; 
+import {RadioButtons} from './RadioButtons/RadioButtons'; 
 import SubmitButton from '../Button/SubmitButton';
+import * as actions from '../../../actions/index';
 import './RadioButtonContainer.css';
 export class RadioButtonContainer extends Component{
 

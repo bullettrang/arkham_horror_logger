@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CampaignMenu from './Components/Campaign/CampaignMenu';
 import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import {Form} from './Components/Forms/Form';
-// import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actions from './actions/';
 import RuleBookArt from './Assets/Rulebook_art.jpg';
@@ -11,13 +11,7 @@ import {data} from './constants/constants';
 
 import shortid from "shortid";  //for animations
 
-const MODAL_OFF_STYLE= {
-background:`linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)), url(${RuleBookArt})`,
-};
 
-const MODAL_ON_STYLE ={
-  background:`linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(${RuleBookArt})`,
-}
 
 class App extends Component {
 
@@ -42,38 +36,18 @@ class App extends Component {
 
   scenarioSelectionHandler=(scenarioTitle)=>{
     //select scenario, load current question
-    this.setState({selectedScenario:scenarioTitle,showScenario:!this.state.showScenario },()=>{this.setQuestionHandler(this.state.selectedScenario)
-                                                                                              this.props.setQuestion()
-    })
+    // this.setState({selectedScenario:scenarioTitle,showScenario:!this.state.showScenario },()=>this.setQuestionHandler(this.state.selectedScenario))
+    this.props.setScenario(scenarioTitle);
   }
 
   setQuestionHandler=(sc)=>{
    let {questions} =data[sc];
-    if(this.state.selectedScenario.length>0){
-      this.setState({currentQuestion:questions[this.state.currentQuestionIdx]},()=>this.askQuestionAgainHandler(this.state.currentQuestion));
-    }
-  }
-
-  askQuestionAgainHandler=(q)=>{
-    if(q.hasOwnProperty('askAgain')){
-      console.log("this qurestion has the ask again property");
-    }
-  }
-
-
-
-  setNextQuestion=()=>{
-    let {questions} = data[this.state.selectedScenario];
-    //is this the last question of scenario?
-    if(this.state.totalQuestions - 1 === this.state.currentQuestionIdx){
-      console.log('submit all questions');
-    }
-    else{
-      this.setState(prevState=>({currentQuestionIdx: prevState.currentQuestionIdx +1 }),  
-        ()=>this.setState({currentQuestion:questions[this.state.currentQuestionIdx]},()=>this.askQuestionAgainHandler(this.state.currentQuestion)))
-        this.props.nextQuestion();
-        this.props.setQuestion();
-    }
+    // if(this.state.selectedScenario.length>0){
+    //   this.setState({currentQuestion:questions[this.state.currentQuestionIdx]});
+      
+    // }
+    this.props.setQuestions(questions);
+    this.props.setQuestion();
   }
 
   submitAnswerHandler=(question,answer)=>{
@@ -84,7 +58,19 @@ class App extends Component {
     };
 
     this.props.setAnswer(obj);
-    this.setNextQuestion();
+    this.props.setQuestion();
+  }
+
+  setNextQuestion=()=>{
+    let {questions} = data[this.state.selectedScenario];
+    //is this the last question of scenario?
+    if(this.state.totalQuestions - 1 === this.state.currentQuestionIdx){
+      console.log('submit all questions');
+    }
+    else{
+      this.setState(prevState=>({currentQuestionIdx: prevState.currentQuestionIdx +1 }),
+        ()=>this.setState({currentQuestion:questions[this.state.currentQuestionIdx]}))
+    }
   }
 
   modalOn=()=>{
@@ -102,11 +88,11 @@ class App extends Component {
   };
   
   render() {
-    const {selectedScenario,showModal} = this.state;
-    const {currentQuestion,selectedCampaign} = this.props;
-    console.log(this.props);
+    const {showModal} = this.state;
+    const {selectedCampaign,selectedScenario,currentQuestion} = this.props;
+
     return (
-      <div className="App" style={showModal?MODAL_ON_STYLE:MODAL_OFF_STYLE}>
+      <div className="App" >
         <div className="App__header">
           <h1 className="App__header--title">ARKHAM HORROR LOGGER</h1>
         </div>
@@ -117,12 +103,13 @@ class App extends Component {
           modalOn ={this.modalOn}
           modalOff={this.modalOff}  
           campaignSelectionHandler={this.campaignSelectionHandler}/>                           
-        <ScenarioMenu 
-          campaignTitle={selectedCampaign} 
-          selectionHandler={this.scenarioSelectionHandler} 
-          setQuestionHandler={this.setQuestionHandler}
-        />                         
-        {this.props.currentQuestion? <Form
+              <ScenarioMenu 
+                campaignTitle={selectedCampaign} 
+                selectionHandler={this.scenarioSelectionHandler} 
+                setQuestionHandler={this.setQuestionHandler}
+              />
+                                  
+        {currentQuestion? <Form
                                         question={currentQuestion}
                                         getQuestionKey={this.getId}
                                         scenarioTitle={selectedScenario}
@@ -137,6 +124,7 @@ const mapStateToProps = ({choices,form}) => {
   return {
     answers: choices.answers,
     selectedCampaign:choices.selectedCampaign,
+    selectedScenario:choices.selectedScenario,
     currentQuestion:form.currentQuestion
   }
 }

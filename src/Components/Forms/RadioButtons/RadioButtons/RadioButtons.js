@@ -1,5 +1,5 @@
 import React from 'react';
-import {RadioButton} from './RadioButton';
+import {RadioButton} from './RadioButton/RadioButton';
 import './RadioButtons.css';
 
 

@@ -6,6 +6,7 @@ import scenarioMenu from '../../constants/scenarioConstants';
 import SubmitButton from '../Forms/Button/SubmitButton';
 import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
+import {Redirect } from "react-router-dom";
 import "./ScenarioMenu.css"
 
 class ScenarioMenu extends Component{
@@ -38,9 +39,12 @@ class ScenarioMenu extends Component{
     render(){
         const {selectedScenario,selectedCampaign}=this.props;
 
-        if(selectedCampaign ===null || selectedScenario!==null  ){
-            return null;
-          }
+        if(selectedScenario){       //selected scenario
+            return <Redirect to={'/form'}/>;
+        }
+        else if (selectedCampaign===null ){
+            return <Redirect to={'/'}/>;
+        }
         
         return(
             <div className="ScenarioMenu__wrapper">

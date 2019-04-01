@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {data} from '../../../constants/constants';
+
 import {CheckBoxes} from './CheckBoxes';
 import SubmitButton from '../Button/SubmitButton';
 import "./CheckBoxesContainer.css";
@@ -23,7 +23,7 @@ export class CheckBoxesContainer extends Component{
         const {question}=this.props;
         let choices=[];
         e.preventDefault();
-        choices = data[this.props.scenarioTitle].questions[3].choices.filter(item=>{
+        choices = question.choices.filter(item=>{
             return this.state.checkedItems.get(item.description);
         }).map(e=>e.description);
 
@@ -35,7 +35,7 @@ export class CheckBoxesContainer extends Component{
             <div className="CheckBoxes__wrapper">
                 <form onSubmit={this.handleSubmit} >
                     <CheckBoxes 
-                        choices={data[this.props.scenarioTitle].questions[3].choices}
+                        choices={this.props.choices}
                         handleChange={this.handleChange}
                         checkedItems={this.state.checkedItems}
                     />

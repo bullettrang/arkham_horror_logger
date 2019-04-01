@@ -3,8 +3,9 @@ import React,{Component} from 'react';
 
 import SubmitButton from '../Forms/Button/SubmitButton';
 import Grid from '../Grid';
-
+import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
+import {Redirect } from "react-router-dom";
 import './CampaignMenu.css';
 //shows menu of campaigns
 
@@ -59,8 +60,7 @@ import './CampaignMenu.css';
         if(this.state.selection===''){
           return;
         }
-        this.props.campaignSelectionHandler(this.state.selection);
-
+        this.props.setCampaign(this.state.selection);
     }
 
     selectHandler=(e)=>{
@@ -70,9 +70,11 @@ import './CampaignMenu.css';
     render(){
       const {selectedCampaign} = this.props;
 
-      if(selectedCampaign!==null){
-        return null;
+      if(selectedCampaign!==null){    //if campaign was submitted, we will navigate to scenario menu
+        return <Redirect to={'/scenario'}/>;
       }
+
+
       
         return(
           <div className="campaign-menu__wrapper">
@@ -99,4 +101,4 @@ const mapStateToProps=({choices})=>{
   
 }
 
-export default connect(mapStateToProps,null)(CampaignMenu);
+export default connect(mapStateToProps,actions)(CampaignMenu);

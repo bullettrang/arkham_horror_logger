@@ -1,0 +1,40 @@
+import React from 'react';
+import {CAMPAIGN_IMAGES} from '../constants/CampaignImages';
+import "./Grid.css";
+
+
+ const Grid = (props)=>{
+
+     let camps = props.campaigns.map((e)=>{
+
+        let isModal;
+        //determine modal
+        if(props.current!==e.title){
+            isModal=`linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(${CAMPAIGN_IMAGES[e.title]})`
+        }
+        else{
+            isModal=`url(${CAMPAIGN_IMAGES[e.title]})`;
+        }
+
+         return (
+                <div onClick={()=>props.clicked(e.title)} 
+                    key={e.id} 
+                    style={{
+                        background:`${isModal}`,
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                        border:`${props.current===e.title? '3px solid silver':'none'}`,
+                        zIndex:`${props.current===e.title? "2":"1"}`,
+                        }} 
+                        className="cell">
+                </div>
+                );
+     })
+    return(
+    <div className="container">
+
+        {camps}
+    </div>);
+}
+
+export default Grid;

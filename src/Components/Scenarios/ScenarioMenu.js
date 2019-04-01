@@ -32,13 +32,14 @@ class ScenarioMenu extends Component{
             this.props.selectionHandler(this.state.selected);
             this.props.setScenario(this.state.selected);
             this.props.setQuestions(this.state.selected)
+            
         }
     }
 
     render(){
         const {selectedScenario,selectedCampaign}=this.props;
-        
-        if(selectedScenario!==null){
+        console.log(this.props)
+        if(selectedCampaign ===null || selectedScenario!==null  ){
             return null;
           }
         

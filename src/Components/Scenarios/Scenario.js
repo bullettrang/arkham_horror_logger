@@ -1,11 +1,9 @@
 import React from 'react';
 import './Scenario.css';
-//TODO: add scenario icon
 
 const selectedStyle={
     opacity:.8,
-    transform: 'translateY(0.4rem)',
-    transform:'scale(1.1)',
+    transform: 'translateY(0.4rem), scale(1.1)',
     color:'white',
     background:'orange',
     transition:'all .2s ease-in-out'

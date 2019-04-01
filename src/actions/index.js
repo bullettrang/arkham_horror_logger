@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION} from './types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,NEXT_QUESTION} from './types';
 
 export const setAnswer =(obj)=>{
     return{
@@ -32,5 +32,11 @@ export const setQuestion =(obj)=>{
     return{
         type: SET_QUESTION,
         payload:obj
+    }
+}
+
+export const nextQuestion =()=>{
+    return{
+        type: NEXT_QUESTION
     }
 }

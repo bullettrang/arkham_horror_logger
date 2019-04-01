@@ -9,14 +9,9 @@
 }
 .App {
   font-size:62.5%;
-  /* max-width:960px; */
   margin:0 auto;
   height:100%;
   width:100%;
-  /* background:     linear-gradient(
-    rgba(0, 0, 0, 0.25), 
-    rgba(0, 0, 0, 0.25)
-  ),url('./Assets/Rulebook_art.jpg'); */
   background-size:cover;
   overflow: auto;
   position:fixed;
@@ -38,9 +33,7 @@
 
 .Modal{
   display:block;
-  /* display:none; */
   position:fixed;
-  /* z-index:2; */
   left:0;
   top:0;
   height:100%;

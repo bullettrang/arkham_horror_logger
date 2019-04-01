@@ -24,9 +24,7 @@
 }
 
 .Scenario__wrapper:hover::after {
-    /* transform: scaleX(1.6) scaleY(1.4); */
     opacity: 0; 
-
 }
 
 .Scenario__wrapper:active{

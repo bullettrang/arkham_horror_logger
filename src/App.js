@@ -12,7 +12,7 @@ import {data} from './constants/constants';
 import shortid from "shortid";  //for animations
 
 const MODAL_OFF_STYLE= {
-background:`linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${RuleBookArt})`,
+background:`linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)), url(${RuleBookArt})`,
 };
 
 const MODAL_ON_STYLE ={
@@ -24,7 +24,6 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      selectedCampaign:null,
       selectedScenario:null,
       currentQuestion:null,
       currentQuestionIdx:0,
@@ -37,7 +36,7 @@ class App extends Component {
   }
 
   campaignSelectionHandler=(campaign)=>{
-    this.setState({selectedCampaign:campaign,showCampaign:false,showScenario:true});
+
     this.props.setCampaign(campaign);
   }
 
@@ -91,23 +90,26 @@ class App extends Component {
   };
   
   render() {
-    const {currentQuestion,selectedCampaign,selectedScenario,showModal} = this.state;
+    const {currentQuestion,selectedScenario,showModal} = this.state;
+    const {selectedCampaign} = this.props;
     console.log(this.props);
     return (
       <div className="App" style={showModal?MODAL_ON_STYLE:MODAL_OFF_STYLE}>
         <div className="App__header">
           <h1 className="App__header--title">ARKHAM HORROR LOGGER</h1>
         </div>
+        <br/>
+        <br/>
+        <br/>
         <CampaignMenu
           modalOn ={this.modalOn}
           modalOff={this.modalOff}  
-          campaignSelectionHandler={this.campaignSelectionHandler}/>
-                                   
-              {this.state.showScenario?<ScenarioMenu 
+          campaignSelectionHandler={this.campaignSelectionHandler}/>                           
+              <ScenarioMenu 
                 campaignTitle={selectedCampaign} 
                 selectionHandler={this.scenarioSelectionHandler} 
                 setQuestionHandler={this.setQuestionHandler}
-              />:null}
+              />
                                   
         {this.state.currentQuestion? <Form
                                         question={currentQuestion}
@@ -123,7 +125,8 @@ class App extends Component {
 
 const mapStateToProps = ({choices}) => {
   return {
-    answers: choices.answers
+    answers: choices.answers,
+    selectedCampaign:choices.selectedCampaign
   }
 }
 

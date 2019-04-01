@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
 
-import DropDown from '../Menu/DropDown';
+
 import SubmitButton from '../Forms/Button/SubmitButton';
-import NOZ_IMG from '../../Assets/CAMPAIGN_COVER/NOZ_form_img.png';
-import DWL_IMG from '../../Assets/CAMPAIGN_COVER/DWL_form_img.jpg';
+import Grid from '../Grid';
+
 import {connect} from 'react-redux';
 import './CampaignMenu.css';
 //shows menu of campaigns
@@ -39,7 +39,7 @@ import './CampaignMenu.css';
                     key: 'campaign'
                   }
             ],
-            selection:''
+            selection:null
         }
        
     }
@@ -60,18 +60,18 @@ import './CampaignMenu.css';
           return;
         }
         this.props.campaignSelectionHandler(this.state.selection);
+
     }
 
     selectHandler=(e)=>{
-        this.setState({selection:e.target.value});
+        // this.setState({selection:e.target.value});
+        this.setState({selection:e});
     }
 
     render(){
       const {selectedCampaign} = this.props;
-      console.log(this.props);
 
       if(selectedCampaign!==null){
-        console.log('DONT DISPLAY CAMPAIGN MENU')
         return null;
       }
       
@@ -80,20 +80,10 @@ import './CampaignMenu.css';
             <div className="campaign-menu__main">
             <div className="campaign-menu__header">
                   <h1 className="campaign-menu__header--title">Select a Campaign</h1>
-              </div>
-              <div className="campaign-menu__card" >
-                <img className="campaign-menu__card--image" src={DWL_IMG}/>
-                <span className="campaign-menu__card--title">{this.state.selection}</span>
-              </div>
-
+              </div> 
               <form className="campaign-menu_main--form" onSubmit={this.submitHandler}>
-                  <DropDown
-                      title={"Select Campaign"}
-                      list={this.state.campaign}
-                      resetThenSet={this.resetThenSet}
-                      mouseEnter={this.props.modalOn} 
-                      mouseLeave={this.props.modalOff}
-                  />
+              <Grid current={this.state.selection} campaigns={this.state.campaign} clicked={this.selectHandler}/>
+              <h1 className="campaign-menu_main--form--header">{this.state.selection}</h1>
                   <SubmitButton/>
               </form>
             </div>

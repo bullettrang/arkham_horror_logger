@@ -30,15 +30,9 @@ class App extends Component {
   }
 
   campaignSelectionHandler=(campaign)=>{
-
     this.props.setCampaign(campaign);
   }
 
-  scenarioSelectionHandler=(scenarioTitle)=>{
-    //select scenario, load current question
-    // this.setState({selectedScenario:scenarioTitle,showScenario:!this.state.showScenario },()=>this.setQuestionHandler(this.state.selectedScenario))
-    this.props.setScenario(scenarioTitle);
-  }
 
   setQuestionHandler=(sc)=>{
    let {questions} =data[sc];
@@ -103,11 +97,7 @@ class App extends Component {
           modalOn ={this.modalOn}
           modalOff={this.modalOff}  
           campaignSelectionHandler={this.campaignSelectionHandler}/>                           
-              <ScenarioMenu 
-                campaignTitle={selectedCampaign} 
-                selectionHandler={this.scenarioSelectionHandler} 
-                setQuestionHandler={this.setQuestionHandler}
-              />
+              <ScenarioMenu/>
                                   
         {currentQuestion? <Form
                                         question={currentQuestion}
@@ -120,12 +110,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({choices,form}) => {
+const mapStateToProps = ({choices}) => {
   return {
     answers: choices.answers,
     selectedCampaign:choices.selectedCampaign,
     selectedScenario:choices.selectedScenario,
-    currentQuestion:form.currentQuestion
+    currentQuestion:choices.currentQuestion
   }
 }
 

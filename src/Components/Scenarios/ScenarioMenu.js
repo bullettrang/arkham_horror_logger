@@ -29,7 +29,6 @@ class ScenarioMenu extends Component{
     submitHandler=(e)=>{
         e.preventDefault();
         if(this.state.selected){
-            this.props.selectionHandler(this.state.selected);
             this.props.setScenario(this.state.selected);
             this.props.setQuestions(this.state.selected)
             this.props.setQuestion();

@@ -23,7 +23,6 @@ export class CheckBoxesContainer extends Component{
 
     handleSubmit=(e)=>{
         const {currentQuestion}=this.props;
-        console.log()
         let choices=[];
         e.preventDefault();
         choices = currentQuestion.choices.filter(item=>{

@@ -45,6 +45,10 @@ import './CampaignMenu.css';
        
     }
 
+    componentDidMount(){
+      this.props.newForm();   //restart the form
+    }
+
     resetThenSet = (id, key) => {
         let temp = JSON.parse(JSON.stringify(this.state[key]))
         temp.forEach(item => item.selected = false);
@@ -96,7 +100,9 @@ import './CampaignMenu.css';
 
 const mapStateToProps=({choices})=>{
   return{
-    selectedCampaign:choices.selectedCampaign
+    selectedCampaign:choices.selectedCampaign,
+    totalQuestions:choices.totalQuestions,
+    questionIdx:choices.qIdx
   }
   
 }

@@ -1,9 +1,11 @@
 import React,{Component} from 'react';
 import {RadioButtons} from './RadioButtons/RadioButtons'; 
+
 import SubmitButton from '../Button/SubmitButton';
 import * as actions from '../../../actions/index';
+import {connect} from 'react-redux';
 import './RadioButtonContainer.css';
-export class RadioButtonContainer extends Component{
+ class RadioButtonContainer extends Component{
 
     state={
         current:null
@@ -14,25 +16,26 @@ export class RadioButtonContainer extends Component{
     }
 
     handleSubmit=(e)=>{
-        const {question} =this.props; 
+        const {currentQuestion} =this.props; 
         e.preventDefault();
         //for radio input, there must be a user selection to submit
         if(this.state.current===null){
             return;
         }
-        this.props.submit(question.id,this.state.current);
+        this.props.submit(currentQuestion,this.state.current);
+
     }
 
     render(){
-        const {choices,question}=this.props;
+        const {currentQuestion}=this.props;
         return(
         <div className="Radio__wrapper">
             <form className="Radio__userInputs" onSubmit={this.handleSubmit}>
                 <div className="Radio__form--choices">
                     <RadioButtons 
                         handleChange={this.handleChange} 
-                        type={question.type} 
-                        choices={choices} 
+                        type={currentQuestion.type} 
+                        choices={currentQuestion.choices} 
                         current={this.state.current}                        
                     />
                 </div>
@@ -44,3 +47,11 @@ export class RadioButtonContainer extends Component{
         );
     }
 }
+
+const mapStateToProps=({choices})=>{
+    return{
+        currentQuestion:choices.currentQuestion,
+
+    }
+}
+export default connect(mapStateToProps,actions)(RadioButtonContainer);

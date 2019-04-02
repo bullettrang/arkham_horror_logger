@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import CampaignMenu from './Components/Campaign/CampaignMenu';
 import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import Form from './Components/Forms/Form';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import ProtectedRoute from './Components/ProtectedRoute';
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actions from './actions/';
-import RuleBookArt from './Assets/Rulebook_art.jpg';
+
 import './App.css';
-import {data} from './constants/constants';
-
-import shortid from "shortid";  //for animations
-
-
 
 class App extends Component {
 
@@ -40,7 +36,8 @@ class App extends Component {
         <BrowserRouter>
           <Route path="/" exact component={CampaignMenu}></Route>
           <Route path="/scenario" component={ScenarioMenu}></Route>
-          <Route path="/form" component={Form}></Route>
+          {/* <ProtectedRoute path="/form" component={Form}/> */}
+          <Route  path="/form" render={()=>(this.props.choicesDone?<Redirect to={'/'}/>:<Form/>)}></Route>
         </BrowserRouter>
       </div>
     );
@@ -52,7 +49,8 @@ const mapStateToProps = ({choices}) => {
     answers: choices.answers,
     selectedCampaign:choices.selectedCampaign,
     selectedScenario:choices.selectedScenario,
-    currentQuestion:choices.currentQuestion
+    currentQuestion:choices.currentQuestion,
+    choicesDone:choices.choicesDone
   }
 }
 

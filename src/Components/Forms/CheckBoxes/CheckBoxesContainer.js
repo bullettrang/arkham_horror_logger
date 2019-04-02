@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 
 import {CheckBoxes} from './CheckBoxes';
 import SubmitButton from '../Button/SubmitButton';
+import { connect} from 'react-redux';
+import * as actions from '../../../actions/index';
 import "./CheckBoxesContainer.css";
 export class CheckBoxesContainer extends Component{
 
@@ -20,17 +22,20 @@ export class CheckBoxesContainer extends Component{
     }
 
     handleSubmit=(e)=>{
-        const {question}=this.props;
+        const {currentQuestion}=this.props;
+        console.log()
         let choices=[];
         e.preventDefault();
-        choices = question.choices.filter(item=>{
+        choices = currentQuestion.choices.filter(item=>{
             return this.state.checkedItems.get(item.description);
         }).map(e=>e.description);
 
-        this.setState({decisions:choices},()=>this.props.submit(question.id,this.state.decisions));
+        this.setState({decisions:choices},()=>this.props.submit(currentQuestion,this.state.decisions));
+        // this.props.submit(curren)
     }
 
     render(){
+
         return(
             <div className="CheckBoxes__wrapper">
                 <form onSubmit={this.handleSubmit} >
@@ -45,3 +50,12 @@ export class CheckBoxesContainer extends Component{
         )
     }
 }
+
+const mapStateToProps=({choices})=>{
+    return{
+        currentQuestion:choices.currentQuestion,
+        choices:choices.currentQuestion.choices
+    }
+}
+
+export default connect(mapStateToProps,actions)(CheckBoxesContainer);

@@ -23,6 +23,8 @@ class ScenarioMenu extends Component{
         }
     }
 
+    
+
     selectHandler=(sc)=>{
         this.setState({selected:sc});
     }

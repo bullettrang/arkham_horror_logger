@@ -23,7 +23,7 @@ export default (state=initialState,action)=>{
                 qIdx:state.qIdx+1
             }
         case SET_QUESTION:
-            if(state.qIdx===null){          //very first question
+            if(state.qIdx===null || state.qIdx===state.totalQuestions){          //very first question
                 console.log('is null ');
                 return{
                     ...state,
@@ -32,11 +32,9 @@ export default (state=initialState,action)=>{
                 };
             }
             const nextQuestionIdx = state.qIdx+1;
-            // if(state.questions[state.qIdx].hasOwnProperty("askAgain")){
-            //     console.log('inside reducer, you should skip question');
-            // }
+
             
-            if(nextQuestionIdx  === state.questions.totalQuestions -1){
+            if(nextQuestionIdx  === state.questions.totalQuestions){
                 console.log('reached last question')
                 return state;       //reached last question
             }

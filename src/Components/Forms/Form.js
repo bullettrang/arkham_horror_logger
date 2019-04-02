@@ -1,7 +1,7 @@
 import React from 'react';
 import {Question} from './Question/Question';
-import {RadioButtonContainer} from './RadioButtons/RadioButtonContainer';
-import {CheckBoxesContainer} from './CheckBoxes/CheckBoxesContainer';
+import RadioButtonContainer from './RadioButtons/RadioButtonContainer';
+import  CheckBoxesContainer from './CheckBoxes/CheckBoxesContainer';
 import * as actions from '../../actions/index';
 
 import { connect } from 'react-redux';
@@ -10,39 +10,55 @@ import shortid from "shortid";  //for animations
 import "./Form.css";
 
  const Form =(props)=>{
-    const {scenarioTitle,question,questions,campaignTitle}=props;
+    const {scenarioTitle,question,questions, questionIdx,totalQuestions,choicesDone}=props;
     let userForm=null;
 
-    const  getId = () => {
+    const getId = () => {
             const id = shortid.generate();
             return id;
         };
 
-    if(campaignTitle===null){
-        return <Redirect to={'/'}/>
+    const submitHandler =(question,ans)=>{
+        const obj={[question.id]:ans}
+        props.setAnswer(obj);
+        props.setQuestion();
+
+        if(props.totalQuestions -1===props.questionIdx){
+            props.finishedForm();
+            props.resetAfterSubmit();
+        }
     }
-    if(scenarioTitle===null){
-        return <Redirect to={'/scenario'}/>
-    }
-    if(question===null){     
+
+    // if(campaignTitle===null){
+    //     return <Redirect to={'/'}/>
+    // }
+    // if(scenarioTitle===null){
+    //     return <Redirect to={'/scenario'}/>
+    // }
+    // if(question===null){     
+    //     return null;
+    // }
+
+    if(questionIdx===totalQuestions){
+        console.log('reached last question');
         return null;
     }
-    if(question.type==='radio'){
-        userForm=<RadioButtonContainer
-                    question={question} 
-                    scenarioTitle={scenarioTitle} 
-                    choices={question.choices}
-                    submit={props.setAnswer}
-                />
-    }
     else{
-        userForm=<CheckBoxesContainer
-                    question={question}  
-                    scenarioTitle={scenarioTitle} 
-                    choices={question.choices}
-                    submit={props.setAnswer}
-                    questions={questions}
-                />
+        if(question.type==='radio'){
+            userForm=<RadioButtonContainer
+                        question={question} 
+                        scenarioTitle={scenarioTitle} 
+                        choices={question.choices}
+                        submit={submitHandler}
+                    />
+        }
+        else if(  question.type==='checkbox'){
+            userForm=<CheckBoxesContainer
+                        scenarioTitle={scenarioTitle} 
+                        submit={submitHandler}
+                        questions={questions}
+                    />
+        }
     }
 
     
@@ -59,7 +75,10 @@ const mapStateToProps=({choices})=>{
         question:choices.currentQuestion,
         questions:choices.questions,
         scenarioTitle:choices.selectedScenario,
-        campaignTitle:choices.selectedCampaign
+        campaignTitle:choices.selectedCampaign,
+        totalQuestions:choices.totalQuestions,
+        questionIdx:choices.qIdx,
+        choicesDone:choices.choicesDone
     }
 }
 

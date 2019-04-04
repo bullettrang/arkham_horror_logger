@@ -64,6 +64,8 @@ import './CampaignMenu.css';
         if(this.state.selection===''){
           return;
         }
+
+        //TODO ADD SPECIAL LOGIC HANDLING FOR PROLOGUES, DUNWICH, ETC
         this.props.setCampaign(this.state.selection);
     }
 

@@ -77,31 +77,6 @@ export default (state=initialState,action)=>{
                 return state;       //all questions answered, 
             }
             else{
-                // const questionToCheck= state.questions[nextQuestionIdx];        //we need to check if this question should be asked 
-                // if(questionToCheck.hasOwnProperty('askAgain')){                 //special case for recurring questions
-                //     const answerToCheck = state.answers.filter((e)=> e.hasOwnProperty(questionToCheck.id));
-                //     if(answerToCheck.length===0){           //do we ask the ghoul question again
-                //         askAgain = questionToCheck.askAgain;
-                //     }
-                //     else{
-                //         if(answerToCheck[questionToCheck.id]===0){          //did user already defeat ghoul priest?
-                //             askAgain = !questionToCheck.askAgain;
-                //             nextQuestionIdx++;          //MAYBE NEED TO HANDLE IF RECURRING QUESTION IS LAST QUESTION ON FORM
-                //             if(nextQuestionIdx=== state.totalQuestions)
-                //             {
-                //                 return state;
-                //             }
-                //             return{
-                //                 ...state,
-                //                 currentQuestion:{
-                //                     ...state.questions[nextQuestionIdx],
-                //                     [askAgain]:askAgain
-                //                 },
-                //                 qIdx:nextQuestionIdx
-                //             }
-                //         }
-                //     }
-                // }
                 return{
                     ...state,
                     qIdx:nextQuestionIdx,

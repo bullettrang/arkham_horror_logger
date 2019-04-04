@@ -30,7 +30,6 @@ export class CheckBoxesContainer extends Component{
         }).map(e=>e.description);
 
         this.setState({decisions:choices},()=>this.props.submit(currentQuestion,this.state.decisions));
-        // this.props.submit(curren)
     }
 
     render(){

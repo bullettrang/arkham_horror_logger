@@ -25,7 +25,7 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ],
+            ]
           },
           {
             qString:"All investigators resigned or defeated",
@@ -40,7 +40,7 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ],
+            ]
           },
           {
             qString:"Ghoul priest defeated?",
@@ -114,7 +114,7 @@ export const data ={
           {
             qString:"Ghoul priest defeated in this scenario?",
             type:"radio",
-            id:'NZ0203',
+            id:'NZ0103',
             choices:[
               {
                 description:"TRUE",
@@ -205,7 +205,7 @@ export const data ={
           {
             qString:"Ghoul priest defeated in this scenario?",
             type:"radio",
-            id:'NZ0203',
+            id:'NZ0103',
             choices:[
               {
                 description:"TRUE",
@@ -245,16 +245,19 @@ export const data ={
       * DUNWICH
       * 
       */
+     //TO DO: ADD Q'S BEFORE ANY SCENARIO
+     //1. DID THE PLAYER START WITH EXTRACURRICULAR ACTIVITIES OR THE HOUSE ALWAYS WINS FIRST?
+     //2.
       "Extracurricular Activities":{
         title:"Extracurricular Activities",
         user_resolution:null,
         user_answers:[],
-        total_questions:4,
-        id:'DW0101',
+        total_questions:3,
         questions:[
           {
-            qString:"Agenda reached full doom?",
+            qString:"Agenda reached full doom?",              //unconscious for several hours, Prof Warren Rice kidnapped, students were rescued
             type:"radio",
+            id:'DW0101',
             choices:[
               {
                 description:"TRUE",
@@ -267,8 +270,8 @@ export const data ={
             ]
           },
           {
-            qString:"All investigators resigned or defeated",
-            type:"radio",
+            qString:"All investigators resigned or defeated",   //RICE WAS KIDNAPPED, 
+            type:"radio",                                       //FAILED TO SAVE THE STUDENTS
             id:'DW0102',
             choices:[
               {
@@ -282,20 +285,92 @@ export const data ={
             ]
           },
           {
-            qString:"What was the fate of Arkham?",
+            qString:"Did you....",
             type:"radio",
             id:'DW0103',
             choices:[
               {
-                description:"Stopped the Ritual",
+                description:"Find and rescued Professor Rice",      //students NOT saved
                 value:0
               },
               {
-                description:"Repelled Umordhoth",
+                description:"Rescued the students",                 //students saved, Prof Rice kidnapped
                 value:1
               },
               {
-                description:"Sacrificed Lita Chandler",
+                description:"Defeated the Experiment  ",            //students NOT saved, Prof Rice kidnapped
+                value:2
+              }
+            ]
+          }
+        ],
+      },
+      "The House Always Wins":{
+        title:"The House Always Wins",
+        user_resolution:null,
+        user_answers:[],
+        total_questions:4,
+        id:'DW0201',
+        questions:[
+          {
+            qString:"Agenda reached full doom?",              //investigators unconscious for several hours, O'Bannion has a bone to pick...., Dr. Morgan Kidnapped
+            type:"radio",
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"All investigators resigned or defeated",   //Morgan WAS KIDNAPPED, 
+            type:"radio",                                       //FAILED TO SAVE THE STUDENTS
+            id:'DW0202',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"Did you \"Cheat\" ? ",    
+            type:"radio",                                       
+            id:'DW0203',
+            choices:[
+              {
+                description:"YES",
+                value:0
+              },
+              {
+                description:"NO",
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"Did you.... ",
+            type:"radio",
+            id:'DW0203',
+            choices:[
+              {
+                description:"Find and rescued Professor Morgan",      //O'BANNION has a bone to pick....
+                value:0
+              },
+              {
+                description:"Rescued the students",                 //students saved, Prof Rice kidnapped
+                value:1
+              },
+              {
+                description:"Defeated the Experiment  ",            //students NOT saved, Prof Rice kidnapped
                 value:2
               }
             ]

@@ -19,6 +19,7 @@ import "./Form.css";
         };
 
     const submitHandler =(question,ans)=>{
+        console.log('submitHandler ',question);
         const obj={[question.id]:ans}
         props.setAnswer(obj);
         props.setQuestion();
@@ -29,18 +30,7 @@ import "./Form.css";
         }
     }
 
-    // if(campaignTitle===null){
-    //     return <Redirect to={'/'}/>
-    // }
-    // if(scenarioTitle===null){
-    //     return <Redirect to={'/scenario'}/>
-    // }
-    // if(question===null){     
-    //     return null;
-    // }
-
     if(questionIdx===totalQuestions){
-        console.log('reached last question');
         return null;
     }
     else{

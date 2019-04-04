@@ -17,19 +17,21 @@ export default (state=initialState,action)=>{
         //need to update properly
         let questionID=Object.keys(action.payload)[0];   
         console.log(questionID);
-        let answerArr =[...state.answers];
         const index = state.answers.findIndex(ans => ans[questionID]);
-        console.log('[UPDATE_ANSWER] index ',index);
+
+        
         if(index===-1){
             return{
                 ...state,
                 answers:[...state.answers,action.payload]
             }
         }
-            return {
-                ...state,
-               answers:[ ...state.answers.slice(0,index),{...state.answers[index],[questionID]:action.payload[questionID]},...state.answers.slice(index+1)]
-            }
+
+        return {
+            ...state,
+            answers:[ ...state.answers.slice(0,index),{...state.answers[index],[questionID]:action.payload[questionID]},...state.answers.slice(index+1)]
+        }
+        
         case SET_CAMPAIGN:
             return{
                 ...state,
@@ -40,26 +42,10 @@ export default (state=initialState,action)=>{
                 ...state,
                 selectedScenario:action.payload
             }
-        case SET_QUESTIONS:
-            //
+        case SET_QUESTIONS://TODO, FIND AWAY TO IMPLEMENT RECURRING QUESTIONS
              let finalQuestions=[];
-            let nonRecurringQuestions = data[action.payload].questions.filter(q=>!q.hasOwnProperty("askAgain"));
-            let recurringQuestions = data[action.payload].questions.filter(q=>q.hasOwnProperty("askAgain"));
-            console.log('recurringQuestions ',recurringQuestions);
-            console.log('nonRecurringQuestions ',nonRecurringQuestions);
-            //check user answers, find out answers to recurring questions
-            console.log(state.answers);
-           finalQuestions= recurringQuestions.filter(e=> state.answers.findIndex(a=>a[e.id])===-1 || state.answers[e.id]===1).concat(nonRecurringQuestions);
-           finalQuestions.sort((q1,q2)=>{
-               if(q1.id < q2.id){
-                   return -1;
-               }
-               else if (q1.id > q2.id){
-                   return 1;
-               }
-               return 0;
-           })
-            console.log('finaQuestions' ,finalQuestions);
+
+                finalQuestions= getFinalQuestions(state.answers,action);
 
                 return{
                     ...state,
@@ -84,7 +70,6 @@ export default (state=initialState,action)=>{
                     currentQuestion:state.questions[0]
                 };
             }
-
             let nextQuestionIdx = state.qIdx+1;
             let askAgain;
             if(nextQuestionIdx  === state.totalQuestions){
@@ -92,33 +77,31 @@ export default (state=initialState,action)=>{
                 return state;       //all questions answered, 
             }
             else{
-                const questionToCheck= state.questions[nextQuestionIdx];        //we need to check if this question should be asked 
-                if(questionToCheck.hasOwnProperty('askAgain')){                 //special case for recurring questions
-                    const answerToCheck = state.answers.filter((e)=> e.hasOwnProperty(questionToCheck.id));
-                    if(answerToCheck.length===0){           //do we ask the ghoul question again
-                        askAgain = questionToCheck.askAgain;
-                    }
-                    else{
-                        
-                        if(answerToCheck[questionToCheck.id]===0){          //did user already defeat ghoul priest?
-                            askAgain = !questionToCheck.askAgain;
-                            nextQuestionIdx++;          //MAYBE NEED TO HANDLE IF RECURRING QUESTION IS LAST QUESTION ON FORM
-                            if(nextQuestionIdx=== state.totalQuestions)
-                            {
-                                return state;
-                            }
-                                return{
-                                    ...state,
-                                    // qIdx:nextQuestionIdx,
-                                    // currentQuestion:state.questions[nextQuestionIdx],
-                                    currentQuestion:{
-                                        ...state.questions[nextQuestionIdx],
-                                        [askAgain]:askAgain
-                                    }
-                                }
-                        }
-                    }
-                }
+                // const questionToCheck= state.questions[nextQuestionIdx];        //we need to check if this question should be asked 
+                // if(questionToCheck.hasOwnProperty('askAgain')){                 //special case for recurring questions
+                //     const answerToCheck = state.answers.filter((e)=> e.hasOwnProperty(questionToCheck.id));
+                //     if(answerToCheck.length===0){           //do we ask the ghoul question again
+                //         askAgain = questionToCheck.askAgain;
+                //     }
+                //     else{
+                //         if(answerToCheck[questionToCheck.id]===0){          //did user already defeat ghoul priest?
+                //             askAgain = !questionToCheck.askAgain;
+                //             nextQuestionIdx++;          //MAYBE NEED TO HANDLE IF RECURRING QUESTION IS LAST QUESTION ON FORM
+                //             if(nextQuestionIdx=== state.totalQuestions)
+                //             {
+                //                 return state;
+                //             }
+                //             return{
+                //                 ...state,
+                //                 currentQuestion:{
+                //                     ...state.questions[nextQuestionIdx],
+                //                     [askAgain]:askAgain
+                //                 },
+                //                 qIdx:nextQuestionIdx
+                //             }
+                //         }
+                //     }
+                // }
                 return{
                     ...state,
                     qIdx:nextQuestionIdx,
@@ -152,4 +135,35 @@ export default (state=initialState,action)=>{
         default:
             return state;
     }
+}
+
+//HELPER FUNCTIONS
+
+/* userAnswers: Array
+*action: object
+ */
+const getFinalQuestions=(userAnswers,action)=>{
+    let finalQuestions=[];
+            let nonRecurringQuestions = data[action.payload].questions.filter(q=>!q.hasOwnProperty("askAgain"));
+            let recurringQuestions = data[action.payload].questions.filter(q=>q.hasOwnProperty("askAgain"));
+            let mymap = new Map();
+            for(let ele of userAnswers){
+                for(let key in ele){
+                    mymap.set(key,ele[key]);
+                }
+            }
+            let remainingRecurring=recurringQuestions.filter(e=>  mymap.get(e.id) !==0 );
+            console.log('remainingRecurring ',remainingRecurring);
+            finalQuestions=remainingRecurring.concat(nonRecurringQuestions);
+           console.log('finalQuestions ',finalQuestions);
+           finalQuestions.sort((q1,q2)=>{   //sort by id
+               if(q1.id < q2.id){
+                   return -1;
+               }
+               else if (q1.id > q2.id){
+                   return 1;
+               }
+               return 0;
+           })
+           return finalQuestions;
 }

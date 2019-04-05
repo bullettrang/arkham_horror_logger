@@ -25,7 +25,14 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ]
+            ],
+            //this question's choice affects NZ0102,NZ0103,NZ0104 
+            relatedQuestions:{        
+              NZ0102:1,       //if player choice is a value of 1, we ask NZ0102,
+              NZ0103:1,       //" same as above"
+              NZ0104:1        
+            },
+            skipQuestion:false
           },
           {
             qString:"All investigators resigned or defeated",
@@ -40,7 +47,12 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ]
+            ],
+            relatedQuestions:{
+              NZ0103:1,
+              NZ0104:1
+            },
+            skipQuestion:false
           },
           {
             qString:"Ghoul priest defeated?",
@@ -56,7 +68,8 @@ export const data ={
                 value:1
               }
             ],
-            askAgain:true
+            askAgain:true,
+            skipQuestion:false
           },
           {
             qString:"House was burnt down?",
@@ -71,9 +84,10 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ]
+            ],
+            skipQuestion:false
           },
-        ],
+        ],    //END OF THE GATHERING Q'S
       },
       "The Midnight Masks":{
         title:"The Midnight Masks",
@@ -94,7 +108,11 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ]
+            ],
+            relatedQuestions:{
+              NZ0202:1,
+            },
+            skipQuestion:false
           },
           {
             qString:"All investigators resigned or defeated",
@@ -162,7 +180,7 @@ export const data ={
                 value:5,
                 key:'checkbox5'
               }
-            ]
+            ] //END OF THE MIDNIGHT MASKS Q'S
           }
         ],
       },
@@ -170,7 +188,7 @@ export const data ={
         title:"The Devourer Below",
         user_resolution:null,
         user_answers:[],
-        total_questions:4,
+        total_questions:5,
         questions:[
           {
             qString:"Agenda reached full doom?",
@@ -185,7 +203,11 @@ export const data ={
                 description:"FALSE",
                 value:1
               }
-            ]
+            ],
+            relatedQuestions:{
+              NZ0302:1,
+              NZ0304:1
+            }
           },
           {
             qString:"All investigators resigned or defeated",
@@ -221,7 +243,7 @@ export const data ={
           {
             qString:"What was the fate of Arkham?",
             type:"radio",
-            id:'NZ0303',
+            id:'NZ0304',
             choices:[
               {
                 description:"Stopped the Ritual",
@@ -236,11 +258,33 @@ export const data ={
                 value:2
               }
             ]
+          },
+          {
+            qString:"Which encounter set did you play with?",
+            type:"radio",
+            id:'NZ0305',
+            choices:[
+              {
+                description:"Agents of Yog-Sothoth",
+                value:0
+              },
+              {
+                description:"Agents of Shub-Niggurath",
+                value:1
+              },
+              {
+                description:"Agents of Cthulhu",
+                value:2
+              },
+              {
+                description:"Agents of Hastur",
+                value:3
+              }
+            ]
           }
         ],
       },
       /*
-      *
       *
       * DUNWICH
       * 
@@ -248,11 +292,34 @@ export const data ={
      //TO DO: ADD Q'S BEFORE ANY SCENARIO
      //1. DID THE PLAYER START WITH EXTRACURRICULAR ACTIVITIES OR THE HOUSE ALWAYS WINS FIRST?
      //2.
+     "Dunwich Prologue":{                 //ask this question if dunwich is CHOSEN
+      title:"Dunwich Prologue",
+      user_resolution:null,
+      user_answers:[],
+      total_questions:1,
+      questions:[
+        {
+          qString:"Did you...",              
+          type:"radio",
+          id:'DW0101',
+          choices:[
+            {
+              description:"Find Dr. Warren Rice",
+              value:0
+            },
+            {
+              description:"Find Dr. Morgan",
+              value:1
+            }
+          ]
+        },
+      ],
+    },
       "Extracurricular Activities":{
         title:"Extracurricular Activities",
         user_resolution:null,
         user_answers:[],
-        total_questions:3,
+        total_questions:4,
         questions:[
           {
             qString:"Agenda reached full doom?",              //unconscious for several hours, Prof Warren Rice kidnapped, students were rescued
@@ -285,9 +352,24 @@ export const data ={
             ]
           },
           {
+            qString:"Did Jazz Mulligan survive?",   //RICE WAS KIDNAPPED, 
+            type:"radio",                                       //FAILED TO SAVE THE STUDENTS
+            id:'DW0103',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ]
+          },
+          {
             qString:"Did you....",
             type:"radio",
-            id:'DW0103',
+            id:'DW0104',
             choices:[
               {
                 description:"Find and rescued Professor Rice",      //students NOT saved
@@ -310,11 +392,11 @@ export const data ={
         user_resolution:null,
         user_answers:[],
         total_questions:4,
-        id:'DW0201',
         questions:[
           {
             qString:"Agenda reached full doom?",              //investigators unconscious for several hours, O'Bannion has a bone to pick...., Dr. Morgan Kidnapped
             type:"radio",
+            id:'DW0201',
             choices:[
               {
                 description:"TRUE",
@@ -359,19 +441,118 @@ export const data ={
           {
             qString:"Did you.... ",
             type:"radio",
-            id:'DW0203',
+            id:'DW0204',
             choices:[
               {
                 description:"Find and rescued Professor Morgan",      //O'BANNION has a bone to pick....
                 value:0
               },
               {
-                description:"Rescued the students",                 //students saved, Prof Rice kidnapped
+                description:"Rescued Peter Clover",                 //show this option only if HAW is first
                 value:1
               },
               {
                 description:"Defeated the Experiment  ",            //students NOT saved, Prof Rice kidnapped
                 value:2
+              }
+            ]
+          }
+        ],
+      }
+      ,
+      "The Miskatonic Museum":{
+        title:"The Miskatonic Museum",
+        user_resolution:null,
+        user_answers:[],
+        total_questions:4,
+        questions:[
+          {
+            qString:"Agenda reached full doom?",              //failed to retrieve necronomicon
+            type:"radio",
+            id:'DW0301',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"All investigators resigned or defeated",   //failed to retrieve necronomicon
+            type:"radio",                                       
+            id:'DW0302',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"How did you get into the Miskatonic Museum? ",    
+            type:"radio",                                       
+            id:'DW0303',
+            choices:[
+              {
+                description:"Convince security guard \"Adam Lynch\" to let you in",   
+                value:0
+              },
+              {
+                description:"Broke down the front door",                              //this leads to Adam Lynch dying, Harold Walstead is gained
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"Did you.... ",
+            type:"radio",
+            id:'DW0304',
+            choices:[
+              {
+                description:"Find and KEEP the necronomicon",      //R2
+                value:0
+              },
+              {
+                description:"Destroyed the necronomicon",                 //show this option only if HAW is first
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"Did Adam Lynch die? ",             //if DW0303 is 0, we ask this question
+            type:"radio",
+            id:'DW0305',
+            choices:[
+              {
+                description:"TRUE",      
+                value:0
+              },
+              {
+                description:"FALSE",                 
+                value:1
+              }
+            ]
+          },
+          {
+            qString:"Did Harold Walsted die? ",             //if DW0303 is 1, we ask this question
+            type:"radio",
+            id:'DW0306',
+            choices:[
+              {
+                description:"TRUE",      
+                value:0
+              },
+              {
+                description:"FALSE",                 
+                value:1
               }
             ]
           }

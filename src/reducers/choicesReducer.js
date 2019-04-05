@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,NEXT_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM} from '../actions/types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS} from '../actions/types';
 import {data} from '../constants/constants';
 
 const initialState = {
@@ -16,17 +16,13 @@ export default (state=initialState,action)=>{
         case UPDATE_ANSWER:
         //need to update properly
         let questionID=Object.keys(action.payload)[0];   
-        console.log(questionID);
         const index = state.answers.findIndex(ans => ans[questionID]);
-
-        
         if(index===-1){
             return{
                 ...state,
                 answers:[...state.answers,action.payload]
             }
         }
-
         return {
             ...state,
             answers:[ ...state.answers.slice(0,index),{...state.answers[index],[questionID]:action.payload[questionID]},...state.answers.slice(index+1)]
@@ -37,31 +33,59 @@ export default (state=initialState,action)=>{
                 ...state,
                 selectedCampaign:action.payload
             }
+
         case SET_SCENARIO:
             return{
                 ...state,
                 selectedScenario:action.payload
             }
-        case SET_QUESTIONS://TODO, FIND AWAY TO IMPLEMENT RECURRING QUESTIONS
+
+        case SET_QUESTIONS:
              let finalQuestions=[];
 
-                finalQuestions= getFinalQuestions(state.answers,action);
+                finalQuestions= getFinalQuestions(state.answers,action);            //we decide questions to ask based on previous choices to other scenarios
 
                 return{
                     ...state,
                     questions:finalQuestions,
                     totalQuestions:finalQuestions.length,
                     choicesDone:false
-                
-            }
+                }
+        
+        case FILTER_QUESTIONS:
+                console.log('answer ',action.payload);
 
-        case NEXT_QUESTION:
-            if(state.qIdx-1 === state.questions.totalQuestions) return state;       //reached last question
-            
-            return{
-                ...state,
-                qIdx:state.qIdx+1
-            }
+
+                let answerToQ= action.payload;
+                if(state.currentQuestion.hasOwnProperty('relatedQuestions')){
+                    let ids = Object.keys(state.currentQuestion.relatedQuestions);
+                    let keyOfQ = Object.keys(action.payload);
+                    console.log('keyOfQ is ',keyOfQ);
+                    console.log('user submitted answer was ',answerToQ[keyOfQ]);
+                    console.log('related questions are ',ids);
+                    let newQuestions = state.questions;
+
+                        for(let id of ids){
+                                if(state.currentQuestion.relatedQuestions[id]!==answerToQ[keyOfQ]){
+                                    for(let question of newQuestions){
+                                        if(question.id===id){
+                                            question.skipQuestion=true
+                                        }
+                                    }
+                                }
+                            }
+                    
+                  
+                    return{
+                        ...state,
+                        questions:newQuestions
+                    }
+                }
+
+
+                return state;
+
+
         case SET_QUESTION:
             if(state.qIdx===null){          //very first question
                 return{
@@ -70,12 +94,27 @@ export default (state=initialState,action)=>{
                     currentQuestion:state.questions[0]
                 };
             }
+
             let nextQuestionIdx = state.qIdx+1;
-            let askAgain;
-            if(nextQuestionIdx  === state.totalQuestions){
-                
-                return state;       //all questions answered, 
+
+
+            while(nextQuestionIdx<state.totalQuestions &&  state.questions[nextQuestionIdx].skipQuestion ){
+                nextQuestionIdx++;
             }
+            
+
+            if(nextQuestionIdx  === state.totalQuestions){          //no more questions due to certain answer
+                return {                                            //reset
+                    ...state,
+                    choicesDone:true,
+                    selectedCampaign:null,
+                    selectedScenario:null,
+                    qIdx:null,
+                    totalQuestions:null,
+                    questions:[],
+                    currentQuestion:null
+                }
+            }//GENERAL MOVE TO NEXT QUESTION ON LIST
             else{
                 return{
                     ...state,
@@ -104,7 +143,7 @@ export default (state=initialState,action)=>{
                 selectedCampaign:null,
                 selectedScenario:null,
                 totalQuestions:null,
-                questions:[],
+                questions:[]
                 //todo reset answers and submitting them to db
             }    
         default:
@@ -116,6 +155,7 @@ export default (state=initialState,action)=>{
 
 /* userAnswers: Array
 *action: object
+* This is for player choices that affect q's between scenarios
  */
 const getFinalQuestions=(userAnswers,action)=>{
     let finalQuestions=[];
@@ -128,9 +168,7 @@ const getFinalQuestions=(userAnswers,action)=>{
                 }
             }
             let remainingRecurring=recurringQuestions.filter(e=>  mymap.get(e.id) !==0 );
-            console.log('remainingRecurring ',remainingRecurring);
             finalQuestions=remainingRecurring.concat(nonRecurringQuestions);
-           console.log('finalQuestions ',finalQuestions);
            finalQuestions.sort((q1,q2)=>{   //sort by id
                if(q1.id < q2.id){
                    return -1;
@@ -142,3 +180,13 @@ const getFinalQuestions=(userAnswers,action)=>{
            })
            return finalQuestions;
 }
+
+const decideNextQuestion = (previousAnswer,previousQuestion,action)=>{
+    let nextQuestion;
+
+
+
+
+    //return state;
+}
+

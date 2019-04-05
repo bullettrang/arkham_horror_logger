@@ -11,6 +11,13 @@ import './RadioButtonContainer.css';
         current:null
     }
 
+    componentDidMount(){
+        const {skipQuestion} = this.props.currentQuestion;
+        if(skipQuestion){
+            console.log('this question should be skipped'); 
+        }
+    }
+
     handleChange=(e)=>{
         this.setState({current:parseInt(e.target.value)});
     }

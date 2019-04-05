@@ -7,10 +7,8 @@ import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
 import {Redirect } from "react-router-dom";
 import './CampaignMenu.css';
-//shows menu of campaigns
 
   class CampaignMenu extends Component{ 
-
     constructor(props){
         super(props);
         this.state={
@@ -42,7 +40,6 @@ import './CampaignMenu.css';
             ],
             selection:null
         }
-       
     }
 
     componentDidMount(){
@@ -64,8 +61,7 @@ import './CampaignMenu.css';
         if(this.state.selection===''){
           return;
         }
-
-        //TODO ADD SPECIAL LOGIC HANDLING FOR PROLOGUES, DUNWICH, ETC
+      //TODO ADD SPECIAL LOGIC HANDLING FOR PROLOGUES, DUNWICH, ETC
         this.props.setCampaign(this.state.selection);
     }
 
@@ -80,8 +76,6 @@ import './CampaignMenu.css';
         return <Redirect to={'/scenario'}/>;
       }
 
-
-      
         return(
           <div className="campaign-menu__wrapper">
             <div className="campaign-menu__main">

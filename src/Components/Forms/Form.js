@@ -10,7 +10,7 @@ import shortid from "shortid";  //for animations
 import "./Form.css";
 
  const Form =(props)=>{
-    const {scenarioTitle,question,questions, questionIdx,totalQuestions,choicesDone}=props;
+
     let userForm=null;
 
     const getId = () => {
@@ -19,16 +19,19 @@ import "./Form.css";
         };
 
     const submitHandler =(question,ans)=>{
-        console.log('submitHandler ',question);
         const obj={[question.id]:ans}
         props.setAnswer(obj);
+        //based on the user answer, we need to set the next appropriate question...
+        props.filterQuestions(obj);
         props.setQuestion();
 
-        if(props.totalQuestions -1===props.questionIdx){
+        if(props.totalQuestions -1===props.questionIdx){            //if we are submitting the last question, we reset
             props.finishedForm();
             props.resetAfterSubmit();
         }
     }
+
+    const {scenarioTitle,question,questions, questionIdx,totalQuestions,choicesDone}=props;
 
     if(questionIdx===totalQuestions){
         return null;

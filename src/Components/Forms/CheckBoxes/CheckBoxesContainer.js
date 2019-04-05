@@ -15,6 +15,13 @@ export class CheckBoxesContainer extends Component{
         }
     }
 
+    componentDidMount(){
+        const {skipQuestion} = this.props.currentQuestion;
+        if(skipQuestion){
+            console.log('this question should be skipped'); 
+        }
+    }
+
     handleChange=(e)=> {
         const item = e.target.value;
         const isChecked = e.target.checked;

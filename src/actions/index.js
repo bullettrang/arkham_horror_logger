@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,NEXT_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM} from './types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS} from './types';
 
 export const setAnswer =(obj)=>{
     return{
@@ -34,11 +34,13 @@ export const setQuestion =()=>{
     }
 }
 
-export const nextQuestion =()=>{
+export const filterQuestions =(obj)=>{
     return{
-        type: NEXT_QUESTION
+        type: FILTER_QUESTIONS,
+        payload:obj
     }
 }
+
 
 export const resetAfterSubmit =()=>{
     return{

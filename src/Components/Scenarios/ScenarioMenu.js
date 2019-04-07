@@ -31,12 +31,16 @@ class ScenarioMenu extends Component{
 
     submitHandler=(e)=>{
         e.preventDefault();
-        if(this.state.selected){
-            this.props.setScenario(this.state.selected);
-            this.props.setQuestions(this.state.selected)
-            this.props.setQuestion();
+        const {setScenario,setQuestions,setQuestion}=this.props;
+        const {selected}=this.state;
+        if(selected){
+            setScenario(selected);
+            setQuestions(selected)
+            setQuestion();
         }
     }
+
+    renderRedirect
 
     render(){
         const {selectedScenario,selectedCampaign}=this.props;

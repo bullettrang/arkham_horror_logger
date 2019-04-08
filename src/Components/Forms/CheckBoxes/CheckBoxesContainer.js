@@ -15,11 +15,12 @@ export class CheckBoxesContainer extends Component{
         }
     }
 
+    //todo:
+    //change decision options based on campaign
+
     componentDidMount(){
-        const {skipQuestion} = this.props.currentQuestion;
-        if(skipQuestion){
-            console.log('this question should be skipped'); 
-        }
+        //check if dunwich,
+        //check previous answers regarding prof rice, prof morgan, and prof armitage
     }
 
     handleChange=(e)=> {

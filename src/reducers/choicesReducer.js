@@ -12,12 +12,16 @@ const initialState = {
     choicesDone:false,
     completedScenarios:[]
   }
+
+  //DW0101 if value is 0, flag unconscious for several hours
 export default (state=initialState,action)=>{
     switch(action.type){
         case UPDATE_ANSWER:
         //need to update properly
         let questionID=Object.keys(action.payload)[0];   
-        const index = state.answers.findIndex(ans => ans[questionID]);
+        console.log('questionID',questionID);
+        const index = state.answers.findIndex(ans => ans.hasOwnProperty(questionID));
+        console.log(index);
         if(index===-1){
             return{
                 ...state,
@@ -26,7 +30,10 @@ export default (state=initialState,action)=>{
         }
         return {
             ...state,
-            answers:[ ...state.answers.slice(0,index),{...state.answers[index],[questionID]:action.payload[questionID]},...state.answers.slice(index+1)]
+            answers:[ ...state.answers.slice(0,index),
+                    {...state.answers[index],
+                        [questionID]:action.payload[questionID]},
+                        ...state.answers.slice(index+1)]
         }
         
         case SET_CAMPAIGN:
@@ -162,7 +169,7 @@ const getFinalQuestions=(userAnswers,action)=>{
 }
 
 //filter out questions based on user answers to previous
-//inputs: state, action
+//inputs: state, action (action.payload is questionId:answer)
 //returns new array of questions
 const filterOutQuestions=(state,action)=>{
     
@@ -182,6 +189,13 @@ const filterOutQuestions=(state,action)=>{
                     for(let question of newQuestions){
                         if(question.id===id){
                             question.skipQuestion=true
+                        }
+                    }
+                }
+                else{
+                    for(let question of newQuestions){
+                        if(question.id===id){
+                            question.skipQuestion=false
                         }
                     }
                 }

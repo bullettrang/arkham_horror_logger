@@ -8,19 +8,64 @@
     margin-top:4rem;
     width:33.3%;
     padding:1rem;
-
+    animation: fadeIn ease 2.5s;
+    -webkit-animation: fadeIn ease 2.5s;
+    -moz-animation: fadeIn ease 2.5s;
+    -o-animation: fadeIn ease 2.5s;
+    -ms-animation: fadeIn ease 2.5s;
     /* background:linear-gradient(
     rgba(0, 0, 0, 0.25), 
     rgba(0, 0, 0, 0.25)
   ),url('./Assets/Rulebook_art.jpg'); */
 }
-/* 
-.Radio__choice{
-    border-radius:.4rem;
-    padding:1rem;
-    box-shadow: 1rem 2rem 1rem 0rem rgba(black,.4);
-} */
 
+
+
+@keyframes fadeIn{
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
 .Radio__choice:nth-last-child(1){
     margin-left:1rem;
 }
+

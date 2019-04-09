@@ -83,7 +83,11 @@ import './CampaignMenu.css';
                   <h1 className="campaign-menu__header--title">Select a Campaign</h1>
               </div> 
               <form className="campaign-menu_main--form" onSubmit={this.submitHandler}>
-              <Grid current={this.state.selection} campaigns={this.state.campaign} clicked={this.selectHandler}/>
+              <Grid 
+                current={this.state.selection} 
+                campaigns={this.state.campaign} 
+                clicked={this.selectHandler}
+              />
               <h1 className="campaign-menu_main--form--header">{this.state.selection}</h1>
                   <SubmitButton/>
               </form>

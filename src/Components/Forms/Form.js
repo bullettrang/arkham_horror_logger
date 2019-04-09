@@ -5,8 +5,7 @@ import  CheckBoxesContainer from './CheckBoxes/CheckBoxesContainer';
 import * as actions from '../../actions/index';
 
 import { connect } from 'react-redux';
-import {Redirect } from "react-router-dom";
-import shortid from "shortid";  //for animations
+import shortid from "shortid";  //for animations, need a new key prop to render each animation
 import "./Form.css";
 
  const Form =(props)=>{
@@ -56,7 +55,7 @@ import "./Form.css";
 
     
     return(
-        <div className="Form-Wrapper">
+        <div key={getId()} className="Form-Wrapper">
             <Question qString={question.qString} getQuestionKey={()=>getId}/>
             {userForm}
         </div>

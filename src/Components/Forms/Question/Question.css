@@ -1,3 +1,4 @@
+
 .Question__wrapper{
     display:flex;
     justify-content: center;
@@ -12,15 +13,17 @@
 }
 
 .Question__header--question{
-    border-right: .02em solid black;/* The typwriter cursor */
-    animation: typing 1.4s steps(25, end),blinking-cursor 2.5s step-end infinite;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    white-space: nowrap; /* Keeps the content on a single line */
+    /* border-right: .02em solid black;/* The typwriter cursor */
+    /* animation: typing 1.4s steps(25, end),blinking-cursor 2.5s step-end infinite; */
+    /* overflow: hidden; Ensures the content is not revealed until the animation */
+    /* white-space: normal; Keeps the content on a single line */
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
     letter-spacing: .008em; /* Adjust as needed */
 }
 
-@keyframes typing {
+
+
+/* @keyframes typing {
     from { width: 0 }
     to { width: 100% }
   }
@@ -28,4 +31,5 @@
   @keyframes blinking-cursor {
     from, to { border-color: transparent }
     50% { border-color: black }
-  }
+  } */
+

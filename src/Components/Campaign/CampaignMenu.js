@@ -43,6 +43,7 @@ import './CampaignMenu.css';
     }
 
     componentDidMount(){
+      this.props.setMode('campaign');
       this.props.newForm();   //restart the form
     }
 
@@ -63,6 +64,7 @@ import './CampaignMenu.css';
         }
       //TODO ADD SPECIAL LOGIC HANDLING FOR PROLOGUES, DUNWICH, ETC
         this.props.setCampaign(this.state.selection);
+        this.props.setMode('scenario');
     }
 
     selectHandler=(e)=>{

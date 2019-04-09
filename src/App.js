@@ -42,13 +42,14 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({choices}) => {
+const mapStateToProps = ({choices,mode}) => {
   return {
     answers: choices.answers,
     selectedCampaign:choices.selectedCampaign,
     selectedScenario:choices.selectedScenario,
     currentQuestion:choices.currentQuestion,
-    choicesDone:choices.choicesDone
+    choicesDone:choices.choicesDone,
+    mode:mode.currentMode
   }
 }
 

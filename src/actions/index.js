@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS} from './types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_MODE} from './types';
 
 export const setAnswer =(obj)=>{
     return{
@@ -57,5 +57,13 @@ export const finishedForm =()=>{
 export const newForm =()=>{
     return{
         type:NEW_FORM
+    }
+}
+
+export const setMode =(mode)=>{
+
+    return{
+        type:SET_MODE,
+        payload:mode
     }
 }

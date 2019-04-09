@@ -1,26 +1,24 @@
 .Scenario__wrapper{
-    display:flex;
-    flex-direction:column;
-    margin-bottom:1.4rem;
+
     border-radius:.2rem;
     box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),
     0px 5px 8px 0px rgba(0,0,0,0.14),
     0px 1px 14px 0px rgba(0,0,0,0.12);
     transition: all .2s;
-    background-color:#e7e7e7;
-    padding:1rem;
     opacity: 1;
-    margin-left:.5rem;
-    margin-right:.5rem;
-    min-width:10rem;
     box-sizing: content-box;
+    background-size:cover !important;
+    background-position: center !important; 
+    /* /* min-height:150px; */
+    min-height:150px;
+    max-height:450px;
+
 }
 
 .Scenario__wrapper:hover {
     transform: translateY(-0.4rem);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); 
     transform:scale(1.1);
-    opacity:0.8;
 }
 
 .Scenario__wrapper:hover::after {
@@ -47,10 +45,6 @@
     text-align:center;
 }
 
-.Scenario__header:active::after{
-
-}
-
 .Scenario__icon-wrapper{
     width:1rem;
     height:1rem;
@@ -65,6 +59,13 @@
     text-align:center;
 }
 
-.Scenario__main--card{
-    
+/* .Scenario__main--card{
+    min-height:150px;
+    max-height:450px;
+} */
+
+@media (max-height:700px){
+    .Scenario__wrapper{
+
+    }
 }

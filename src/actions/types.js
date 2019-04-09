@@ -10,3 +10,5 @@ export const RESET_FORM = 'RESET_FORM';
 
 export const FINISHED_FORM = 'FINISHED_FORM';
 export const NEW_FORM = 'NEW_FORM';
+
+export const SET_MODE = 'SET_MODE'

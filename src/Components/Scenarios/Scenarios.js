@@ -1,16 +1,14 @@
 import React from 'react';
 import Scenario from './Scenario/Scenario';
-import {NOZ_imgs} from '../../constants/ScenarioImages';
-import {DWL_imgs} from '../../constants/ScenarioImages';
+import {SCENARIO_IMGS} from '../../constants/ScenarioImages';
+
 import './Scenarios.css';
 const Scenarios=(props)=>{
     if(!props.scenarios){
         return null;
     }
-    console.log(props);
     return(
-            <React.Fragment>
-            
+            <React.Fragment>  
             {props.scenarios.map((e)=>{
                 return(<Scenario 
                             chosen={props.chosen}
@@ -18,7 +16,7 @@ const Scenarios=(props)=>{
                             icon={e.pic}
                             title={e.title} 
                             clicked={()=>props.clicked(e.title)}
-                            background={`url(${NOZ_imgs[e.title]})`}
+                            background={`url(${SCENARIO_IMGS[e.title]})`}
                             image={props.image}
                         />);
             })}

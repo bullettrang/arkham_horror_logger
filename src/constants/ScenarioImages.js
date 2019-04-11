@@ -11,6 +11,7 @@ import blood from '../Assets/SCENARIO_IMAGES/DWL/blood_on_the_altar.png';
 import undimensioned from '../Assets/SCENARIO_IMAGES/DWL/undimensioned_and_unseen.jpg';
 import doom from '../Assets/SCENARIO_IMAGES/DWL/where_doom_awaits.jpg';
 import lost from '../Assets/SCENARIO_IMAGES/DWL/lost_in_time_and_space.jpg';
+
 export const SCENARIO_IMGS={
     "The Gathering":gathering,
     "The Midnight Masks":midnightMasks,

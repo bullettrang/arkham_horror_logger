@@ -27,7 +27,7 @@ import "./Form.css";
         if(props.totalQuestions -1===props.questionIdx){            //if we are submitting the last question, we reset
             props.finishedForm();
             props.resetAfterSubmit();
-            this.props.setMode('campaign');
+            props.setMode('campaign');
         }
     }
 

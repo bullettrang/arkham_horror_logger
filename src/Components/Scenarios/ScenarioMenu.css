@@ -1,5 +1,5 @@
 .ScenarioMenu__wrapper{
-    margin-top:2rem;
+    margin-top:4rem;
     max-height:500px;
 }
 
@@ -20,7 +20,6 @@
 }
 
 .ScenarioMenu__form{
-
     display:flex;
     justify-content: center;
     flex-direction:column;
@@ -33,7 +32,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: .5rem .5rem;
-    /* max-width:450px; */
     margin:0 auto;
 }
 

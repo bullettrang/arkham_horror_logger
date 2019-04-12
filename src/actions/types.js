@@ -12,3 +12,5 @@ export const FINISHED_FORM = 'FINISHED_FORM';
 export const NEW_FORM = 'NEW_FORM';
 
 export const SET_MODE = 'SET_MODE'
+
+export const FETCH_USER ='FETCH_USER';

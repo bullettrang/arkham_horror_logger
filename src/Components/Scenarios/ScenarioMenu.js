@@ -39,16 +39,24 @@ class ScenarioMenu extends Component{
         }
     }
 
+    renderRedirect(){
+        const {selectedScenario,selectedCampaign,auth}=this.props;
+
+    }
+
     
 
     render(){
             //change this
-        const {selectedScenario,selectedCampaign}=this.props;
+        const {selectedScenario,selectedCampaign,auth}=this.props;
 
         if(selectedScenario){       //selected scenario
             return <Redirect to={'/form'}/>;
         }
-        else if (selectedCampaign===null ){
+        else if(selectedCampaign===null){
+            return <Redirect to={'/campaign '}/>;
+        }
+        else if (!auth){
             return <Redirect to={'/'}/>;
         }
         
@@ -76,10 +84,11 @@ class ScenarioMenu extends Component{
     }
 }
 
-const mapStateToProps = ({choices}) => {
+const mapStateToProps = ({choices,auth}) => {
     return {
       selectedCampaign:choices.selectedCampaign,
-      selectedScenario: choices.selectedScenario
+      selectedScenario: choices.selectedScenario,
+      auth
     }
   }
 

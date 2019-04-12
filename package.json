@@ -7,6 +7,8 @@
     "npm": "6.x"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "http-proxy-middleware": "^0.19.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-fontawesome": "^1.6.1",
@@ -15,6 +17,7 @@
     "react-scripts": "2.1.8",
     "react-transition-group": "^1.2.1",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "shortid": "^2.2.14"
   },
   "scripts": {

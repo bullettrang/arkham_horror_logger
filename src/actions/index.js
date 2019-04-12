@@ -1,5 +1,5 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_MODE} from './types';
-
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_MODE,FETCH_USER} from './types';
+import axios from 'axios';
 export const setAnswer =(obj)=>{
     return{
         type: UPDATE_ANSWER,
@@ -67,3 +67,10 @@ export const setMode =(mode)=>{
         payload:mode
     }
 }
+
+export const fetchUser =()=> async dispatch=>{
+    const res= await axios.get('/api/current_user');
+
+    dispatch({type:FETCH_USER,payload:res.data});
+}
+

@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 import CampaignMenu from './Components/Campaign/CampaignMenu';
 import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import Form from './Components/Forms/Form';
+import Header from './Components/Header';
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actions from './actions/';
 
 import './App.css';
+
+const Dashboard =()=>{
+  return(
+    <div style={{textAlign:'center'}}>
+      DASHBOARD, PLZ LOGIN
+    </div>
+  );
+}
 
 class App extends Component {
 
@@ -23,19 +32,20 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    this.props.fetchUser();
+  }
 
   
   render() {
     return (
       <div className="App" >
-        <div className="App__header">
-          <h1 className="App__header--title">ARKHAM HORROR LOGGER</h1>
-        </div>
-                       
+        <Header/>
         <BrowserRouter>
-          <Route path="/" exact component={CampaignMenu}></Route>
+          <Route path="/" exact component={Dashboard}></Route>
+          <Route path="/campaign"  component={CampaignMenu}></Route>
           <Route path="/scenario" component={ScenarioMenu}></Route>
-          <Route  path="/form" render={()=>(this.props.choicesDone?<Redirect to={'/'}/>:<Form/>)}></Route>
+          <Route  path="/form" render={()=>(this.props.choicesDone?<Redirect to={'/campaign'}/>:<Form/>)}></Route>
         </BrowserRouter>
       </div>
     );

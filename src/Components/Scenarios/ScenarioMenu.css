@@ -1,11 +1,9 @@
 .ScenarioMenu__wrapper{
-    margin-top:4rem;
     max-height:500px;
 }
 
 .ScenarioMenu__main{
     padding: 1rem;
-
     border-radius:.4rem;
     display:flex;
     flex-direction: column;

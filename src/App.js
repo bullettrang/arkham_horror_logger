@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CampaignMenu from './Components/Campaign/CampaignMenu';
 import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import Form from './Components/Forms/Form';
-import Header from './Components/Header';
+import Header from './Components/Header/Header';
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actions from './actions/';
@@ -19,21 +19,9 @@ const Dashboard =()=>{
 
 class App extends Component {
 
-  constructor(props){
-    super(props);
-    this.state={
-      selectedScenario:null,
-      currentQuestion:null,
-      currentQuestionIdx:0,
-      totalQuestions:null,
-      userAnswers:new Map(),
-      showCampaign:true,
-      showScenario:false
-    }
-  }
-
   componentDidMount(){
-    this.props.fetchUser();
+    if(!this.props.auth)
+      this.props.fetchUser();
   }
 
   
@@ -52,14 +40,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({choices,mode}) => {
+const mapStateToProps = ({choices,auth}) => {
   return {
-    answers: choices.answers,
-    selectedCampaign:choices.selectedCampaign,
-    selectedScenario:choices.selectedScenario,
-    currentQuestion:choices.currentQuestion,
     choicesDone:choices.choicesDone,
-    mode:mode.currentMode
+    auth
   }
 }
 

@@ -11,13 +11,6 @@ import './RadioButtonContainer.css';
         current:null
     }
 
-    componentDidMount(){
-        const {skipQuestion} = this.props.currentQuestion;
-        if(skipQuestion){
-            console.log('this question should be skipped'); 
-        }
-    }
-
     handleChange=(e)=>{
         this.setState({current:parseInt(e.target.value)});
     }
@@ -25,7 +18,6 @@ import './RadioButtonContainer.css';
     handleSubmit=(e)=>{
         const {currentQuestion} =this.props; 
         e.preventDefault();
-        //for radio input, there must be a user selection to submit
         if(this.state.current===null){
             return;
         }
@@ -57,8 +49,7 @@ import './RadioButtonContainer.css';
 
 const mapStateToProps=({choices})=>{
     return{
-        currentQuestion:choices.currentQuestion,
-
+        currentQuestion:choices.currentQuestion
     }
 }
 export default connect(mapStateToProps,actions)(RadioButtonContainer);

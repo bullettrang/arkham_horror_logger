@@ -5,7 +5,7 @@ import './Scenario.css';
 const Scenario = (props)=>{
     const selectedStyle={
         opacity:.8,
-        transform: 'translateY(0.4rem), scale(1.1)',
+        transform: 'scale(1.1)',
         background:props.background,
         transition:'all .2s ease-in-out'
         
@@ -14,7 +14,6 @@ const Scenario = (props)=>{
         background:props.background,
         transition:'all .2s ease-in-out'
     }
-    console.log(props);
     return(
         <div className="Scenario__wrapper" onClick={props.clicked} style={props.chosen===props.title ?selectedStyle:notSelectedStyle} >
             <div className="Scenario__heading">

@@ -1,0 +1,16 @@
+
+.campaign-menu__header--title{
+    font-size:2.3rem;
+    color: #d3d3d3;
+    font-family: 'teutonicregular';
+    text-align:center;
+}
+
+.campaign-menu_main--form{
+    text-align: center;
+}
+
+.campaign-menu_main--form--header{
+    font-family: 'teutonicregular';
+    color: #d3d3d3;
+}

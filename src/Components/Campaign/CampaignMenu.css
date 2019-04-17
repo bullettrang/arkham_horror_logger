@@ -1,18 +1,10 @@
 .campaign-menu__wrapper{
-    /* display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    min-height: 50%;
-    position: relative; */
     max-width:100%;
     text-align: center;
 }
 
 .campaign-menu__main{
-
     border-radius:.3rem;   
-    /* max-width:85.333%; */
     padding:1.4rem;
     text-align: center;
     margin:0 auto;
@@ -23,24 +15,10 @@
     
     border-radius:3px;
     position: relative;
-    padding-top: 56.25%;   /* 16:9 Aspect Ratio */
+    padding-top: 56.25%;   
 }
 
-/* .campaign-menu__card--title{
-    font-size:1.6rem;
-    color: #d3d3d3;
-    text-align:center;
-} */
-/* 
-
-/* .campaign-menu__header{
-    display:inline;
-    margin:0 auto;
-
-} */
-
 .campaign-menu__header--title{
-    /* margin-top:36px;            this has to be here or text won't center correctly */
     font-size:2.3rem;
     color: #d3d3d3;
     font-family: 'teutonicregular';

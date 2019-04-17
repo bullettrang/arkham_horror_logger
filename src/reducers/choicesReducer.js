@@ -1,5 +1,5 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS} from '../actions/types';
-import {data} from '../constants/constants';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS, SUBMIT_ANSWERS_START,SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR} from '../actions/types';
+import {DATA} from '../constants/constants';
 
 const initialState = {
     answers: [],
@@ -13,15 +13,12 @@ const initialState = {
     completedScenarios:[]
   }
 
-  //DW0101 if value is 0, flag unconscious for several hours
 export default (state=initialState,action)=>{
     switch(action.type){
         case UPDATE_ANSWER:
         //need to update properly
         let questionID=Object.keys(action.payload)[0];   
-        console.log('questionID',questionID);
         const index = state.answers.findIndex(ans => ans.hasOwnProperty(questionID));
-        console.log(index);
         if(index===-1){
             return{
                 ...state,
@@ -98,13 +95,13 @@ export default (state=initialState,action)=>{
                     completedScenarios:[...arrOfScenarios,finishedScenario]
                 }
             }//GENERAL MOVE TO NEXT QUESTION ON LIST
-            
-            return{
-                ...state,
-                qIdx:newQuestionIdx,
-                currentQuestion:state.questions[newQuestionIdx],
+            else{
+                return{
+                    ...state,
+                    qIdx:newQuestionIdx,
+                    currentQuestion:state.questions[newQuestionIdx],
+                }
             }
-            
 
         case NEW_FORM:
             return{
@@ -113,12 +110,9 @@ export default (state=initialState,action)=>{
             }
 
         case FINISHED_FORM:
-        // let finishedScenarios=state.completedScenarios;
-        // let recentlyFinishedScenario = state.selectedScenario;
             return{
                 ...state,
                 choicesDone:true,
-                // completedScenarios:[...finishedScenarios,recentlyFinishedScenario]
             }
         
         case RESET_FORM:
@@ -131,8 +125,16 @@ export default (state=initialState,action)=>{
                 selectedScenario:null,
                 totalQuestions:null,
                 questions:[]
-                //todo reset answers and submitting them to db
-            }    
+            }
+        case SUBMIT_ANSWERS_START:
+            return {
+                ...state
+            }
+
+        case SUBMIT_ANSWERS_SUCCESS:
+            return state;
+        case SUBMIT_ANSWERS_ERROR:
+            return state;
         default:
             return state;
     }
@@ -146,8 +148,8 @@ export default (state=initialState,action)=>{
  */
 const getFinalQuestions=(userAnswers,action)=>{
     let finalQuestions=[];
-            let nonRecurringQuestions = data[action.payload].questions.filter(q=>!q.hasOwnProperty("askAgain"));
-            let recurringQuestions = data[action.payload].questions.filter(q=>q.hasOwnProperty("askAgain"));
+            let nonRecurringQuestions = DATA[action.payload].questions.filter(q=>!q.hasOwnProperty("askAgain"));
+            let recurringQuestions = DATA[action.payload].questions.filter(q=>q.hasOwnProperty("askAgain"));
             let mymap = new Map();
             for(let ele of userAnswers){
                 for(let key in ele){
@@ -179,10 +181,6 @@ const filterOutQuestions=(state,action)=>{
     let answerToCurrentQuestion= payload;
     let relatedQuestionIds = Object.keys(currentQuestion.relatedQuestions);
     let keyOfQ = Object.keys(payload);
-    // console.log('keyOfQ is ',keyOfQ);
-    // console.log('user submitted answer was ',answerToCurrentQuestion[keyOfQ]);
-    // console.log('related questions are ' ,relatedQuestionIds);
-    
 
         for(let id of relatedQuestionIds){
                 if(currentQuestion.relatedQuestions[id]!==answerToCurrentQuestion[keyOfQ]){

@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
-import SubmitButton from '../Forms/Button/SubmitButton';
-import Grid from '../Grid';
+import CampaignForm from './CampaignForm';
 import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
 import {Redirect } from "react-router-dom";
@@ -41,9 +40,20 @@ import './CampaignMenu.css';
     }
 
     componentDidMount(){
-
+      
       this.props.setMode('campaign');
-      this.props.newForm();   //restart the form
+      
+      if(this.props.choicesDone){
+        console.log('submitting answers' );
+        const {completedScenarios,answers} = this.props;
+        let obj= {scenario:completedScenarios,choices:answers};
+        this.props.submitAnswers(obj);
+        this.props.newForm();   //restart the form
+      }
+    }
+
+    postHandler = async  (obj)=>{
+      await this.props.submitAnswers(obj);
     }
 
     resetThenSet = (id, key) => {
@@ -72,9 +82,9 @@ import './CampaignMenu.css';
 
     render(){
       const {selectedCampaign} = this.props;
-
+      const {selection,campaign}=this.state;
       
-      if(!this.props.auth){
+      if(!this.props.auth){   //ask user to login
         return <Redirect to={'/'}/>;
       }
 
@@ -85,16 +95,12 @@ import './CampaignMenu.css';
         return(
           <div className="campaign-menu__wrapper">
             <div className="campaign-menu__main">
-                    <h1 className="campaign-menu__header--title">Select a Campaign</h1>
-                <form className="campaign-menu_main--form" onSubmit={this.submitHandler}>
-                <Grid 
-                  current={this.state.selection} 
-                  campaigns={this.state.campaign} 
-                  clicked={this.selectHandler}
-                />
-                <h1 className="campaign-menu_main--form--header">{this.state.selection}</h1>
-                    <SubmitButton/>
-                </form>
+                <h1 className="campaign-menu__header--title">Select a Campaign</h1>
+                <CampaignForm
+                  submitHandler={this.submitHandler}
+                  selection={selection}
+                  campaign={campaign}
+                  selectHandler={this.selectHandler}/>
             </div>
           </div> 
           );
@@ -105,8 +111,8 @@ import './CampaignMenu.css';
 const mapStateToProps=({choices,auth})=>{
   return{
     selectedCampaign:choices.selectedCampaign,
-    totalQuestions:choices.totalQuestions,
-    questionIdx:choices.qIdx,
+    answers:choices.answers,
+    completedScenarios:choices.completedScenarios,
     auth
   }
   

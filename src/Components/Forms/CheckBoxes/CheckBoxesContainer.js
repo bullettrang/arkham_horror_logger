@@ -15,14 +15,6 @@ export class CheckBoxesContainer extends Component{
         }
     }
 
-    //todo:
-    //change decision options based on campaign
-
-    componentDidMount(){
-        //check if dunwich,
-        //check previous answers regarding prof rice, prof morgan, and prof armitage
-    }
-
     handleChange=(e)=> {
         const item = e.target.value;
         const isChecked = e.target.checked;

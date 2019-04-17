@@ -16,18 +16,20 @@ import "./Grid.css";
             isScale= "scale(1.1)";
         }
 
+        const cellStyle= {
+            background:`${isModal}`,
+            backgroundSize:'cover',
+            backgroundPosition:'center',
+            border:`${props.current===e.title? '3px solid silver':'none'}`,
+            zIndex:`${props.current===e.title? "2":"1"}`,
+            transform:isScale
+        }
+
          return (
                 <div onClick={()=>props.clicked(e.title)} 
                     key={e.id} 
-                    style={{
-                        background:`${isModal}`,
-                        backgroundSize:'cover',
-                        backgroundPosition:'center',
-                        border:`${props.current===e.title? '3px solid silver':'none'}`,
-                        zIndex:`${props.current===e.title? "2":"1"}`,
-                        transform:isScale
-                        }} 
-                        className="cell">
+                    style={cellStyle} 
+                    className="cell">
                 </div>
                 );
      })

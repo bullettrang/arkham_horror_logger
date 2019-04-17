@@ -39,12 +39,6 @@ class ScenarioMenu extends Component{
         }
     }
 
-    renderRedirect(){
-        const {selectedScenario,selectedCampaign,auth}=this.props;
-
-    }
-
-    
 
     render(){
             //change this

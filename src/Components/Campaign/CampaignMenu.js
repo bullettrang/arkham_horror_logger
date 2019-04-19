@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
-import CampaignForm from './CampaignForm';
+import CampaignForm from './CampaignForm/CampaignForm';
 import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
 import {Redirect } from "react-router-dom";
+import {assign} from 'lodash';
 import './CampaignMenu.css';
 
   class CampaignMenu extends Component{ 
@@ -39,22 +40,25 @@ import './CampaignMenu.css';
         }
     }
 
+  //   const scenarioSchema = new Schema({
+  //     scenarioTitle:String,
+  //     answers:[AnswerSchema],
+  //     _file:{type:Schema.Types.ObjectId,ref:'File'},
+  // })
+
     componentDidMount(){
       
       this.props.setMode('campaign');
       
       if(this.props.choicesDone){
-        console.log('submitting answers' );
-        const {completedScenarios,answers} = this.props;
-        let obj= {scenario:completedScenarios,choices:answers};
+        const {completedScenarios,answers,file} = this.props;
+        const completedScenario = completedScenarios[completedScenarios.length-1];
+        let obj= {scenarioTitle:completedScenario,answers:answers,_file:file[0]._id};
         this.props.submitAnswers(obj);
-        this.props.newForm();   //restart the form
+        this.props.newForm();   //toggle choicesDone
       }
     }
 
-    postHandler = async  (obj)=>{
-      await this.props.submitAnswers(obj);
-    }
 
     resetThenSet = (id, key) => {
         let temp = JSON.parse(JSON.stringify(this.state[key]))
@@ -73,6 +77,11 @@ import './CampaignMenu.css';
         }
       //TODO ADD SPECIAL LOGIC HANDLING FOR PROLOGUES, DUNWICH, ETC
         this.props.setCampaign(this.state.selection);
+        const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:this.state.selection,completedScenarios:this.props.completedScenarios});
+        if(this.props.file.length===0){   //TODO: CHANGE THIS TO HANDLE MULTIPLE FILES
+          this.props.createFile(fileObj)
+        }
+        
         this.props.setMode('scenario');
     }
 
@@ -84,9 +93,7 @@ import './CampaignMenu.css';
       const {selectedCampaign} = this.props;
       const {selection,campaign}=this.state;
       
-      if(!this.props.auth){   //ask user to login
-        return <Redirect to={'/'}/>;
-      }
+
 
       if(selectedCampaign!==null){    //if campaign was submitted, we will navigate to scenario menu
         return <Redirect to={'/scenario'}/>;
@@ -108,12 +115,14 @@ import './CampaignMenu.css';
     }
 }
 
-const mapStateToProps=({choices,auth})=>{
+const mapStateToProps=({choices,auth,file})=>{
   return{
     selectedCampaign:choices.selectedCampaign,
     answers:choices.answers,
     completedScenarios:choices.completedScenarios,
-    auth
+    choicesDone:choices.choicesDone,
+    auth,
+    file:file
   }
   
 }

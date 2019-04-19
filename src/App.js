@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DashBoard from './Components/DashBoard/DashBoard';
 import CampaignMenu from './Components/Campaign/CampaignMenu';
 import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import Form from './Components/Forms/Form';
@@ -9,18 +10,18 @@ import * as actions from './actions/';
 
 import './App.css';
 
-const Dashboard =()=>{
-  return(
-    <div style={{textAlign:'center'}}>
-      DASHBOARD, PLZ LOGIN
-    </div>
-  );
-}
+// const Dashboard =()=>{
+//   return(
+//     <div style={{textAlign:'center'}}>
+//       DASHBOARD, PLZ LOGIN
+//     </div>
+//   );
+// }
 
 class App extends Component {
 
   componentDidMount(){
-    if(!this.props.auth)
+    
       this.props.fetchUser();
   }
 
@@ -30,9 +31,9 @@ class App extends Component {
       <div className="App" >
         <Header/>
         <BrowserRouter>
-          <Route path="/" exact component={Dashboard}></Route>
-          <Route path="/campaign"  component={CampaignMenu}></Route>
-          <Route path="/scenario" component={ScenarioMenu}></Route>
+          <Route path="/" exact component={DashBoard}></Route>
+          <Route path="/campaign"  render={()=>this.props.auth?  <CampaignMenu/>:<Redirect to={'/'}/>}></Route>
+          <Route path="/scenario" render={()=>this.props.auth?  <ScenarioMenu/>:<Redirect to={'/'}/>}></Route>
           <Route  path="/form" render={()=>(this.props.choicesDone?<Redirect to={'/campaign'}/>:<Form/>)}></Route>
         </BrowserRouter>
       </div>

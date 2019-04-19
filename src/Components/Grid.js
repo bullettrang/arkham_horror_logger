@@ -3,12 +3,12 @@ import {CAMPAIGN_IMAGES} from '../constants/CampaignImages';
 import "./Grid.css";
 
 
- const Grid = (props)=>{
-     let camps = props.campaigns.map((e)=>{
+ const Grid = ({campaigns,current,clicked})=>{
+     let camps = campaigns.map((e)=>{
         let isModal;
         let isScale;
         //determine modal
-        if(props.current!==e.title){
+        if(current!==e.title){
             isModal=`linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(${CAMPAIGN_IMAGES[e.title]})`
         }
         else{
@@ -20,13 +20,13 @@ import "./Grid.css";
             background:`${isModal}`,
             backgroundSize:'cover',
             backgroundPosition:'center',
-            border:`${props.current===e.title? '3px solid silver':'none'}`,
-            zIndex:`${props.current===e.title? "2":"1"}`,
+            border:`${current===e.title? '3px solid silver':'none'}`,
+            zIndex:`${current===e.title? "2":"1"}`,
             transform:isScale
         }
 
          return (
-                <div onClick={()=>props.clicked(e.title)} 
+                <div onClick={()=>clicked(e.title)} 
                     key={e.id} 
                     style={cellStyle} 
                     className="cell">

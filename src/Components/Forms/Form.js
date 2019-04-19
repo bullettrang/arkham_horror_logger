@@ -22,7 +22,6 @@ import "./Form.css";
         //based on the user answer, we need to set the next appropriate question...
         props.filterQuestions(obj);
         props.setQuestion();
-
     }
 
     const {scenarioTitle,question,questions, questionIdx,totalQuestions}=props;

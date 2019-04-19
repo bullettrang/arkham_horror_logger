@@ -1,6 +1,6 @@
 import React from 'react';
-import SubmitButton from '../Forms/Button/SubmitButton';
-import Grid from '../Grid';
+import SubmitButton from '../../Forms/Button/SubmitButton';
+import Grid from '../../Grid';
 import './CampaignForm.css'
 const CampaignForm =(props)=>{
     return(

@@ -82,7 +82,7 @@ export default (state=initialState,action)=>{
             if(isEndOfQuestions(newQuestionIdx,state)){          //no more questions due to certain answer
                 const finishedScenario = state.selectedScenario;
                 let arrOfScenarios= state.completedScenarios;
-                
+
                 return {                                            //reset
                     ...state,
                     choicesDone:true,

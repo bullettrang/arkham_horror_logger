@@ -8,8 +8,6 @@ export const DATA ={
       */
       "The Gathering":{
         title:"The Gathering",
-        user_resolution:null,
-        user_answers:[],
         total_questions:4,
         questions:[
           {
@@ -92,8 +90,6 @@ export const DATA ={
       },
       "The Midnight Masks":{
         title:"The Midnight Masks",
-        user_resolution:null,
-        user_answers:[],
         total_questions:4,
         questions:[
           {
@@ -187,7 +183,6 @@ export const DATA ={
       },
       "The Devourer Below":{
         title:"The Devourer Below",
-        user_resolution:null,
         user_answers:[],
         total_questions:5,
         questions:[
@@ -300,8 +295,6 @@ export const DATA ={
      //2.
      "Dunwich Prologue":{                 //ask this question if dunwich is CHOSEN
       title:"Dunwich Prologue",
-      user_resolution:null,
-      user_answers:[],
       total_questions:1,
       questions:[
         {
@@ -329,8 +322,6 @@ export const DATA ={
     },
       "Extracurricular Activities":{
         title:"Extracurricular Activities",
-        user_resolution:null,
-        user_answers:[],
         total_questions:7,
         questions:[
           {
@@ -496,8 +487,6 @@ export const DATA ={
       },
       "The House Always Wins":{
         title:"The House Always Wins",
-        user_resolution:null,
-        user_answers:[],
         total_questions:6,
         questions:[
           {
@@ -622,8 +611,6 @@ export const DATA ={
       },
       "The Miskatonic Museum":{
         title:"The Miskatonic Museum",
-        user_resolution:null,
-        user_answers:[],
         total_questions:4,
         questions:[
           {
@@ -733,8 +720,6 @@ export const DATA ={
       },
       "The Essex County Express":{
         title:"The Essex County Express",
-        user_resolution:null,
-        user_answers:[],
         total_questions:4,
         questions:[
           {
@@ -832,8 +817,6 @@ export const DATA ={
       },
       "Blood on the Altar":{
         title:"Blood on the Altar",
-        user_resolution:null,
-        user_answers:[],
         total_questions:4,
         questions:[
           {
@@ -939,6 +922,194 @@ export const DATA ={
             skipQuestion:false,
           }
         ],
-      }
+      },
+      "Undimensioned and Unseen":{
+        title:"Undimensioned and Unseen",
+        total_questions:3,
+        questions:[
+          {
+            qString:"Agenda reached full doom?",              //if 0, R2
+            type:"radio",
+            id:'DW0601',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ],
+            skipQuestion:false,
+            relatedQuestions:{
+              DW0602:1
+            }
+          },
+          {
+            qString:"All investigators resigned or defeated",         //todo, check necronomicon
+            type:"radio",                                       
+            id:'DW0602',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ],
+            skipQuestion:false
+          },
+          {
+            qString:"How many broods escaped?",    
+            type:"radio",                                       
+            id:'DW0603',
+            choices:[
+              {
+                description:"0 Broods escaped",   
+                value:0
+              },
+              {
+                description:"1 Brood escaped",                              //this leads to Adam Lynch dying, Harold Walstead is gained
+                value:1
+              },
+              {
+                description:"2 Broods escaped",                              //this leads to Adam Lynch dying, Harold Walstead is gained
+                value:2
+              },
+              {
+                description:"3 Broods escaped",                              //this leads to Adam Lynch dying, Harold Walstead is gained
+                value:3
+              },
+              {
+                description:"4 Broods escaped",                              //this leads to Adam Lynch dying, Harold Walstead is gained
+                value:4
+              },
+              {
+                description:"5 Broods escaped",                              //this leads to Adam Lynch dying, Harold Walstead is gained
+                value:5
+              },                                     
+            ],
+            skipQuestion:false,
+          }
+        ],
+      },
+      "Where Doom Awaits":{
+        title:"Where Doom Awaits",
+        total_questions:3,
+        questions:[
+          {
+            qString:"Agenda reached full doom?",              //if 0, R2
+            type:"radio",
+            id:'DW0701',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ],
+            skipQuestion:false,
+            relatedQuestions:{
+              DW0702:1
+            }
+          },
+          {
+            qString:"All investigators resigned or defeated",         
+            type:"radio",                                       
+            id:'DW0702',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ],
+            skipQuestion:false
+          },
+          {
+            qString:"Was Seth Bishop defeated?",         
+            type:"radio",                                       
+            id:'DW0703',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ],
+            skipQuestion:false
+          }
+        ],
+      },
+      "Lost in Time and Space":{
+        title:"Lost in Time and Space",
+        total_questions:3,
+        questions:[
+          {
+            qString:"All investigators resigned or defeated",         
+            type:"radio",                                       
+            id:'DW0801',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ],
+            skipQuestion:false,
+            relatedQuestions:{
+              DW0802:0,
+              DW0803:1
+            }
+          },
+          {
+            qString:"Did the investigators reach Act 4?",         
+            type:"radio",                                       
+            id:'DW0802',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ],
+            skipQuestion:false,
+          },
+          {
+            qString:"Did the investigators defeat Yog-Sothoth?",         
+            type:"radio",                                       
+            id:'DW0803',
+            choices:[
+              {
+                description:"TRUE",
+                value:0
+              },
+              {
+                description:"FALSE",
+                value:1
+              }
+            ],
+            skipQuestion:false,
+          }
+        ],
+      },
   }
 

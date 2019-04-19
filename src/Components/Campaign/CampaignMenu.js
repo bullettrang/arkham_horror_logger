@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import CampaignForm from './CampaignForm/CampaignForm';
 import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
-import {Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {assign} from 'lodash';
 import './CampaignMenu.css';
 
@@ -40,16 +40,8 @@ import './CampaignMenu.css';
         }
     }
 
-  //   const scenarioSchema = new Schema({
-  //     scenarioTitle:String,
-  //     answers:[AnswerSchema],
-  //     _file:{type:Schema.Types.ObjectId,ref:'File'},
-  // })
-
     componentDidMount(){
-      
       this.props.setMode('campaign');
-      
       if(this.props.choicesDone){
         const {completedScenarios,answers,file} = this.props;
         const completedScenario = completedScenarios[completedScenarios.length-1];
@@ -92,8 +84,6 @@ import './CampaignMenu.css';
     render(){
       const {selectedCampaign} = this.props;
       const {selection,campaign}=this.state;
-      
-
 
       if(selectedCampaign!==null){    //if campaign was submitted, we will navigate to scenario menu
         return <Redirect to={'/scenario'}/>;

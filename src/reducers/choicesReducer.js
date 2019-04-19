@@ -79,7 +79,7 @@ export default (state=initialState,action)=>{
             let newQuestionIdx = skipFlaggedQuestions(state);
             
             
-            if(isEndOfQuestions(newQuestionIdx,state)){          //no more questions due to certain answer
+            if(isEndOfQuestions(newQuestionIdx,state)){      
                 const finishedScenario = state.selectedScenario;
                 let arrOfScenarios= state.completedScenarios;
 

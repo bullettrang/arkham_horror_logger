@@ -10,6 +10,7 @@ import "./Form.css";
  const Form =(props)=>{
 
     let userForm=null;
+    
 
     const getId = () => {
             const id = shortid.generate();
@@ -24,28 +25,56 @@ import "./Form.css";
         props.setQuestion();
     }
 
-    const {scenarioTitle,question,questions, questionIdx,totalQuestions}=props;
 
-    if(questionIdx===totalQuestions){       //no more questions
-        return null;
-    }
-    else{
-        if(question.type==='radio'){
-            userForm=<RadioButtonContainer
-                        question={question} 
-                        scenarioTitle={scenarioTitle} 
-                        choices={question.choices}
-                        submit={submitHandler}
-                    />
+    const {question}=props;
+
+    const renderForm=(props)=>{
+        let userForm=null;
+        const {scenarioTitle,question,questions, questionIdx,totalQuestions}=props;
+
+        if(questionIdx===totalQuestions){       //no more questions
+            return null;
         }
-        else if(  question.type==='checkbox'){
-            userForm=<CheckBoxesContainer
-                        scenarioTitle={scenarioTitle} 
-                        submit={submitHandler}
-                        questions={questions}
-                    />
+        else{
+            if(question.type==='radio'){
+                userForm=<RadioButtonContainer
+                            question={question} 
+                            scenarioTitle={scenarioTitle} 
+                            choices={question.choices}
+                            submit={submitHandler}
+                        />
+            }
+            else if(  question.type==='checkbox'){
+                userForm=<CheckBoxesContainer
+                            scenarioTitle={scenarioTitle} 
+                            submit={submitHandler}
+                            questions={questions}
+                        />
+            }
         }
+        return userForm;
     }
+
+    // if(questionIdx===totalQuestions){       //no more questions
+    //     return null;
+    // }
+    // else{
+    //     if(question.type==='radio'){
+    //         userForm=<RadioButtonContainer
+    //                     question={question} 
+    //                     scenarioTitle={scenarioTitle} 
+    //                     choices={question.choices}
+    //                     submit={submitHandler}
+    //                 />
+    //     }
+    //     else if(  question.type==='checkbox'){
+    //         userForm=<CheckBoxesContainer
+    //                     scenarioTitle={scenarioTitle} 
+    //                     submit={submitHandler}
+    //                     questions={questions}
+    //                 />
+    //     }
+    // }
 
     
     return(
@@ -54,7 +83,7 @@ import "./Form.css";
                 qString={question.qString} 
                 getQuestionKey={()=>getId}
             />
-            {userForm}
+            {renderForm(props)}
         </div>
     )
 }

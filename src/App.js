@@ -7,16 +7,8 @@ import Header from './Components/Header/Header';
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actions from './actions/';
-
 import './App.css';
 
-// const Dashboard =()=>{
-//   return(
-//     <div style={{textAlign:'center'}}>
-//       DASHBOARD, PLZ LOGIN
-//     </div>
-//   );
-// }
 
 class App extends Component {
 

@@ -184,7 +184,7 @@ export const DATA ={
       "The Devourer Below":{
         title:"The Devourer Below",
         user_answers:[],
-        total_questions:5,
+        total_questions:4,
         questions:[
           {
             qString:"Agenda reached full doom?",
@@ -255,30 +255,6 @@ export const DATA ={
               {
                 description:"Sacrificed Lita Chandler",
                 value:2
-              }
-            ],
-            skipQuestion:false
-          },
-          {
-            qString:"Which encounter set did you play with?",
-            type:"radio",
-            id:'NZ0305',
-            choices:[
-              {
-                description:"Agents of Yog-Sothoth",
-                value:0
-              },
-              {
-                description:"Agents of Shub-Niggurath",
-                value:1
-              },
-              {
-                description:"Agents of Cthulhu",
-                value:2
-              },
-              {
-                description:"Agents of Hastur",
-                value:3
               }
             ],
             skipQuestion:false

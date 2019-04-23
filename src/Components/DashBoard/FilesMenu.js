@@ -12,21 +12,21 @@ class FilesMenu extends Component{
     }
     componentDidMount(){
         if(this.props.auth){
-            if(this.props.file.length===0){
                 this.props.fetchFiles();
-            }
         }
-
     }
 
+
+
     renderFiles(){
-        if(this.props.file.length>0){
-            return this.props.file.map(e=>{
-                return <div key={e._id}>{e.campaignTitle}</div>
+        console.log(this.props.files.length);
+        if(this.props.files.length>0){
+            return this.props.files.map(e=>{
+                return <div style={{border:"5px solid silver"}} key={e._id}>{e.campaignTitle}</div>
             })
         }
         else{
-            return null;
+            return 'Start a new file by pressing button below';
         }
     }
     render(){
@@ -41,7 +41,7 @@ class FilesMenu extends Component{
 const mapStateToProps=({auth,file})=>{
     return{
         auth,
-        file:file
+        files:file.files
     }
 }
 

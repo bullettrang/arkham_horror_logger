@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS, SUBMIT_ANSWERS_START,SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR} from '../actions/types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS} from '../actions/types';
 import {DATA} from '../constants/constants';
 
 const initialState = {
@@ -16,22 +16,22 @@ const initialState = {
 export default (state=initialState,action)=>{
     switch(action.type){
         case UPDATE_ANSWER:
-        //need to update properly
-        let questionID=Object.keys(action.payload)[0];   
-        const index = state.answers.findIndex(ans => ans.hasOwnProperty(questionID));
-        if(index===-1){
-            return{
-                ...state,
-                answers:[...state.answers,action.payload]
+            //need to update properly
+            let questionID=Object.keys(action.payload)[0];   
+            const index = state.answers.findIndex(ans => ans.hasOwnProperty(questionID));
+            if(index===-1){
+                return{
+                    ...state,
+                    answers:[...state.answers,action.payload]
+                }
             }
-        }
-        return {
-            ...state,
-            answers:[ ...state.answers.slice(0,index),
-                    {...state.answers[index],
-                        [questionID]:action.payload[questionID]},
-                        ...state.answers.slice(index+1)]
-        }
+            return {
+                ...state,
+                answers:[ ...state.answers.slice(0,index),
+                        {...state.answers[index],
+                            [questionID]:action.payload[questionID]},
+                            ...state.answers.slice(index+1)]
+            }
         
         case SET_CAMPAIGN:
             return{
@@ -76,7 +76,7 @@ export default (state=initialState,action)=>{
                 };
             }
 
-            let newQuestionIdx = skipFlaggedQuestions(state);
+            let newQuestionIdx = getNextQuestionIdx(state);
             
             
             if(isEndOfQuestions(newQuestionIdx,state)){      
@@ -116,7 +116,6 @@ export default (state=initialState,action)=>{
             }
         
         case RESET_FORM:
-
             return{
                 ...state,
                 qIdx:null,
@@ -126,15 +125,7 @@ export default (state=initialState,action)=>{
                 totalQuestions:null,
                 questions:[]
             }
-        case SUBMIT_ANSWERS_START:
-            return {
-                ...state
-            }
 
-        case SUBMIT_ANSWERS_SUCCESS:
-            return state;
-        case SUBMIT_ANSWERS_ERROR:
-            return state;
         default:
             return state;
     }
@@ -202,7 +193,7 @@ const filterOutQuestions=(state,action)=>{
 }
 
 
-const skipFlaggedQuestions=(state)=>{
+const getNextQuestionIdx=(state)=>{
     const {qIdx,totalQuestions,questions}=state;
     let newQuestionIdx = qIdx+1;
 

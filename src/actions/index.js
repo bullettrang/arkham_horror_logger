@@ -85,14 +85,14 @@ export const submitAnswersStart =()=>{
     }
 }
 
-export const submitAnswersSuccess=()=>{
+export const submitAnswersSuccess=(obj)=>{
     return {
-        type:SUBMIT_ANSWERS_SUCCESS
+        type:SUBMIT_ANSWERS_SUCCESS,
+        payload:obj
     }
 }
 
 export const errorHandle=(error)=>{
-    console.log(error);
     return{
         type:SUBMIT_ANSWERS_ERROR
     }
@@ -105,7 +105,7 @@ export const submitAnswers =(obj)=> {
         dispatch(submitAnswersStart());
         try{
            const response= axios.post('/api/submitChoices',obj);
-           dispatch(submitAnswersSuccess())
+           dispatch(submitAnswersSuccess(obj))
         }
         catch(error){
             dispatch(errorHandle(error));
@@ -119,14 +119,14 @@ export const createFileStart =()=>{
     }
 }
 
-export const createFileSuccess=()=>{
+export const createFileSuccess=(response)=>{
     return {
-        type:CREATE_FILE_SUCCESS
+        type:CREATE_FILE_SUCCESS,
+        payload:response
     }
 }
 
 export const createFileError=(error)=>{
-    console.log(error);
     return{
         type:CREATE_FILE_ERROR
     }
@@ -138,8 +138,10 @@ export const createFile =(obj)=> {
         // that the API call is starting.
         dispatch(createFileStart());
         try{
-           const response= axios.post('/api/submitFile',obj);
-           dispatch(createFileSuccess(response))
+           const response= await axios.post('/api/submitFile',obj);
+           console.log(response);
+           dispatch(createFileSuccess(response.data))
+           
         }
         catch(error){
             dispatch(createFileError(error));

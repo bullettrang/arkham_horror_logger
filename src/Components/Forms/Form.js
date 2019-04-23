@@ -8,8 +8,6 @@ import shortid from "shortid";  //for animations, need a new key prop to render 
 import "./Form.css";
 
  const Form =(props)=>{
-
-    let userForm=null;
     
 
     const getId = () => {
@@ -55,28 +53,6 @@ import "./Form.css";
         return userForm;
     }
 
-    // if(questionIdx===totalQuestions){       //no more questions
-    //     return null;
-    // }
-    // else{
-    //     if(question.type==='radio'){
-    //         userForm=<RadioButtonContainer
-    //                     question={question} 
-    //                     scenarioTitle={scenarioTitle} 
-    //                     choices={question.choices}
-    //                     submit={submitHandler}
-    //                 />
-    //     }
-    //     else if(  question.type==='checkbox'){
-    //         userForm=<CheckBoxesContainer
-    //                     scenarioTitle={scenarioTitle} 
-    //                     submit={submitHandler}
-    //                     questions={questions}
-    //                 />
-    //     }
-    // }
-
-    
     return(
         <div key={getId()} className="Form-Wrapper">
             <Question 

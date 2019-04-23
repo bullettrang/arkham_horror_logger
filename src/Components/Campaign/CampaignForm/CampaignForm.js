@@ -1,6 +1,6 @@
 import React from 'react';
 import SubmitButton from '../../Forms/Button/SubmitButton';
-import Grid from '../../Grid';
+import Grid from './Grid/Grid';
 import './CampaignForm.css'
 const CampaignForm =({submitHandler,selection,campaign,selectHandler})=>{
     return(

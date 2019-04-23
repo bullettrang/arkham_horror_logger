@@ -43,7 +43,6 @@ class ScenarioMenu extends Component{
     render(){
             //change this
         const {selectedScenario,selectedCampaign,auth}=this.props;
-        console.log(auth);
         if(selectedScenario){       //selected scenario
             return <Redirect to={'/form'}/>;
         }

@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import CampaignForm from './CampaignForm/CampaignForm';
-import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
 import {Redirect} from "react-router-dom";
 import {assign} from 'lodash';
+import CampaignForm from './CampaignForm/CampaignForm';
+import * as actions from '../../actions/index';
 import './CampaignMenu.css';
 
   class CampaignMenu extends Component{ 
@@ -45,7 +45,7 @@ import './CampaignMenu.css';
       if(this.props.choicesDone){
         const {completedScenarios,answers,file} = this.props;
         const completedScenario = completedScenarios[completedScenarios.length-1];
-        let obj= {scenarioTitle:completedScenario,answers:answers,_file:file[0]._id};
+        let obj= {scenarioTitle:completedScenario,answers:answers,_file:file[0]._id};//TODO: NEED TO CHANGE WHEN MULTIPLE FILES
         this.props.submitAnswers(obj);
         this.props.newForm();   //toggle choicesDone
       }
@@ -64,10 +64,9 @@ import './CampaignMenu.css';
 
     submitHandler=(e)=>{
         e.preventDefault();
-        if(this.state.selection===''){
+        if(this.state.selection===null){
           return;
         }
-      //TODO ADD SPECIAL LOGIC HANDLING FOR PROLOGUES, DUNWICH, ETC
         this.props.setCampaign(this.state.selection);
         const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:this.state.selection,completedScenarios:this.props.completedScenarios});
         if(this.props.file.length===0){   //TODO: CHANGE THIS TO HANDLE MULTIPLE FILES
@@ -97,7 +96,8 @@ import './CampaignMenu.css';
                   submitHandler={this.submitHandler}
                   selection={selection}
                   campaign={campaign}
-                  selectHandler={this.selectHandler}/>
+                  selectHandler={this.selectHandler}
+                />
             </div>
           </div> 
           );
@@ -112,7 +112,7 @@ const mapStateToProps=({choices,auth,file})=>{
     completedScenarios:choices.completedScenarios,
     choicesDone:choices.choicesDone,
     auth,
-    file:file
+    file:file.files
   }
   
 }

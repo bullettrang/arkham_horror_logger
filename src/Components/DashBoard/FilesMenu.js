@@ -1,28 +1,39 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/index';
+import {CAMPAIGN_IMAGES} from '../../constants/CampaignImages';
+import {getBackgroundStyle} from '../../util/styleHelpers';
 import './FilesMenu.css';
+
+
 
 class FilesMenu extends Component{
     constructor(props){
         super(props);
         this.state={
-            files:[]
+            files:[],
+            selected:null
+
         }
     }
     componentDidMount(){
-        if(this.props.auth){
+        if(this.props.auth && this.props.files.length<1){
                 this.props.fetchFiles();
         }
     }
 
 
-
     renderFiles(){
-        console.log(this.props.files.length);
-        if(this.props.files.length>0){
+        const {selected}= this.state;
+        if(this.props.files.length>0){  
             return this.props.files.map(e=>{
-                return <div style={{border:"5px solid silver"}} key={e._id}>{e.campaignTitle}</div>
+                return (<div 
+                            style={getBackgroundStyle(CAMPAIGN_IMAGES[e.campaignTitle],selected===e.campaignTitle)}  
+                            className={"DashBoard-File"} 
+                            key={e._id}
+                            onClick={()=>this.setState({selected:e.campaignTitle})}>
+                                {e.campaignTitle}
+                        </div>);
             })
         }
         else{

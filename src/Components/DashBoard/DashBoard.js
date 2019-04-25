@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import { Link} from "react-router-dom";
-import {assign} from 'lodash';
+
 import {connect} from 'react-redux';
 import FilesMenu from './FilesMenu';
 import * as actions from '../../actions/index';
 import "./DashBoard.css"
 class Dashboard extends Component{
+
+
     renderContent(){
         switch(this.props.auth){
             case null:
@@ -17,9 +19,9 @@ class Dashboard extends Component{
             default: 
                 return (
                     <div>
-                        <FilesMenu history={this.props.history}/>
+                        <FilesMenu/>
                         <div className="Campaign_Link--wrapper">
-                            <Link className="Campaign_Link" to="/campaign">
+                            <Link className="Campaign_Link" to="/campaign"> 
                                 <span className="Campaign_Wrapper"><span>+</span> CREATE A CAMPAIGN</span>
                             </Link>
                         </div>

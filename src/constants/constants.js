@@ -2,7 +2,6 @@
 export const DATA ={
       /*
       *
-      *
       * NIGHT OF ZEALOT
       * 
       */
@@ -24,10 +23,9 @@ export const DATA ={
                 value:1
               }
             ],
-            //this question's choice affects NZ0102,NZ0103,NZ0104 
             relatedQuestions:{        
-              NZ0102:1,       //if player choice is a value of 1, we ask NZ0102,
-              NZ0103:1,       //" same as above"
+              NZ0102:1,       
+              NZ0103:1,       
               NZ0104:1        
             },
             skipQuestion:false
@@ -60,7 +58,6 @@ export const DATA ={
               {     
                 description:"TRUE",
                 value:0
-                //increment NZ0103a
               },
               {
                 description:"FALSE",
@@ -363,11 +360,11 @@ export const DATA ={
             id:'DW0104',
             choices:[
               {
-                description:"Warren Rice was kidnapped",      //students NOT saved
+                description:"Saved Warren Rice",                 //students saved, Prof Rice kidnapped
                 value:0
               },
               {
-                description:"Saved Warren Rice",                 //students saved, Prof Rice kidnapped
+                description:"Warren Rice was kidnapped",      //students NOT saved
                 value:1
               }
             ],
@@ -427,26 +424,11 @@ export const DATA ={
             ],
             skipQuestion:false
           },
-          {
-            qString:"Did the investigators defeat the experiment?",       
-            type:"radio",
-            id:'DW0108',
-            choices:[
-              {
-                description:"Succeeded in defeating the experiment",      //students NOT saved
-                value:0
-              },
-              {
-                description:"Failed to defeat the experiment",                 //students saved, Prof Rice kidnapped
-                value:1
-              }
-            ],
-            skipQuestion:false
-          },
+
           {
             qString:"Did the investigators defeat Wizard of Yog-Sothoth?",              //if defeated, gain 1 exp
             type:"radio",
-            id:'DW0109',
+            id:'DW0108',
             choices:[
               {
                 description:"Defeated the Wizard of Yog-Sothoth",      

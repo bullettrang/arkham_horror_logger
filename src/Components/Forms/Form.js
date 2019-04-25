@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import shortid from "shortid";  //for animations, need a new key prop to render each animation
 import "./Form.css";
 
+//maybe change this ...
+
  const Form =(props)=>{
     
 

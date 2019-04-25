@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from "react-router-dom";
+import {Redirect} from 'react-router-dom';
 import {assign} from 'lodash';
 import CampaignForm from './CampaignForm/CampaignForm';
 import * as actions from '../../actions/index';
@@ -36,11 +36,14 @@ import './CampaignMenu.css';
                     key: 'campaign'
                   }
             ],
-            selection:null
+            selection:null,
+            toScenario:false
         }
     }
 
     componentDidMount(){
+
+      console.log(this.props);
       this.props.setMode('campaign');
 
       if(this.props.choicesDone){
@@ -74,8 +77,10 @@ import './CampaignMenu.css';
         setCampaign(selection);
         const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:selection,completedScenarios:completedScenarios});
 
-      const response= await createFile(fileObj);
-        this.props.setCurrentFile(response.data);
+        await createFile(fileObj);
+
+        //TODO: NEED TO GO TO /scenario AFTER CREATING A FILE
+        this.setState({toScenario:true})
 
         this.props.setMode('scenario');
     }
@@ -85,10 +90,10 @@ import './CampaignMenu.css';
     }
 
     render(){
-      const {selectedCampaign} = this.props;
-      const {selection,campaign}=this.state;
+      
+      const {selection,campaign,toScenario}=this.state;
 
-      if(selectedCampaign!==null){    //if campaign was submitted, we will navigate to scenario menu
+      if(toScenario){    //if campaign was submitted, we will navigate to scenario menu
         return <Redirect to={'/scenario'}/>;
       }
 

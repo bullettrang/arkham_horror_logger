@@ -7,6 +7,7 @@ import SubmitButton from '../Forms/Button/SubmitButton';
 import * as actions from '../../actions/index';
 import {connect} from 'react-redux';
 import {Redirect } from "react-router-dom";
+import {uniqBy} from 'lodash';
 import "./ScenarioMenu.css"
 
 class ScenarioMenu extends Component{
@@ -19,22 +20,33 @@ class ScenarioMenu extends Component{
                 // "The Path to Carcosa":["Curtain Calls","The Last King","Echoes of the Past","The Unspeakable Oath","A Phantom of Truth","The Pallid Mask","Black Star Rise","Dim Carcosa"],
                 // "The Forgotten Age":['The Untamed Wilds','The Doom of Eztil','Threads of Fate','The Boundary Beyond','Heart of the Elders','The City of Archives','The Depths of Yoth','Shattered Aeons']
             },
-            selected:null
+            selected:null,
+            toForm:false
         }
     }
 
     componentDidMount(){
-        let answers;//todo
-        if(this.props.currentFile.completedScenarios.length!==0){
-           answers= this.props.currentFile.completedScenarios.map((sc)=>sc.answers).reduce((acc,ans)=>{
-                return acc.concat(ans)
-           },[]);
-           console.log(answers);
-           this.props.setAnswers(answers)
-        }
-        
-        
+        const {completedScenarios}=this.props.currentFile;
+
+        let mergedAnswers;
+        if(completedScenarios.length!==0){
+            mergedAnswers = this.mergeAndReturnSetOfAnswers(completedScenarios)
+           this.props.setAnswers(mergedAnswers)
+        }  
     }
+
+    mergeAndReturnSetOfAnswers(completedScenarios){
+        let answers;
+        let mergedAnswers;
+        answers= completedScenarios.map((sc)=>sc.answers).reduce((acc,ans)=>{       //grab all answers from user's completed campaigns
+            return acc.concat(ans)                                                  //flatten array of  answers to a single array 'answers'
+       },[]);
+       mergedAnswers= uniqBy(answers,(ans)=>{                                       //remove duplicate questions
+        return Object.keys(ans)[0];
+       });
+       return mergedAnswers;
+    }
+
 
     selectHandler=(sc)=>{
         this.setState({selected:sc});
@@ -49,14 +61,16 @@ class ScenarioMenu extends Component{
             setQuestions(selected)
             setQuestion();
             setMode('form');
+            this.setState({toForm:true})
         }
     }
 
 
     render(){
             //change this
-        const {selectedScenario,selectedCampaign}=this.props;
-        if(selectedScenario){       //selected scenario
+        const {toForm} = this.state;
+        const {selectedCampaign}=this.props;
+        if(toForm){       
             return <Redirect to={'/form'}/>;
         }
         else if(selectedCampaign===null){

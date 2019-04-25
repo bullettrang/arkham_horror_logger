@@ -147,7 +147,7 @@ export const createFile =(obj)=> {
         try{
            const response= await axios.post('/api/submitFile',obj);
            dispatch(createFileSuccess(response.data))
-           dispatch()
+           dispatch(setCurrentFile(response.data));
         }
         catch(error){
             dispatch(createFileError(error));

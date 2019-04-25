@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/index';
 import {CAMPAIGN_IMAGES} from '../../constants/CampaignImages';
-import {getBackgroundStyle} from '../../util/styleHelpers';
 import SubmitButton from '../Forms/Button/SubmitButton';
 import './FilesMenu.css';
 
@@ -83,8 +83,9 @@ class FilesMenu extends Component{
         super(props);
         this.state={
             files:[],
-            selected:null
-
+            selected:null,
+            toCampaign:false,
+            toScenario:false
         }
     }
     componentDidMount(){
@@ -126,10 +127,14 @@ class FilesMenu extends Component{
         const fileIdx= files.findIndex(e=>e._id===selected)
         setCurrentFile(files[fileIdx]);
         setCampaign(files[fileIdx].campaignTitle)
-        this.props.history.push("/scenario");
+        //this.props.history.push("/scenario");     //Tyler McGinnis says not to mess with history api unless absolutely necessary ,https://tylermcginnis.com/react-router-programmatically-navigate/
+        this.setState({toScenario:true});
     }
     render(){
-        
+        const {toScenario,toCampaign}= this.state;
+        if(toScenario){
+            return <Redirect to="scenario"/>
+        }
         return(
             <div className="DashBoard__Campaigns">
                 <form onSubmit={this.submitHandler} style={{margin:"0 auto"}}>

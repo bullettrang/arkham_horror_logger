@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS} from '../actions/types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_ANSWERS} from '../actions/types';
 import {DATA} from '../constants/constants';
 
 const initialState = {
@@ -55,6 +55,11 @@ export default (state=initialState,action)=>{
                     questions:finalQuestions,
                     totalQuestions:finalQuestions.length,
                     choicesDone:false
+                }
+        case SET_ANSWERS:
+                return{
+                    ...state,
+                    answers:action.payload
                 }
         
         case FILTER_QUESTIONS:

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { Link} from "react-router-dom";
+import {assign} from 'lodash';
 import {connect} from 'react-redux';
 import FilesMenu from './FilesMenu';
+import * as actions from '../../actions/index';
 import "./DashBoard.css"
 class Dashboard extends Component{
     renderContent(){
@@ -15,17 +17,25 @@ class Dashboard extends Component{
             default: 
                 return (
                     <div>
-                        <FilesMenu/>
+                        <FilesMenu history={this.props.history}/>
                         <div className="Campaign_Link--wrapper">
                             <Link className="Campaign_Link" to="/campaign">
-                            <span className="Campaign_Wrapper"><span>+</span> CREATE A CAMPAIGN</span>
+                                <span className="Campaign_Wrapper"><span>+</span> CREATE A CAMPAIGN</span>
                             </Link>
                         </div>
                     </div>
                 );     
         }
     }
+
+
+
+    //user clicks create a campaign button
+    //create a file
+    //go to campaign
+    //set redux store currentFile
     render(){
+        
         return(
             <div className="DashBoard_Wrapper">
               {this.renderContent()}
@@ -41,5 +51,5 @@ class Dashboard extends Component{
     }
   }
   
-  export default connect(mapStateToProps)(Dashboard);
+  export default connect(mapStateToProps,actions)(Dashboard);
   

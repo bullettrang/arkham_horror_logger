@@ -42,10 +42,11 @@ import './CampaignMenu.css';
 
     componentDidMount(){
       this.props.setMode('campaign');
+
       if(this.props.choicesDone){
-        const {completedScenarios,answers,file} = this.props;
+        const {completedScenarios,answers,files,currentFile} = this.props;
         const completedScenario = completedScenarios[completedScenarios.length-1];
-        let obj= {scenarioTitle:completedScenario,answers:answers,_file:file[0]._id};//TODO: NEED TO CHANGE WHEN MULTIPLE FILES
+        let obj= {scenarioTitle:completedScenario,answers:answers,_file:currentFile._id};//TODO: NEED TO CHANGE WHEN MULTIPLE FILES
         this.props.submitAnswers(obj);
         this.props.newForm();   //toggle choicesDone
       }
@@ -62,17 +63,20 @@ import './CampaignMenu.css';
         })
       }
 
-    submitHandler=(e)=>{
+    submitHandler= async (e)=>{
+      const {setCampaign,createFile,files,completedScenarios,selectedCampaign}=this.props;
+      const {selection}=this.state
+
         e.preventDefault();
-        if(this.state.selection===null){
+        if(selection===null){
           return;
         }
-        this.props.setCampaign(this.state.selection);
-        const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:this.state.selection,completedScenarios:this.props.completedScenarios});
-        if(this.props.file.length===0){   //TODO: CHANGE THIS TO HANDLE MULTIPLE FILES
-          this.props.createFile(fileObj)
-        }
-        
+        setCampaign(selection);
+        const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:selection,completedScenarios:completedScenarios});
+
+      const response= await createFile(fileObj);
+        this.props.setCurrentFile(response.data);
+
         this.props.setMode('scenario');
     }
 
@@ -112,7 +116,8 @@ const mapStateToProps=({choices,auth,file})=>{
     completedScenarios:choices.completedScenarios,
     choicesDone:choices.choicesDone,
     auth,
-    file:file.files
+    files:file.files,
+    currentFile:file.currentFile
   }
   
 }

@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_MODE,FETCH_USER,SUBMIT_ANSWERS_START, SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR, CREATE_FILE_START,CREATE_FILE_ERROR,CREATE_FILE_SUCCESS, FETCH_FILES} from './types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_CURRENT_FILE,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_MODE,FETCH_USER,SUBMIT_ANSWERS_START, SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR, CREATE_FILE_START,CREATE_FILE_ERROR,CREATE_FILE_SUCCESS, FETCH_FILES,SET_ANSWERS} from './types';
 import axios from 'axios';
 export const setAnswer =(obj)=>{
     return{
@@ -113,6 +113,13 @@ export const submitAnswers =(obj)=> {
     }
 }
 
+export const setAnswers =(savedAnswers)=>{
+    return {
+        type:SET_ANSWERS,
+        payload:savedAnswers
+    }
+}
+
 export const createFileStart =()=>{
     return {
         type:CREATE_FILE_START
@@ -139,13 +146,19 @@ export const createFile =(obj)=> {
         dispatch(createFileStart());
         try{
            const response= await axios.post('/api/submitFile',obj);
-           console.log(response);
            dispatch(createFileSuccess(response.data))
-           
+           dispatch()
         }
         catch(error){
             dispatch(createFileError(error));
         }
+    }
+}
+
+export const setCurrentFile=(file)=>{
+    return{
+        type:SET_CURRENT_FILE,
+        payload:file
     }
 }
 

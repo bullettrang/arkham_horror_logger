@@ -1,7 +1,8 @@
-import {CREATE_FILE_START,CREATE_FILE_SUCCESS,CREATE_FILE_ERROR,FETCH_FILES,SUBMIT_ANSWERS_START,SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR} from '../actions/types';
+import {CREATE_FILE_START,CREATE_FILE_SUCCESS,SET_CURRENT_FILE,CREATE_FILE_ERROR,FETCH_FILES,SUBMIT_ANSWERS_START,SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR} from '../actions/types';
 const initialState={
     files:[],
-    answers:[]
+    answers:[],
+    currentFile:null
 }
 
 export default(state=initialState,action)=>{
@@ -13,6 +14,11 @@ export default(state=initialState,action)=>{
             return {
                 ...state,
                 files:[action.payload,...state.files,]
+            }
+        case SET_CURRENT_FILE:
+            return{
+                ...state,
+                currentFile:action.payload
             }
         case CREATE_FILE_ERROR:
             return null;

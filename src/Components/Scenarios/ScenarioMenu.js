@@ -23,26 +23,39 @@ class ScenarioMenu extends Component{
         }
     }
 
+    componentDidMount(){
+        let answers;//todo
+        if(this.props.currentFile.completedScenarios.length!==0){
+           answers= this.props.currentFile.completedScenarios.map((sc)=>sc.answers).reduce((acc,ans)=>{
+                return acc.concat(ans)
+           },[]);
+           console.log(answers);
+           this.props.setAnswers(answers)
+        }
+        
+        
+    }
+
     selectHandler=(sc)=>{
         this.setState({selected:sc});
     }
 
     submitHandler=(e)=>{
         e.preventDefault();
-        const {setScenario,setQuestions,setQuestion}=this.props;
+        const {setScenario,setQuestions,setQuestion,setMode}=this.props;
         const {selected}=this.state;
         if(selected){
             setScenario(selected);
             setQuestions(selected)
             setQuestion();
-            this.props.setMode('form');
+            setMode('form');
         }
     }
 
 
     render(){
             //change this
-        const {selectedScenario,selectedCampaign,auth}=this.props;
+        const {selectedScenario,selectedCampaign}=this.props;
         if(selectedScenario){       //selected scenario
             return <Redirect to={'/form'}/>;
         }
@@ -74,11 +87,12 @@ class ScenarioMenu extends Component{
     }
 }
 
-const mapStateToProps = ({choices,auth}) => {
+const mapStateToProps = ({choices,auth,file}) => {
     return {
       selectedCampaign:choices.selectedCampaign,
       selectedScenario: choices.selectedScenario,
-      auth
+      auth,
+      currentFile:file.currentFile
     }
   }
 

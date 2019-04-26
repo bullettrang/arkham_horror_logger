@@ -8,7 +8,8 @@ import './FilesMenu.css';
 
 
 const styledWrapped={
-    opacity:".8"
+    opacity:".8",
+    transition:'all .2s'
 }
 
 const  styledWrappedSelected={
@@ -16,7 +17,8 @@ const  styledWrappedSelected={
     MozBoxShadow:    '0px 5px 5px  #000',
     WebkitBox: '0px 5px 5px  #000',
     boxShadow:  '0px 5px 5px  #000',
-    opacity:"1"
+    opacity:"1",
+    transition:'all .2s'
 }
 
 
@@ -25,44 +27,69 @@ const FileWrapper = (props)=>{
     const styledBGSelected={
         backgroundSize:"cover",
         backgroundPosition:"center",
-        backgroundImage:`url(${CAMPAIGN_IMAGES[title]})`
+        backgroundImage:`url(${CAMPAIGN_IMAGES[title]})`,
+        transition:'all .2s'
     }
     
     const  styledBG={
         backgroundSize:"cover",
         backgroundPosition:"center",
-        backgroundImage:`linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(${CAMPAIGN_IMAGES[title]})`
+        backgroundImage:`linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(${CAMPAIGN_IMAGES[title]})`,
+        transition:'all .2s'
     }
 
     const styledContentSelected={
         color:"#333333",
-        background:"#f8f8f8"
+        background:"#f8f8f8",
+        transition:'all .2s'
     }
     
     const styledContent={
         color:"#f8f8f8",
-        background:"#333333"
+        background:"#333333",
+        transition:'all .2s'
     }
 
-    return (
-        <div 
-            className="File_Wrapper"
-            onClick={()=>clicked(id)} 
-            style={selected === id? styledWrappedSelected:styledWrapped}
-        >
-        <div
-            style={ selected === id? styledBGSelected :styledBG}
-            className={"DashBoard-File"} 
-        > 
-        </div>
-        <div className="File_Content" style={selected === id? styledContentSelected:styledContent}>
-            <h2>{title}</h2>
-            <h3>COMPLETED SCENARIOS</h3>
-            <CompletedScenarios 
-                completedScenarios={completedScenarios}/>
-        </div>
-        </div>
-    )
+    if(selected===id){
+        return (
+            <div 
+                className="File_Wrapper"
+                onClick={()=>clicked(id)}
+            >
+                <div
+                    style={{...styledBGSelected,...styledWrappedSelected} }
+                    className={"DashBoard-File"} 
+                > 
+                </div>
+                <div className="File_Content" style={{...styledContentSelected,...styledWrappedSelected}}>
+                    <h2>{title}</h2>
+                    <h3>COMPLETED SCENARIOS</h3>
+                    <CompletedScenarios 
+                        completedScenarios={completedScenarios}/>
+                </div>
+            </div>
+        );
+        
+    }else{
+        return (
+            <div 
+                className="File_Wrapper"
+                onClick={()=>clicked(id)}
+            >
+                <div
+                    style={{...styledBG,...styledWrapped} }
+                    className={"DashBoard-File"} 
+                > 
+                </div>
+                <div className="File_Content" style={{...styledContent,...styledWrapped}}>
+                    <h2>{title}</h2>
+                    <h3>COMPLETED SCENARIOS</h3>
+                    <CompletedScenarios 
+                        completedScenarios={completedScenarios}/>
+                </div>
+            </div>
+        );
+    }
 }
 const CompletedScenarios = (props)=>{
     if(props.completedScenarios.length<1)

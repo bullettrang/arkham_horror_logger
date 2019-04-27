@@ -42,12 +42,10 @@ import './CampaignMenu.css';
     }
 
     componentDidMount(){
-
-      console.log(this.props);
       this.props.setMode('campaign');
 
       if(this.props.choicesDone){
-        const {completedScenarios,answers,files,currentFile} = this.props;
+        const {completedScenarios,answers,currentFile} = this.props;
         const completedScenario = completedScenarios[completedScenarios.length-1];
         let obj= {scenarioTitle:completedScenario,answers:answers,_file:currentFile._id};//TODO: NEED TO CHANGE WHEN MULTIPLE FILES
         this.props.submitAnswers(obj);
@@ -78,8 +76,6 @@ import './CampaignMenu.css';
         const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:selection,completedScenarios:completedScenarios});
 
         await createFile(fileObj);
-
-        //TODO: NEED TO GO TO /scenario AFTER CREATING A FILE
         this.setState({toScenario:true})
 
         this.props.setMode('scenario');
@@ -88,6 +84,8 @@ import './CampaignMenu.css';
     selectHandler=(e)=>{
         this.setState({selection:e});
     }
+
+
 
     render(){
       
@@ -98,7 +96,7 @@ import './CampaignMenu.css';
       }
 
         return(
-          <div className="campaign-menu__wrapper">
+          <div className="campaign-menu__wrapper" >
             <div className="campaign-menu__main">
                 <h1 className="campaign-menu__header--title">Select a Campaign</h1>
                 <CampaignForm

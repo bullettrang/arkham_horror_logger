@@ -1,6 +1,8 @@
 .campaign-menu__wrapper{
     max-width:100%;
     text-align: center;
+
+
 }
 
 .campaign-menu__main{
@@ -42,6 +44,8 @@
 .campaign-menu_main--form > button{ 
     margin-top:5rem;
 }
+
+
 
 @media (max-width: 800px) {
     .campaign-menu__wrapper{

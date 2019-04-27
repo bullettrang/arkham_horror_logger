@@ -12,7 +12,7 @@ class Header extends Component{
                 )
             default: 
                 return (
-                    <a href="/api/logout">Logout</a>
+                        <a href="/api/logout">Logout</a>
                 );     
         }
     }

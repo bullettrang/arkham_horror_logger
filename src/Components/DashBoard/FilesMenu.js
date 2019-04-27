@@ -158,7 +158,7 @@ class FilesMenu extends Component{
         this.setState({toScenario:true});
     }
     render(){
-        const {toScenario,toCampaign}= this.state;
+        const {toScenario}= this.state;
         if(toScenario){
             return <Redirect to="scenario"/>
         }

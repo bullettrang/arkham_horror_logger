@@ -16,6 +16,7 @@
     margin:4em auto;
     box-shadow:3px -3px 5px  #000;
     font-family: 'teutonicregular';
+    justify-content: space-around;
 }
 
 .Result-Content::after {

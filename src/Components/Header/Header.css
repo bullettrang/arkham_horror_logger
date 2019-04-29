@@ -22,9 +22,24 @@
       position:relative;
       left:12rem;
       margin-bottom:3.5rem;
-      color: #d3d3d3;
+
       font-family: 'teutonicregular';
 
+  }
+
+
+  .Header--Results{
+    font-family: 'teutonicregular';
+    color: #d3d3d3;
+    padding:1em;
+    margin-bottom:3.5rem;
+    position:relative;
+    left:2rem;
+  }
+
+  .Header--Results >a{
+    font-size:2em;
+    
   }
 
   .Header--login >a{

@@ -16,6 +16,7 @@ export const SET_MODE = 'SET_MODE'
 
 export const FETCH_USER ='FETCH_USER';
 export const FETCH_FILES = 'FETCH_FILES';
+export const FETCH_RESULTS = 'FETCH_RESULTS';
 export const SET_ANSWERS = 'SET_ANSWERS';
 
 export const CREATE_FILE_START = 'CREATE_FILE_START';

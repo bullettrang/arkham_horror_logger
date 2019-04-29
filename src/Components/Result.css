@@ -1,0 +1,40 @@
+.Result-Wrapper{
+    text-align: center;
+    margin:0 auto;
+    margin:2em;
+    padding:2em;
+}
+
+.Result-Content{
+    background:white;
+    padding:4em 2em;
+    display:flex;
+    flex-direction: row;
+    max-width:797px;
+    height:auto;
+    position:relative;
+    margin:4em auto;
+    box-shadow:3px -3px 5px  #000;
+    font-family: 'teutonicregular';
+}
+
+.Result-Content::after {
+    content: "";
+    height: 20px;
+    display: block;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/rip.svg) bottom left;
+    /* background-size: 100%; */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+  }
+
+
+  .Result-Content:nth-child(odd) .Result-Picture{
+    transform: rotate(-8deg);
+  }
+
+  .Result-Content:nth-child(even) .Result-Picture{
+    transform: rotate(8deg);
+  }

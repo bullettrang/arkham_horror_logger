@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './Header.css';
 class Header extends Component{
+    //TODO: turn these links into drop down menu or something
     renderContent(){
         switch(this.props.auth){
             case null:
@@ -12,7 +14,10 @@ class Header extends Component{
                 )
             default: 
                 return (
+                    <React.Fragment>
                         <a href="/api/logout">Logout</a>
+                        
+                    </React.Fragment>
                 );     
         }
     }
@@ -23,6 +28,9 @@ class Header extends Component{
                 <h1 className="Header--title">ARKHAM HORROR LOGGER</h1>
                 <div className="Header--login">
                     {this.renderContent()}
+                </div>
+                <div className="Header--Results">
+                    <Link to="/results">Results</Link>
                 </div>
             </div>  
         );

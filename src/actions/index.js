@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_CURRENT_FILE,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_MODE,FETCH_USER,SUBMIT_ANSWERS_START, SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR, CREATE_FILE_START,CREATE_FILE_ERROR,CREATE_FILE_SUCCESS, FETCH_FILES,SET_ANSWERS} from './types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_CURRENT_FILE,SET_SCENARIO,SET_QUESTIONS,SET_QUESTION,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_MODE,FETCH_USER,SUBMIT_ANSWERS_START, SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR, CREATE_FILE_START,CREATE_FILE_ERROR,CREATE_FILE_SUCCESS, FETCH_FILES,SET_ANSWERS, FETCH_RESULTS} from './types';
 import axios from 'axios';
 export const setAnswer =(obj)=>{
     return{
@@ -79,6 +79,17 @@ export const fetchFiles = ()=>async dispatch=>{
     dispatch({type:FETCH_FILES,payload:res.data})
 }
 
+export const fetchResults = (scenarioTitle)=>async dispatch=>{
+
+    const res = await axios.get('/api/results',{
+        params: {
+          scenario: scenarioTitle
+        }
+      });
+    dispatch({type:FETCH_RESULTS,payload:res.data})
+}
+
+
 export const submitAnswersStart =()=>{
     return {
         type:SUBMIT_ANSWERS_START
@@ -154,6 +165,8 @@ export const createFile =(obj)=> {
         }
     }
 }
+
+
 
 export const setCurrentFile=(file)=>{
     return{

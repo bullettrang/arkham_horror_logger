@@ -119,7 +119,6 @@ const mapStateToProps=({choices,auth,file})=>{
     completedScenarios:choices.completedScenarios,
     choicesDone:choices.choicesDone,
     auth,
-    files:file.files,
     currentFile:file.currentFile
   }
   

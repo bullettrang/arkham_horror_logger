@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Redirect,Switch } from "react-router-dom";
+import {connect} from 'react-redux';
 import DashBoard from './Components/DashBoard/DashBoard';
 import CampaignMenu from './Components/Campaign/CampaignMenu';
 import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import Form from './Components/Forms/Form';
 import Header from './Components/Header/Header';
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import {connect} from 'react-redux';
+import Result from './Components/Result';
 import * as actions from './actions/';
 import './App.css';
 
@@ -19,15 +20,17 @@ class App extends Component {
 
   
   render() {
+    
     return (
       <div className="App" >
         <Header/>
-        <BrowserRouter>
-          <Route path="/" exact component={DashBoard}></Route>
-          <Route path="/campaign"  render={()=>this.props.auth?  <CampaignMenu/>:<Redirect to={'/'}/>}></Route>
-          <Route path="/scenario" render={()=>this.props.auth?  <ScenarioMenu/>:<Redirect to={'/'}/>}></Route>
-          <Route  path="/form" render={()=>(this.props.choicesDone?<Redirect to={'/campaign'}/>:<Form/>)}></Route>
-        </BrowserRouter>
+          <Switch>
+            <Route path="/" exact component={DashBoard}></Route>
+            <Route path="/campaign"  render={()=>this.props.auth?  <CampaignMenu/>:<Redirect to={'/'}/>}></Route>
+            <Route path="/scenario" render={()=>this.props.auth?  <ScenarioMenu/>:<Redirect to={'/'}/>}></Route>
+            <Route path="/form" render={()=>(this.props.choicesDone?<Redirect to={'/campaign'}/>:<Form/>)}></Route>
+            <Route path="/results" component={Result}></Route>
+          </Switch>
       </div>
     );
   }

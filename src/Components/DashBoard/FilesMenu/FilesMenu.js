@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/index';
-import {CAMPAIGN_IMAGES} from '../../constants/CampaignImages';
-import SubmitButton from '../Forms/Button/SubmitButton';
+import * as actions from '../../../actions/index';
+import {CAMPAIGN_IMAGES} from '../../../constants/CampaignImages';
+import SubmitButton from '../../Forms/Button/SubmitButton';
 import './FilesMenu.css';
 
 
@@ -139,7 +139,7 @@ class FilesMenu extends Component{
             })
         }
         else{
-            return 'Start a new file by pressing button below';
+            return 'Start a new file by pressing \'Create Campaign\' button below';
         }
     }
 
@@ -149,13 +149,20 @@ class FilesMenu extends Component{
 
     submitHandler = (e)=>{
         const {files,setCampaign,setCurrentFile}=this.props;
-        const{selected}=this.state;
-        e.preventDefault();
-        const fileIdx= files.findIndex(e=>e._id===selected)
-        setCurrentFile(files[fileIdx]);
-        setCampaign(files[fileIdx].campaignTitle)
-        //this.props.history.push("/scenario");     //Tyler McGinnis says not to mess with history api unless absolutely necessary ,https://tylermcginnis.com/react-router-programmatically-navigate/
-        this.setState({toScenario:true});
+        if(files.length>0){ 
+            e.preventDefault();
+            const{selected}=this.state;
+            
+            const fileIdx= files.findIndex(e=>e._id===selected)
+            setCurrentFile(files[fileIdx]);
+            setCampaign(files[fileIdx].campaignTitle)
+            //this.props.history.push("/scenario");     //Tyler McGinnis says not to mess with history api unless absolutely necessary ,https://tylermcginnis.com/react-router-programmatically-navigate/
+            this.setState({toScenario:true});
+        }
+        else{
+            e.preventDefault();
+            return;
+        }
     }
     render(){
         const {toScenario}= this.state;

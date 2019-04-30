@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link} from "react-router-dom";
 
 import {connect} from 'react-redux';
-import FilesMenu from './FilesMenu';
+import FilesMenu from './FilesMenu/FilesMenu';
 import * as actions from '../../actions/index';
 import "./DashBoard.css"
 

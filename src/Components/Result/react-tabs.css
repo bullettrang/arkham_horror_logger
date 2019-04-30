@@ -57,9 +57,10 @@
   .react-tabs__tab-panel--selected {
     display: block;
     background-color:#663300;
-    background-image:url('../Assets/topography.svg');
-    padding:5em;
+    background-image:url('../../Assets/topography.svg');
+    padding:.5em;
     border-radius: 5px 5px ;
+    box-shadow: 0 0 5px;
   }
 
 

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Redirect,Switch } from "react-router-dom";
+import { Route, Redirect,Switch } from "react-router-dom";
 import {connect} from 'react-redux';
 import DashBoard from './Components/DashBoard/DashBoard';
 import CampaignMenu from './Components/Campaign/CampaignMenu';
 import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import Form from './Components/Forms/Form';
 import Header from './Components/Header/Header';
-import Result from './Components/Result';
+import Result from './Components/Result/Result';
 import * as actions from './actions/';
 import './App.css';
 

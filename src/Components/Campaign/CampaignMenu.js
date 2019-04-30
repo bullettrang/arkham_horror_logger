@@ -65,7 +65,7 @@ import './CampaignMenu.css';
       }
 
     submitHandler= async (e)=>{
-      const {setCampaign,createFile,files,completedScenarios,selectedCampaign}=this.props;
+      const {setCampaign,createFile,completedScenarios}=this.props;
       const {selection}=this.state
 
         e.preventDefault();

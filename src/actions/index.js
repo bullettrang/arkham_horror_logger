@@ -115,7 +115,7 @@ export const submitAnswers =(obj)=> {
         // that the API call is starting.
         dispatch(submitAnswersStart());
         try{
-           const response= axios.post('/api/submitChoices',obj);
+            axios.post('/api/submitChoices',obj);
            dispatch(submitAnswersSuccess(obj))
         }
         catch(error){

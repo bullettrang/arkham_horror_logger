@@ -1,13 +1,6 @@
-.Result-Wrapper{
-    text-align: center;
-    margin:0 auto;
-    margin:2em;
-    padding:2em;
-}
-
 .Result-Content{
     background:white;
-    padding:4em 2em;
+    padding:2em 2em;
     display:flex;
     flex-direction: row;
     max-width:797px;
@@ -17,6 +10,7 @@
     box-shadow:3px -3px 5px  #000;
     font-family: 'teutonicregular';
     justify-content: space-around;
+    font-size:1rem;
 }
 
 .Result-Content::after {

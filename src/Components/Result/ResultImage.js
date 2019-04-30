@@ -1,5 +1,4 @@
 import React from 'react';
-import {SCENARIO_IMGS} from  '../constants/ScenarioImages';
 const ResultImage=(props)=>{
     const bgStyled={
         background:`url(${props.picture})`,

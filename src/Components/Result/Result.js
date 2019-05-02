@@ -1,13 +1,14 @@
 import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-
+import shortid from "shortid";          //to get rid of annoying key prop warning
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import * as actions from '../../actions/index';
 import './Result.css'
 import './react-tabs.css';
 import ResultContent from './ResultContent/ResultContent';
+
 
 
 class Result extends Component{
@@ -47,18 +48,28 @@ class Result extends Component{
         else{
             return <Redirect to="/"/>
         }
-
     }
+
+    // const CustomTabPanel =(props)=>{
+    //     return(
+    //         <TabPanel key={props.key}>
+    //             <ResultContent 
+    //                 scenarioTitle={props.scenarioTitle}
+    //                 answers={props.answers}
+    //             />
+    //         </TabPanel>
+    //     )
+    // }
 
     renderTabsPanels=()=>{
         if(this.props.currentFile !==null){
-            return this.props.currentFile.completedScenarios.map((sc)=>{
+            return this.props.currentFile.completedScenarios.map((sc,idx)=>{
                 return(
-                    <TabPanel key={sc._id}>
+                    <TabPanel key={shortid.generate()}>
                         <ResultContent 
                             scenarioTitle={sc.scenarioTitle}
                             answers={sc.answers}
-                            key={sc._id}
+                            key={shortid.generate()}
                         />
                     </TabPanel>
                 );

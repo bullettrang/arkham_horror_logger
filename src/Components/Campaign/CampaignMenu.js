@@ -37,7 +37,8 @@ import './CampaignMenu.css';
                   }
             ],
             selection:null,
-            toScenario:false
+            toScenario:false,
+            toDashBoard:false,
         }
     }
 
@@ -50,6 +51,7 @@ import './CampaignMenu.css';
         let obj= {scenarioTitle:completedScenario,answers:answers,_file:currentFile._id};//TODO: NEED TO CHANGE WHEN MULTIPLE FILES
         this.props.submitAnswers(obj);
         this.props.newForm();   //toggle choicesDone
+        this.setState({toDashBoard:true});
       }
     }
 
@@ -72,6 +74,7 @@ import './CampaignMenu.css';
         if(selection===null){
           return;
         }
+
         setCampaign(selection);
         const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:selection,completedScenarios:completedScenarios});
 
@@ -89,10 +92,13 @@ import './CampaignMenu.css';
 
     render(){
       
-      const {selection,campaign,toScenario}=this.state;
+      const {selection,campaign,toScenario,toDashBoard}=this.state;
 
       if(toScenario){    //if campaign was submitted, we will navigate to scenario menu
         return <Redirect to={'/scenario'}/>;
+      }
+      else if(toDashBoard){
+        return <Redirect to={'/'}/>;
       }
 
         return(

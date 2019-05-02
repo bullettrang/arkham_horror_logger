@@ -9,7 +9,6 @@ import "./DashBoard.css"
 
 class Dashboard extends Component{
 
-
     renderContent(){
         switch(this.props.auth){
             case null:
@@ -32,14 +31,7 @@ class Dashboard extends Component{
         }
     }
 
-
-
-    //user clicks create a campaign button
-    //create a file
-    //go to campaign
-    //set redux store currentFile
     render(){
-        
         return(
             <div className="DashBoard_Wrapper">
               {this.renderContent()}

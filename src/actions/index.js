@@ -115,8 +115,9 @@ export const submitAnswers =(obj)=> {
         // that the API call is starting.
         dispatch(submitAnswersStart());
         try{
-            axios.post('/api/submitChoices',obj);
-           dispatch(submitAnswersSuccess(obj))
+            await axios.post('/api/submitChoices',obj);
+           dispatch(submitAnswersSuccess(obj));
+           await dispatch(fetchFiles());        //refresh files with recently completed scenarios
         }
         catch(error){
             dispatch(errorHandle(error));

@@ -24,7 +24,7 @@ const ResultChoices =(props)=>{
                                 <ResultChoice 
                                     result={choice[answers[ansIdx][qIdStr]]}
                                     style={styleSelected}
-                                    
+                                    key={choice[answers[ansIdx][qIdStr]]}
                                 />
                             );
                         }
@@ -34,6 +34,7 @@ const ResultChoices =(props)=>{
                                 <ResultChoice 
                                     result={choice[otherChoiceKey]}
                                     style={styledOther}
+                                    key={choice[otherChoiceKey]}
                                 />
                             );
                         }

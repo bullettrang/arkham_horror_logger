@@ -1,13 +1,15 @@
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
+import {Redirect } from "react-router-dom";
+import {uniqBy} from 'lodash';
+
 import Scenarios from './Scenarios';
 import {NOZ_icons} from '../../constants/icons';
 import {DWL_icons} from '../../constants/icons';
 import scenarioMenu from '../../constants/scenarioConstants';
 import SubmitButton from '../Forms/Button/SubmitButton';
 import * as actions from '../../actions/index';
-import {connect} from 'react-redux';
-import {Redirect } from "react-router-dom";
-import {uniqBy} from 'lodash';
+
 import "./ScenarioMenu.css"
 
 class ScenarioMenu extends Component{
@@ -78,7 +80,7 @@ class ScenarioMenu extends Component{
         }
         
         return(
-            <div className="ScenarioMenu__wrapper">
+            <div className="ScenarioMenu__wrapper" >
                 <div className="ScenarioMenu__main">
                     <div className="ScenarioMenu__header">
                         <h1>{selectedCampaign}</h1>

@@ -3,7 +3,7 @@ import {CheckBox} from './CheckBox';
 export const  CheckBoxes =(props)=>{
 
     return(
-        <React.Fragment>
+        <div>
             {props.choices.map(item=>(
             <label key={item.key}>
                 {item.description}
@@ -14,7 +14,7 @@ export const  CheckBoxes =(props)=>{
                     />
             </label>
         ))}
-        </React.Fragment>
+        </div>
     );
     
 }

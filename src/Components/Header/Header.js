@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import shortid from "shortid";  //for animations, need a new key prop to render each animation
 import './Header.css';
 class Header extends Component{
     //TODO: turn these links into drop down menu or something
@@ -24,7 +25,7 @@ class Header extends Component{
 
     render(){
         return(
-            <div className="Header--wrapper">
+            <div className="Header--wrapper" key={shortid.generate()}>
                 <h1 className="Header--title">ARKHAM HORROR LOGGER</h1>
                 <div className="Header--login">
                     {this.renderContent()}

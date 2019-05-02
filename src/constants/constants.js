@@ -369,7 +369,9 @@ export const DATA ={
               }
             ],
             relatedQuestions:{
-              DW0105:1
+              DW0105:1,
+              DW0106:1,
+              DW0107:1,
             }
           },
           {

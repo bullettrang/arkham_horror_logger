@@ -1,6 +1,13 @@
 .ScenarioMenu__wrapper{
     max-height:500px;
+    animation: fadeIn ease 2.0s;
+    -webkit-animation: fadeIn ease 2.0s;
+    -moz-animation: fadeIn ease 2.0s;
+    -o-animation: fadeIn ease 2.0s;
+    -ms-animation: fadeIn ease 2.0s;
 }
+
+
 
 .ScenarioMenu__main{
     padding: 1rem;
@@ -8,6 +15,8 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
+
+
 }
 
 .ScenarioMenu__header{
@@ -15,7 +24,53 @@
     text-align:center;
     font-size:2em;
     margin-bottom:2em;
+
 }
+
+@keyframes fadeIn{
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
 
 .ScenarioMenu__form{
     display:flex;

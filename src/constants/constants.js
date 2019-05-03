@@ -552,7 +552,7 @@ export const DATA ={
             skipQuestion:false
           },
           {
-            qString:"Defeated Club Club Pit Boss?",
+            qString:"Defeated Club Pit Boss?",
             type:"radio",
             id:'DW0208',
             choices:[
@@ -743,17 +743,22 @@ export const DATA ={
             id:'DW0405',
             choices:[
               {
-                description:"1 passenger",      //R2
+                description:"0 passengers",      //R2
                 value:0
               },
               {
-                description:"2 passengers",                 //show this option only if HAW is first
+                description:"1 passengers",                 
                 value:1
               },
               {
-                description:"3 passengers",                 //show this option only if HAW is first
+                description:"2 passengers",                 
                 value:2
+              },
+              {
+                description:"3 passengers",                 
+                value:3
               }
+
             ],
             skipQuestion:false,
           },
@@ -843,7 +848,7 @@ export const DATA ={
             id:'DW0504',
             choices:[
               {
-                description:"Banish Silas Bishop with journal found",      //R2
+                description:"Banish Silas Bishop with the journal found",      //R2
                 value:0
               },
               {

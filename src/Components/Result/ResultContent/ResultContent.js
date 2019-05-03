@@ -6,12 +6,9 @@ import './ResultContent.css'
 import ResultChoices from './ResultChoices/ResultChoices';
 
 
-
-
-
 const ResultContent =(props)=>{
 
-    const {answers,scenarioTitle}=props;
+    const {answers,scenarioTitle,resultValues}=props;
     const allQuestions = RESOLUTIONS[props.scenarioTitle];
     
    const answeredQuestions= allQuestions.filter((q)=>{
@@ -24,10 +21,24 @@ const ResultContent =(props)=>{
             return false;
         }
     });
+
+    console.log(answeredQuestions);
+
+    const resultValuesToDisplay = resultValues.filter((res)=>{
+        if(answeredQuestions.findIndex((ans)=>{ return ans.qId===res.questionId})!==-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    console.log(resultValuesToDisplay);
+
+
     return(
         answeredQuestions.map((q)=>{
             return(
-                <div className="Result-Content">
+                <div className="Result-Content" key={q.qId}>
                     <ResultImage
                         picture={SCENARIO_IMGS[scenarioTitle]}
                     />

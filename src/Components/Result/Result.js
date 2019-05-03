@@ -23,6 +23,7 @@ class Result extends Component{
 
 
     componentDidMount(){
+        
         this.props.fetchFiles();                //refresh user files
         if(this.props.currentFile!==null){
             const userScenarios = this.props.currentFile.completedScenarios.map(e=> e.scenarioTitle);
@@ -50,26 +51,18 @@ class Result extends Component{
         }
     }
 
-    // const CustomTabPanel =(props)=>{
-    //     return(
-    //         <TabPanel key={props.key}>
-    //             <ResultContent 
-    //                 scenarioTitle={props.scenarioTitle}
-    //                 answers={props.answers}
-    //             />
-    //         </TabPanel>
-    //     )
-    // }
 
     renderTabsPanels=()=>{
         if(this.props.currentFile !==null){
-            return this.props.currentFile.completedScenarios.map((sc,idx)=>{
+            return this.props.currentFile.completedScenarios.map((sc)=>{
                 return(
-                    <TabPanel key={shortid.generate()}>
+                    <TabPanel 
+                        key={shortid.generate()}>
                         <ResultContent 
                             scenarioTitle={sc.scenarioTitle}
                             answers={sc.answers}
                             key={shortid.generate()}
+                            resultValues={this.props.results}
                         />
                     </TabPanel>
                 );
@@ -104,9 +97,10 @@ class Result extends Component{
 
 }
 
-const mapStateToProps=({file})=>{
+const mapStateToProps=({file,results})=>{
     return{
-        currentFile:file.currentFile
+        currentFile:file.currentFile,
+        results:results.results
     }
 }
 

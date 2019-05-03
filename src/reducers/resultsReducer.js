@@ -1,8 +1,6 @@
 import {FETCH_RESULTS} from '../actions/types';
 const initialState={
-    scenarioTitle:'',
-    answers:[],
-    results:{}
+    results:[]
 }
 
 

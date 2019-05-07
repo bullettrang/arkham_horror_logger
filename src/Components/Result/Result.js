@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import shortid from "shortid";          //to get rid of annoying key prop warning
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import * as actions from '../../actions/index';
+import {fetchResults,fetchFiles}from  '../../actions/index';
 import './Result.css'
 import './react-tabs.css';
 import ResultContent from './ResultContent/ResultContent';
@@ -17,7 +17,8 @@ class Result extends Component{
         super(props);
         this.state={
             scenarios:[],
-            toDashBoard:false
+            toDashBoard:false,
+            tabIndex:0
         }
     }
 
@@ -26,9 +27,7 @@ class Result extends Component{
         
         this.props.fetchFiles();                //refresh user files
         if(this.props.currentFile!==null){
-            const userScenarios = this.props.currentFile.completedScenarios.map(e=> e.scenarioTitle);
-            this.setState({scenarios:userScenarios});
-            this.props.fetchResults(userScenarios[0]);
+            this.props.fetchResults(this.props.currentFile.campaignTitle);
         }
         else{
             this.setState({toDashBoard:true});
@@ -37,7 +36,8 @@ class Result extends Component{
     }
 
     renderTabs=()=>{
-        if(this.props.currentFile!==null){
+       //every tab has scenario title
+        if(this.props.currentFile&& this.props.results.length>0){
             return this.props.currentFile.completedScenarios.map((sc)=>{
                 return(
                     <Tab key={sc.scenarioTitle}>
@@ -47,17 +47,19 @@ class Result extends Component{
             });
         }
         else{
-            return <Redirect to="/"/>
+            return null;
         }
+
+
     }
 
 
     renderTabsPanels=()=>{
-        if(this.props.currentFile !==null){
+
+        if(this.props.currentFile && this.props.results.length>0){
             return this.props.currentFile.completedScenarios.map((sc)=>{
                 return(
-                    <TabPanel 
-                        key={shortid.generate()}>
+                    <TabPanel key={shortid.generate()}>
                         <ResultContent 
                             scenarioTitle={sc.scenarioTitle}
                             answers={sc.answers}
@@ -69,7 +71,7 @@ class Result extends Component{
             });
         }
         else{
-            return <Redirect to="/"/>
+            return null;
         }
 
     }
@@ -78,12 +80,15 @@ class Result extends Component{
 
     render(){
         const {toDashBoard}= this.state;
+
+        
         if(toDashBoard){
             return <Redirect to="/"/>
         }
-        return(
+        else{        
+            return(
             <div className="Result-Wrapper">
-                <Tabs>
+                <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                     <TabList>
                         {this.renderTabs()}
                     </TabList>
@@ -95,6 +100,9 @@ class Result extends Component{
 
     }
 
+        }
+
+
 }
 
 const mapStateToProps=({file,results})=>{
@@ -104,4 +112,10 @@ const mapStateToProps=({file,results})=>{
     }
 }
 
-export default connect(mapStateToProps,actions)(Result);
+const mapDispatchToProps={
+        fetchFiles:()=>fetchFiles(),
+        fetchResults:(campaign)=>fetchResults(campaign)
+
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Result);

@@ -698,7 +698,7 @@ export const DATA ={
             ],
             skipQuestion:false,
             relatedQuestions:{
-              DW0402:0,
+              DW0402:0,     //NOTE: this breaks typical pattern
               DW0404:1
             }
           },
@@ -743,7 +743,7 @@ export const DATA ={
             id:'DW0405',
             choices:[
               {
-                description:"0 passengers",      //R2
+                description:"0 passengers",     
                 value:0
               },
               {
@@ -768,7 +768,7 @@ export const DATA ={
             id:'DW0404',
             choices:[
               {
-                description:"Restarted the engine.",      //R2
+                description:"Restarted the engine.",      
                 value:0
               },
               {

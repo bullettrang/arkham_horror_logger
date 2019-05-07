@@ -1,6 +1,4 @@
 export const RESOLUTIONS={
-    //the gathering resolutions
-    //You and xx% of investigators....
     "The Gathering":[
         {
             qId:'NZ0101',

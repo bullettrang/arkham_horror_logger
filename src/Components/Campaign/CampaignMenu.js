@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {assign} from 'lodash';
 import CampaignForm from './CampaignForm/CampaignForm';
-import * as actions from '../../actions/index';
+import {createFile,setCampaign,submitAnswers,newForm} from '../../actions/index';
 import './CampaignMenu.css';
 
   class CampaignMenu extends Component{ 
@@ -43,14 +43,14 @@ import './CampaignMenu.css';
     }
 
     componentDidMount(){
-      this.props.setMode('campaign');
+      //this.props.setMode('campaign');
 
       if(this.props.choicesDone){
-        const {completedScenarios,answers,currentFile} = this.props;
+        const {completedScenarios,answers,currentFile,submitAnswers,newForm} = this.props;
         const completedScenario = completedScenarios[completedScenarios.length-1];
         let obj= {scenarioTitle:completedScenario,answers:answers,_file:currentFile._id};//TODO: NEED TO CHANGE WHEN MULTIPLE FILES
-        this.props.submitAnswers(obj);
-        this.props.newForm();   //toggle choicesDone
+        submitAnswers(obj);
+        newForm();   //toggle choicesDone
         this.setState({toDashBoard:true});
       }
     }
@@ -81,7 +81,7 @@ import './CampaignMenu.css';
         await createFile(fileObj);
         this.setState({toScenario:true})
 
-        this.props.setMode('scenario');
+        //this.props.setMode('scenario');
     }
 
     selectHandler=(e)=>{
@@ -127,7 +127,13 @@ const mapStateToProps=({choices,auth,file})=>{
     auth,
     currentFile:file.currentFile
   }
-  
 }
 
-export default connect(mapStateToProps,actions)(CampaignMenu);
+const mapDispatchToProps={
+  createFile:(fileObj)=>createFile(fileObj),
+  setCampaign:(campName)=>setCampaign(campName),
+  submitAnswers:(answers)=>submitAnswers(answers),
+  newForm:()=>newForm()
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(CampaignMenu);

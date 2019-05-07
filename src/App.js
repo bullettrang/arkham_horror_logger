@@ -7,8 +7,9 @@ import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import Form from './Components/Forms/Form';
 import Header from './Components/Header/Header';
 import Result from './Components/Result/Result';
-import * as actions from './actions/';
+import * as actions from './actions/index';
 import './App.css';
+
 
 
 class App extends Component {

@@ -6,9 +6,9 @@ import {uniqBy} from 'lodash';
 import Scenarios from './Scenarios';
 import {NOZ_icons} from '../../constants/icons';
 import {DWL_icons} from '../../constants/icons';
-import scenarioMenu from '../../constants/scenarioConstants';
+import  SCENARIOCONSTANTS from '../../constants/scenarioConstants';
 import SubmitButton from '../Forms/Button/SubmitButton';
-import * as actions from '../../actions/index';
+import {setQuestion,setQuestions,setScenario,setAnswers} from '../../actions/index';
 
 import "./ScenarioMenu.css"
 
@@ -56,13 +56,13 @@ class ScenarioMenu extends Component{
 
     submitHandler=(e)=>{
         e.preventDefault();
-        const {setScenario,setQuestions,setQuestion,setMode}=this.props;
+        const {setScenario,setQuestions,setQuestion}=this.props;
         const {selected}=this.state;
         if(selected){
             setScenario(selected);
             setQuestions(selected)
             setQuestion();
-            setMode('form');
+            //setMode('form');
             this.setState({toForm:true})
         }
     }
@@ -90,7 +90,7 @@ class ScenarioMenu extends Component{
                             <Scenarios
                                 chosen={this.state.selected} 
                                 clicked={this.selectHandler} 
-                                scenarios={scenarioMenu[selectedCampaign]}
+                                scenarios={SCENARIOCONSTANTS[selectedCampaign]}
                             />
                         </div>
                             <div className="ScenarioMenu__form--button">
@@ -112,4 +112,11 @@ const mapStateToProps = ({choices,auth,file}) => {
     }
   }
 
-export default connect(mapStateToProps,actions)(ScenarioMenu);
+const mapDispatchToProps={
+    setQuestions:(questions)=>setQuestions(questions),
+    setQuestion:()=>setQuestion(),
+    setAnswers:(answers)=>setAnswers(answers),
+    setScenario:(scenario)=>setScenario(scenario)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ScenarioMenu);

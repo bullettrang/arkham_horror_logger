@@ -6,7 +6,6 @@ import FilesMenu from './FilesMenu/FilesMenu';
 import * as actions from '../../actions/index';
 import "./DashBoard.css"
 
-
 class Dashboard extends Component{
 
     renderContent(){
@@ -35,6 +34,7 @@ class Dashboard extends Component{
         return(
             <div className="DashBoard_Wrapper">
               {this.renderContent()}
+              
             </div>
           );
     }

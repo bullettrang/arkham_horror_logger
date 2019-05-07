@@ -1,9 +1,10 @@
 import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import * as actions from '../../../actions/index';
+import {setCurrentFile,fetchFiles,setCampaign} from '../../../actions/index';
 import SubmitButton from '../../Forms/Button/SubmitButton';
 import FileWrapper from './FileWrapper/FileWrapper';
+import Spinner from '../../UI/Spinner';
 import './FilesMenu.css';
 
 
@@ -15,7 +16,8 @@ class FilesMenu extends Component{
             files:[],
             selected:null,
             toCampaign:false,
-            toScenario:false
+            toScenario:false,
+            loading:false
         }
     }
     componentDidMount(){
@@ -69,17 +71,29 @@ class FilesMenu extends Component{
     }
     render(){
         const {toScenario}= this.state;
+
         if(toScenario){
             return <Redirect to="scenario"/>
         }
+
+            let files=              <form onSubmit={this.submitHandler} style={{margin:"0 auto"}}>
+            <div className="Files_Wrapper">
+                {this.renderFiles()}
+            </div>
+            <SubmitButton/>
+        </form>
+        if(this.state.loading){
+            files=<Spinner/>;
+        }
+
+        if(this.props.error){
+            files=this.props.error
+        }
+
+    
         return(
             <div className="DashBoard__Campaigns">
-                <form onSubmit={this.submitHandler} style={{margin:"0 auto"}}>
-                    <div className="Files_Wrapper">
-                        {this.renderFiles()}
-                    </div>
-                    <SubmitButton/>
-                </form>
+                {files}
             </div>
         )
     }
@@ -90,8 +104,15 @@ class FilesMenu extends Component{
 const mapStateToProps=({auth,file})=>{
     return{
         auth,
-        files:file.files
+        files:file.files,
+        error:file.error
     }
 }
 
-export default connect(mapStateToProps,actions)(FilesMenu);
+const mapDispatchToProps={
+    setCurrentFile:(file)=>setCurrentFile(file),
+    fetchFiles:()=>fetchFiles(),
+    setCampaign:(camp)=>setCampaign(camp)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(FilesMenu);

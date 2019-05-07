@@ -10,9 +10,9 @@ import ResultChoices from './ResultChoices/ResultChoices';
 const ResultContent =(props)=>{
 
     const {answers,scenarioTitle,resultValues}=props;
-    const allQuestions = RESOLUTIONS[props.scenarioTitle];
+    const allQuestionsForScenario = RESOLUTIONS[props.scenarioTitle];
     
-   const resolutionStrings= allQuestions.filter((q)=>{
+   const resolutionStrings= allQuestionsForScenario.filter((q)=>{
         if(answers.findIndex((ans)=>{
            return ans.hasOwnProperty(q.qId)
         }) !== -1){
@@ -23,7 +23,7 @@ const ResultContent =(props)=>{
         }
     });
 
-
+    console.log('resolutionStrings ',resolutionStrings);
     //only want to display results that user answered
     const resultValuesToDisplay = resultValues.filter((res)=>{
         if(resolutionStrings.findIndex((ans)=>{ return ans.qId===res.questionID})!==-1){
@@ -41,15 +41,16 @@ const ResultContent =(props)=>{
         
     }));
 
+    //add user choice property to each resolution object
     for(let resultStr of resolutionStrings){
         for(let ans of answers){
-            if(resultStr.qId===Object.keys(ans)[0]){
+            if(resultStr.qId===Object.keys(ans)[0] && resultStr.type==='radio'){
                 resultStr.userChoice = parseInt(ans[Object.keys(ans)[0]]);
             }
         }
-        
-
     }
+
+    console.log('resolutionStrings ',resolutionStrings);
     // console.log('percentages ',percentages);
     // console.log('resolutionStrings ',resolutionStrings);
 

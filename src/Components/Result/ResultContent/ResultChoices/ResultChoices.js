@@ -14,7 +14,7 @@ const ResultChoices =(props)=>{
     }
     const {result,percents}=props;
 
-    console.log(percents);
+    //console.log(percents);
 
     return(
         <div className="ResultChoices__Wrapper">
@@ -27,7 +27,7 @@ const ResultChoices =(props)=>{
                         const {totalVotes}= percentOfAnswerValue;
                         //console.log(totalVotes);
                         const choiceValue = percentOfAnswerValue.choices.find(choice=>choice.choiceValue===answerValue);
-                        console.log(choiceValue);
+                        //console.log(choiceValue);
                         let percentStr = '0%';
                         if(choiceValue!==undefined){
                             percentStr=((choiceValue.total/totalVotes).toFixed(2) * 100 + '%');

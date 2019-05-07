@@ -76,7 +76,7 @@ import './CampaignMenu.css';
         }
 
         setCampaign(selection);
-        if(selection !==currentFile.campaignTitle){
+        if(currentFile && selection !==currentFile.campaignTitle){
           //creating a new campaign after starting a different one earlier
           const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:selection,completedScenarios:[]});
           await createFile(fileObj);

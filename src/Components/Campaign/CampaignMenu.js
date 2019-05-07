@@ -45,10 +45,10 @@ import './CampaignMenu.css';
     componentDidMount(){
       //this.props.setMode('campaign');
 
-      if(this.props.choicesDone){
+      if(this.props.choicesDone ){
         const {completedScenarios,answers,currentFile,submitAnswers,newForm} = this.props;
         const completedScenario = completedScenarios[completedScenarios.length-1];
-        let obj= {scenarioTitle:completedScenario,answers:answers,_file:currentFile._id};//TODO: NEED TO CHANGE WHEN MULTIPLE FILES
+        let obj= {scenarioTitle:completedScenario,answers:answers,_file:currentFile._id};
         submitAnswers(obj);
         newForm();   //toggle choicesDone
         this.setState({toDashBoard:true});
@@ -67,7 +67,7 @@ import './CampaignMenu.css';
       }
 
     submitHandler= async (e)=>{
-      const {setCampaign,createFile,completedScenarios}=this.props;
+      const {setCampaign,createFile,completedScenarios,currentFile}=this.props;
       const {selection}=this.state
 
         e.preventDefault();
@@ -76,12 +76,18 @@ import './CampaignMenu.css';
         }
 
         setCampaign(selection);
-        const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:selection,completedScenarios:completedScenarios});
+        if(selection !==currentFile.campaignTitle){
+          //creating a new campaign after starting a different one earlier
+          const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:selection,completedScenarios:[]});
+          await createFile(fileObj);
+          this.setState({toScenario:true})
+        }
+        else{
+          const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:selection,completedScenarios:completedScenarios});
+          await createFile(fileObj);
+          this.setState({toScenario:true})
+        }
 
-        await createFile(fileObj);
-        this.setState({toScenario:true})
-
-        //this.props.setMode('scenario');
     }
 
     selectHandler=(e)=>{

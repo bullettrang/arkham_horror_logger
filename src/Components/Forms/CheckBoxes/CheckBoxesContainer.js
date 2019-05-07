@@ -27,7 +27,7 @@ export class CheckBoxesContainer extends Component{
         e.preventDefault();
         choices = currentQuestion.choices.filter(item=>{
             return this.state.checkedItems.get(item.description);
-        }).map(e=>e.description);
+        }).map(e=>e.value);
 
         this.setState({decisions:choices},()=>this.props.submit(currentQuestion,this.state.decisions));
     }

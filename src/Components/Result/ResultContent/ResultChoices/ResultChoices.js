@@ -1,12 +1,7 @@
 import React from 'react';
-import {groupBy} from 'lodash';
 import ResultChoice from './ResultChoice/ResultChoice';
 import './ResultChoices.css';
 
-const getIndexOfAnswer=(answers,qId)=>{
-   return answers.findIndex(ans=> ans.hasOwnProperty(qId));
-
-}
 
 const ResultChoices =(props)=>{
 
@@ -17,7 +12,7 @@ const ResultChoices =(props)=>{
     const styledOther={
         color:'gray'
     }
-    const {answers,result,percents}=props;
+    const {result,percents}=props;
 
     console.log(percents);
 
@@ -26,18 +21,15 @@ const ResultChoices =(props)=>{
             { 
                result.choices.map((choice,idx,arr)=>{
                         const answerValue = parseInt(Object.keys(choice)[0]);
-                        const percentValue= percents[result.qId][0];
+                        const percentOfAnswerValue= percents[result.qId][0];
                         
                         
-                        const {totalVotes}= percentValue;
+                        const {totalVotes}= percentOfAnswerValue;
                         //console.log(totalVotes);
-                        const choiceValue = percentValue.choices.find(choice=>choice.choiceValue===answerValue);
+                        const choiceValue = percentOfAnswerValue.choices.find(choice=>choice.choiceValue===answerValue);
                         console.log(choiceValue);
                         let percentStr = '0%';
-                        if(choiceValue===undefined){
-                            console.log('choiceValue is undefined')
-                        }
-                        else{
+                        if(choiceValue!==undefined){
                             percentStr=((choiceValue.total/totalVotes).toFixed(2) * 100 + '%');
                         }
 

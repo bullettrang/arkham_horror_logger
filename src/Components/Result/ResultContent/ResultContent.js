@@ -34,31 +34,7 @@ const ResultContent =(props)=>{
         }
     })
 
-   //console.log(resultValuesToDisplay);
-   
-    //create percentages of answers submitted
-    // const percentages = resultValuesToDisplay.map((res)=>{
-    //     const totalVotes = res.totalVotes;
-    //     const {choices} = res;
-    //     let subpercentages=[];
-
-    //     for(let choice of choices){
-    //         let percentStr='';
-    //         const {choiceValue}=choice;
-    //        percentStr= ((choice.total/totalVotes).toFixed(2) *100+ '%');
-    //         const choiceObj = assign({choiceValue:0,percentStr:''},{choiceValue:choiceValue,percentStr:percentStr})
-    //        subpercentages.push(choiceObj);
-    //     }
-    //     const resultPercentageObj = assign({qId:'',percents:[]},{qId:res.questionID,percents:subpercentages})
-    //     return resultPercentageObj;
-
-    // });
-    
     const groupByEx = groupBy(resultValuesToDisplay,'questionID');
-
-
-
-
 
     resolutionStrings.map((rsStr)=>({
         ...rsStr,

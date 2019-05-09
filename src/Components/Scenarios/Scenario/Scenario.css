@@ -10,7 +10,7 @@
     background-position: center !important; 
     min-height:150px;
     max-height:450px;
-
+    margin-right:2em;
 }
 
 .Scenario__wrapper:hover {

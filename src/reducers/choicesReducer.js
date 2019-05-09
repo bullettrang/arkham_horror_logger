@@ -1,4 +1,4 @@
-import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_ANSWERS} from '../actions/types';
+import {UPDATE_ANSWER,SET_CAMPAIGN,SET_SCENARIO,SET_QUESTION,SET_QUESTIONS,RESET_FORM,FINISHED_FORM,NEW_FORM,FILTER_QUESTIONS,SET_ANSWERS, RESET_ANSWERS} from '../actions/types';
 import {DATA} from '../constants/constants';
 
 const initialState = {
@@ -113,6 +113,12 @@ export default (state=initialState,action)=>{
                 ...state,
                 choicesDone:false
             }
+        case RESET_ANSWERS:
+            return{
+                ...state,
+                answers:[]
+            }
+        
 
         case FINISHED_FORM:
             return{

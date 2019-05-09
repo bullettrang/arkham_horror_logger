@@ -24,6 +24,7 @@ class FilesMenu extends Component{
         if(this.props.auth!==null && this.props.files.length<1){
                 this.props.fetchFiles();
         }
+        
     }
 
 
@@ -32,9 +33,9 @@ class FilesMenu extends Component{
 
         
         if(this.props.files.length>0){  
-            return this.props.files.map((e)=>{
+            return this.props.files.map((e,idx)=>{
                 return (
-                        <FileWrapper 
+                        <FileWrapper
                             title={e.campaignTitle} 
                             id={e._id} key={e._id} 
                             selected={selected} 
@@ -71,7 +72,7 @@ class FilesMenu extends Component{
     }
     render(){
         const {toScenario}= this.state;
-
+        
         if(toScenario){
             return <Redirect to="scenario"/>
         }
@@ -80,7 +81,7 @@ class FilesMenu extends Component{
             <div className="Files_Wrapper">
                 {this.renderFiles()}
             </div>
-            <SubmitButton/>
+            {this.props.files.length >0 ?<SubmitButton/> :<div>Create a new campaign by clicking button below</div>}
         </form>
         if(this.state.loading){
             files=<Spinner/>;

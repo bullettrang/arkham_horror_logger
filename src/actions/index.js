@@ -1,4 +1,4 @@
-import {RESET_FORM,FINISHED_FORM,FILTER_QUESTIONS,SET_MODE,FETCH_USER,UPDATE_ANSWER} from './types';
+import {RESET_FORM,FINISHED_FORM,FILTER_QUESTIONS,SET_MODE,FETCH_USER,UPDATE_ANSWER,RESET_ANSWERS} from './types';
 import axios from 'axios';
 
 export {
@@ -31,6 +31,11 @@ export const setAnswer =(obj)=>{
     }
 }
 
+export const resetAnswers = ()=>{
+    return{
+        type:RESET_ANSWERS
+    }
+}
 
 export const filterQuestions =(obj)=>{
     return{

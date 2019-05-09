@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect } from "react-router-dom";
-import {uniqBy} from 'lodash';
+import {uniqBy,xorBy} from 'lodash';
 
 import Scenarios from './Scenarios';
 import {NOZ_icons} from '../../constants/icons';
@@ -23,18 +23,26 @@ class ScenarioMenu extends Component{
                 // "The Forgotten Age":['The Untamed Wilds','The Doom of Eztil','Threads of Fate','The Boundary Beyond','Heart of the Elders','The City of Archives','The Depths of Yoth','Shattered Aeons']
             },
             selected:null,
-            toForm:false
+            toForm:false,
+            toDashboard:false
         }
     }
 
     componentDidMount(){
-        const {completedScenarios}=this.props.currentFile;
+        
 
-        let mergedAnswers;
-        if(completedScenarios.length!==0){
-            mergedAnswers = this.mergeAndReturnSetOfAnswers(completedScenarios)
-           this.props.setAnswers(mergedAnswers)
-        }  
+        if(!this.props.auth || !this.props.currentFile){
+            this.setState({toDashboard:true});
+        }
+        else{
+            const {completedScenarios}=this.props.currentFile;
+            let mergedAnswers;
+            if(completedScenarios.length!==0){
+                mergedAnswers = this.mergeAndReturnSetOfAnswers(completedScenarios)
+               this.props.setAnswers(mergedAnswers)
+            }  
+        }
+
     }
 
     mergeAndReturnSetOfAnswers(completedScenarios){
@@ -70,14 +78,33 @@ class ScenarioMenu extends Component{
 
     render(){
             //change this
-        const {toForm} = this.state;
-        const {selectedCampaign}=this.props;
+
+            const {toForm,toDashboard} = this.state;
+            const{selectedCampaign}=this.props;
         if(toForm){       
             return <Redirect to={'/form'}/>;
         }
-        else if(selectedCampaign===null){
-            return <Redirect to={'/campaign '}/>;
+        else if(toDashboard){
+            return <Redirect to={'/'}/>
         }
+        else if(selectedCampaign===null){
+            return <Redirect to={'/campaign'}/>;
+        }
+        
+        const {currentFile}=this.props;
+        let unfinishedScenarios =SCENARIOCONSTANTS[selectedCampaign];
+        if(currentFile){
+            let completedScenarios =currentFile.completedScenarios.map((sc)=>{return {title:sc.scenarioTitle}});
+            console.log(completedScenarios);
+             unfinishedScenarios = xorBy(SCENARIOCONSTANTS[selectedCampaign],completedScenarios,'title');
+            console.log(unfinishedScenarios);
+
+        }
+
+
+
+        //need to filter out completed campaigns
+        
         
         return(
             <div className="ScenarioMenu__wrapper" >
@@ -90,7 +117,7 @@ class ScenarioMenu extends Component{
                             <Scenarios
                                 chosen={this.state.selected} 
                                 clicked={this.selectHandler} 
-                                scenarios={SCENARIOCONSTANTS[selectedCampaign]}
+                                scenarios={unfinishedScenarios}
                             />
                         </div>
                             <div className="ScenarioMenu__form--button">

@@ -35,3 +35,16 @@
     line-height:2em;
     min-height:80px;
 }
+
+@media (max-width:500px){
+    
+    .Files_Wrapper{
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-top:6rem;
+    }
+
+        
+    
+}

@@ -1,12 +1,13 @@
 .DashBoard_Wrapper{
     max-width:750px;
-    margin:5em auto;
+    margin:9em auto;
     text-align:center;
     animation: fadeIn ease 2.5s;
     -webkit-animation: fadeIn ease 2.5s;
     -moz-animation: fadeIn ease 2.5s;
     -o-animation: fadeIn ease 2.5s;
     -ms-animation: fadeIn ease 2.5s;
+    
 }
 
 @keyframes fadeIn{
@@ -91,4 +92,13 @@
 
 .Campaign_Link:hover{
   color:red;
+}
+
+@media (max-width:500px){
+    
+  .DashBoard_Wrapper{
+    margin:5em auto;
+    text-align:center;
+    
+}
 }

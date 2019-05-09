@@ -1,14 +1,14 @@
 .campaign-menu__wrapper{
     max-width:100%;
     text-align: center;
-    animation: fadeIn ease 2.0s;
+    /* animation: fadeIn ease 2.0s;
     -webkit-animation: fadeIn ease 2.0s;
     -moz-animation: fadeIn ease 2.0s;
     -o-animation: fadeIn ease 2.0s;
-    -ms-animation: fadeIn ease 2.0s;
+    -ms-animation: fadeIn ease 2.0s; */
 }
 
-@keyframes fadeIn{
+/* @keyframes fadeIn{
     0% {
       opacity:0;
     }
@@ -51,7 +51,7 @@
     100% {
       opacity:1;
     }
-  }
+  } */
 
 .campaign-menu__main{
     border-radius:.3rem;   

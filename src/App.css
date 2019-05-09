@@ -23,6 +23,9 @@
   -o-background-size: cover;
 }
 
+.Drawer{
+  transition:width 2s ease-in;
+}
 
 
 .Modal{

@@ -1,13 +1,14 @@
 .Form-Wrapper{
-    display:block;
+    /* display:block; */
     text-align:center;
-
+  display:flex;
+  flex-direction: column;
+  align-items: center;
     border-radius: .4rem ;
     box-shadow: 1rem 2rem  rgba(black,.4);
     margin:0 auto;
-    margin-top:4rem;
+    margin-top:8rem;
     width:33.3%;
-    padding:1rem;
     animation: fadeIn ease 2.5s;
     -webkit-animation: fadeIn ease 2.5s;
     -moz-animation: fadeIn ease 2.5s;

@@ -2,15 +2,16 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {assign} from 'lodash';
+import { TimelineLite, CSSPlugin } from "gsap/all";
 import CampaignForm from './CampaignForm/CampaignForm';
-import {createFile,setCampaign,submitAnswers,newForm} from '../../actions/index';
+import {createFile,setCampaign,submitAnswers,newForm,resetAnswers} from '../../actions/index';
 import './CampaignMenu.css';
 
   class CampaignMenu extends Component{ 
     constructor(props){
         super(props);
         this.state={
-            campaign:[
+            campaigns:[
                 {
                     id: 0,
                     title: 'Night of the Zealot',
@@ -40,10 +41,17 @@ import './CampaignMenu.css';
             toScenario:false,
             toDashBoard:false,
         }
+        this.cards = [];
+        // the timeline instance
+        this.tl = new TimelineLite({ paused: true });
     }
 
     componentDidMount(){
       //this.props.setMode('campaign');
+
+      if(!this.props.auth){
+        this.setState({toDashBoard:true});
+      }
 
       if(this.props.choicesDone ){
         const {completedScenarios,answers,currentFile,submitAnswers,newForm} = this.props;
@@ -67,7 +75,7 @@ import './CampaignMenu.css';
       }
 
     submitHandler= async (e)=>{
-      const {setCampaign,createFile,completedScenarios,currentFile}=this.props;
+      const {setCampaign,createFile,completedScenarios,currentFile,resetAnswers}=this.props;
       const {selection}=this.state
 
         e.preventDefault();
@@ -80,6 +88,7 @@ import './CampaignMenu.css';
           //creating a new campaign after starting a different one earlier
           const fileObj = assign({campaignTitle:'',completedScenarios:[]},{campaignTitle:selection,completedScenarios:[]});
           await createFile(fileObj);
+          resetAnswers();
           this.setState({toScenario:true})
         }
         else{
@@ -98,7 +107,7 @@ import './CampaignMenu.css';
 
     render(){
       
-      const {selection,campaign,toScenario,toDashBoard}=this.state;
+      const {selection,campaigns,toScenario,toDashBoard}=this.state;
 
       if(toScenario){    //if campaign was submitted, we will navigate to scenario menu
         return <Redirect to={'/scenario'}/>;
@@ -114,7 +123,7 @@ import './CampaignMenu.css';
                 <CampaignForm
                   submitHandler={this.submitHandler}
                   selection={selection}
-                  campaign={campaign}
+                  campaign={campaigns}
                   selectHandler={this.selectHandler}
                 />
             </div>
@@ -139,7 +148,8 @@ const mapDispatchToProps={
   createFile:(fileObj)=>createFile(fileObj),
   setCampaign:(campName)=>setCampaign(campName),
   submitAnswers:(answers)=>submitAnswers(answers),
-  newForm:()=>newForm()
+  newForm:()=>newForm(),
+  resetAnswers:()=>resetAnswers()
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(CampaignMenu);

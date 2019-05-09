@@ -7,6 +7,8 @@ import ScenarioMenu from './Components/Scenarios/ScenarioMenu';
 import Form from './Components/Forms/Form';
 import Header from './Components/Header/Header';
 import Result from './Components/Result/Result';
+import SideDrawer from './Components/Header/SideDrawer';
+import Backdrop from './Components/Header/Backdrop';
 import * as actions from './actions/index';
 import './App.css';
 
@@ -14,22 +16,48 @@ import './App.css';
 
 class App extends Component {
 
+  state={
+    sideDrawerOpen:false
+  };
+
   componentDidMount(){
       this.props.fetchUser();
   }
 
+  drawerToggleClickHandler=()=>{
+    this.setState((prevState)=>{
+      return{sideDrawerOpen:!prevState.sideDrawerOpen};
+    });
+  }
+
+  backDropClickHandler=()=>{
+    this.setState({sideDrawerOpen:false});
+  }
+
   
   render() {
+
+    let sideDrawer = null;
+    let backdrop = null;
+
+    if(this.state.sideDrawerOpen){
+      sideDrawer=<SideDrawer/>
+      backdrop=<Backdrop click={this.backDropClickHandler}/>
+    }
     return (
-      <div className="App" >
-        <Header/>
-          <Switch>
-            <Route path="/" exact component={DashBoard}></Route>
-            <Route path="/campaign"  render={()=>this.props.auth?  <CampaignMenu/>:<Redirect to={'/'}/>}></Route>
-            <Route path="/scenario" render={()=>this.props.auth?  <ScenarioMenu/>:<Redirect to={'/'}/>}></Route>
-            <Route path="/form" render={()=>(this.props.choicesDone?<Redirect to={'/campaign'}/>:<Form/>)}></Route>
-            <Route path="/results" component={Result}></Route>
-          </Switch>
+      <div className="App"  style={{height:'100%'}}>  
+       <Header drawerClickHandler={this.drawerToggleClickHandler}/>
+        {sideDrawer}
+        {backdrop}
+        <main style={{marginTop:'5rem', position:'300'}}>
+            <Switch>
+              <Route path="/" exact component={DashBoard}></Route>
+              <Route path="/campaign" component={CampaignMenu}/>
+              <Route path="/scenario" component={ScenarioMenu}/>
+              <Route path="/form" render={()=>(this.props.choicesDone?<Redirect to={'/campaign'}/>:<Form/>)}></Route>
+              <Route path="/results" component={Result}></Route>
+            </Switch>
+        </main>
       </div>
     );
   }

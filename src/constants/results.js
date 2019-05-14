@@ -127,7 +127,8 @@ export const RESOLUTIONS={
             choices:[
                 {0: "You rescued Dr. Rice."},
                 {1: "You couldn't prevent Dr. Rice from being kidnapped."},
-            ]
+            ],
+            type:'radio'
         },
         {        
             qId:'DW0106',
@@ -142,7 +143,8 @@ export const RESOLUTIONS={
             choices:[
                 {0: "You defeated the Experiment."},
                 {1: "You did not defeat the Experiment."},
-            ]
+            ],
+            type:'radio'
         },
         {        
             qId:'DW0108',

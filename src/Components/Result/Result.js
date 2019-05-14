@@ -27,7 +27,7 @@ class Result extends Component{
         
         this.props.fetchFiles();                //refresh user files
         if(this.props.currentFile!==null){
-            this.props.fetchResults(this.props.currentFile.campaignTitle);
+            
         }
         else{
             this.setState({toDashBoard:true});
@@ -38,7 +38,7 @@ class Result extends Component{
     renderTabs=()=>{
        //every tab has scenario title
         if(this.props.currentFile&& this.props.results.length>0){
-            return this.props.currentFile.completedScenarios.map((sc)=>{
+            return this.props.currentFile.completedScenarios.map((sc)=>{        //currently only showing results of completed scenarios
                 return(
                     <Tab key={sc.scenarioTitle}>
                         {sc.scenarioTitle}

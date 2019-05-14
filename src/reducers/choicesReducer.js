@@ -56,7 +56,7 @@ export default (state=initialState,action)=>{
                     totalQuestions:finalQuestions.length,
                     choicesDone:false
                 }
-        case SET_ANSWERS:
+        case SET_ANSWERS: 
                 return{
                     ...state,
                     answers:action.payload

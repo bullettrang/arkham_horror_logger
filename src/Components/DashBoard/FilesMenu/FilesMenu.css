@@ -1,5 +1,4 @@
 .DashBoard__Campaigns{
-    border:3px solid silver;
     margin-bottom:10em;
     border-radius: 3px;
     display:flex;
@@ -26,6 +25,7 @@
     border-radius:3px;
     transition:all .2s;
     margin:1em;
+    cursor: pointer;
 }
 
 .File_Content{
@@ -34,4 +34,14 @@
     padding:1em;
     line-height:2em;
     min-height:80px;
+}
+
+@media (max-width:500px){
+    
+    .Files_Wrapper{
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-top:6rem;
+    }
 }

@@ -22,8 +22,9 @@ const ResultContent =(props)=>{
             return false;
         }
     });
-
-    console.log('resolutionStrings ',resolutionStrings);
+    console.log(resultValues);
+    console.log(resolutionStrings);
+    //console.log('resolutionStrings ',resolutionStrings);
     //only want to display results that user answered
     const resultValuesToDisplay = resultValues.filter((res)=>{
         if(resolutionStrings.findIndex((ans)=>{ return ans.qId===res.questionID})!==-1){
@@ -33,13 +34,15 @@ const ResultContent =(props)=>{
             return false;
         }
     })
-
+    console.log(resultValuesToDisplay);
     const groupByEx = groupBy(resultValuesToDisplay,'questionID');
 
     resolutionStrings.map((rsStr)=>({
         ...rsStr,
         
     }));
+
+    console.log(answers);
 
     //add user choice property to each resolution object
     for(let resultStr of resolutionStrings){
@@ -49,6 +52,8 @@ const ResultContent =(props)=>{
             }
         }
     }
+
+
 
     console.log('resolutionStrings ',resolutionStrings);
     // console.log('percentages ',percentages);

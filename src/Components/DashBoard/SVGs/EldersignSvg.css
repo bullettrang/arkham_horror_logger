@@ -1,0 +1,74 @@
+
+
+
+  #path-1 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 7.5s linear forwards;
+  }
+
+  #Path-2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+     animation: dash 7.5s linear forwards; 
+  } 
+
+  .eldersign__path:hover{
+    fill:silver;
+   
+  }
+
+
+  #Path-3 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 7.5s linear forwards;
+  }
+  #Path-4 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 7.5s linear forwards;
+  }
+
+  #Path-5 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 7.5s linear forwards;
+  }
+
+  #Path-6 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 7.5s linear forwards;
+  }
+
+  #Path-7 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 7.5s linear forwards;
+  }
+
+  #Path-8 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 7.5s linear forwards;
+  }
+
+  #Path-9 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 7.5s linear forwards;
+  }
+
+ 
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes remove {
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }

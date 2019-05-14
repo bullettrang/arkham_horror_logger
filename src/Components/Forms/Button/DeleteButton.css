@@ -1,0 +1,15 @@
+.deletebutton{
+    position:relative;
+    left:8em;
+    bottom:6em;
+    stroke:#979797;
+    fill:black;
+}
+
+.deletebutton:hover{
+    
+    fill:#979797;
+}
+.deletebutton:hover path{
+    stroke:black;
+}

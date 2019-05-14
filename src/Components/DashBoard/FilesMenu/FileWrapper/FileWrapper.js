@@ -1,8 +1,11 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import CompletedScenarios from './CompletedScenarios/CompletedScenarios';
 import {CAMPAIGN_IMAGES} from '../../../../constants/CampaignImages';
+import DeleteButton from '../../../Forms/Button/DeleteButton';
+import './FileWrapper.css';
 const FileWrapper = (props)=>{
-    const {selected,title,clicked,completedScenarios,id} = props;
+    const {selected,title,clicked,completedScenarios,id,deleted} = props;
     const styledBGSelected={
         backgroundSize:"cover",
         backgroundPosition:"center",
@@ -49,10 +52,12 @@ const FileWrapper = (props)=>{
                 className="File_Wrapper"
                 onClick={()=>clicked(id)}
             >
+            
                 <div
                     style={{...styledBGSelected,...styledWrappedSelected} }
                     className={"DashBoard-File"} 
                 > 
+                <DeleteButton height={'25px'} width={'25px'} className={"deletebutton"} onClick={()=>deleted(id)}/>
                 </div>
                 <div className="File_Content" style={{...styledContentSelected,...styledWrappedSelected}}>
                     <h2>{title}</h2>
@@ -69,10 +74,12 @@ const FileWrapper = (props)=>{
                 className="File_Wrapper"
                 onClick={()=>clicked(id)}
             >
+            
                 <div
                     style={{...styledBG,...styledWrapped} }
                     className={"DashBoard-File"} 
                 > 
+                <DeleteButton height={'25px'} width={'25px'} className={"deletebutton"}  onClick={()=>deleted(id)}/>
                 </div>
                 <div className="File_Content" style={{...styledContent,...styledWrapped}}>
                     <h2>{title}</h2>
@@ -81,8 +88,8 @@ const FileWrapper = (props)=>{
                         completedScenarios={completedScenarios}/>
                 </div>
             </div>
-        );
+        ); 
     }
 }
 
-export default FileWrapper;
+export default withRouter(FileWrapper);

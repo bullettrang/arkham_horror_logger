@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import {Question} from './Question/Question';
 import RadioButtonContainer from './RadioButtons/RadioButtonContainer';
 import  CheckBoxesContainer from './CheckBoxes/CheckBoxesContainer';
@@ -53,6 +54,10 @@ import "./Form.css";
             }
         }
         return userForm;
+    }
+
+    if(question ===null){
+        return <Redirect to="/"/>
     }
 
     return(

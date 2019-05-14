@@ -1,4 +1,4 @@
-import {CREATE_FILE_START,CREATE_FILE_SUCCESS,SET_CURRENT_FILE,CREATE_FILE_ERROR,SUBMIT_ANSWERS_START,SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR,FETCH_FILES_START,FETCH_FILES_ERROR,FETCH_FILES_SUCCESS} from '../actions/types';
+import {CREATE_FILE_START,CREATE_FILE_SUCCESS,SET_CURRENT_FILE,CREATE_FILE_ERROR,SUBMIT_ANSWERS_START,SUBMIT_ANSWERS_SUCCESS,SUBMIT_ANSWERS_ERROR,FETCH_FILES_START,FETCH_FILES_ERROR,FETCH_FILES_SUCCESS,DELETE_FILE_ERROR,DELETE_FILE_START,DELETE_FILE_SUCCESS} from '../actions/types';
 const initialState={
     files:[],
     answers:[],
@@ -40,6 +40,15 @@ export default(state=initialState,action)=>{
             return {
                 ...state
             }
+        case DELETE_FILE_ERROR:
+            return  {
+                ...state,
+                error:action.payload
+            }
+        case DELETE_FILE_START:
+            return state;
+        case DELETE_FILE_SUCCESS:
+            return state;
 
         case SUBMIT_ANSWERS_SUCCESS:
             const{scenarioTitle}=action.payload;

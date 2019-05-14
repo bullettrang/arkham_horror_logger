@@ -1,0 +1,25 @@
+.undimension{
+    stroke-dasharray: 10000;
+    stroke-dashoffset: 10000; 
+     animation: dash 3.5s linear forwards; 
+     stroke-width: 3px;
+
+  } 
+
+
+  /* path{
+    stroke-dasharray: 16000;
+    stroke-dashoffset: 16000;
+    animation: dash 1.5s linear forwards;
+    stroke:silver;
+     */
+
+  
+
+@keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+      
+    }
+
+  }

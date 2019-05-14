@@ -14,23 +14,20 @@ const ResultChoices =(props)=>{
     }
     const {result,percents}=props;
 
-    //console.log(percents);
-
+    console.log(percents);
     return(
         <div className="ResultChoices__Wrapper">
             { 
-               result.choices.map((choice,idx,arr)=>{
+               result.choices.map((choice)=>{
+                   console.log(result.qId)
                         const answerValue = parseInt(Object.keys(choice)[0]);
                         const percentOfAnswerValue= percents[result.qId][0];
-                        
-                        
                         const {totalVotes}= percentOfAnswerValue;
-                        //console.log(totalVotes);
                         const choiceValue = percentOfAnswerValue.choices.find(choice=>choice.choiceValue===answerValue);
-                        //console.log(choiceValue);
                         let percentStr = '0%';
                         if(choiceValue!==undefined){
-                            percentStr=((choiceValue.total/totalVotes).toFixed(2) * 100 + '%');
+                          const formattedFigure=  (choiceValue.total/totalVotes* 100).toFixed(2) ;
+                            percentStr=(formattedFigure + '%');
                         }
 
                             return(

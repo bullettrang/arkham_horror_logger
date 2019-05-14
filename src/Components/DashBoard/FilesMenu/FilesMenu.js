@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {setCurrentFile,fetchFiles,setCampaign} from '../../../actions/index';
+import {setCurrentFile,fetchFiles,setCampaign,fetchResults,deleteByFileId} from '../../../actions/index';
 import SubmitButton from '../../Forms/Button/SubmitButton';
 import FileWrapper from './FileWrapper/FileWrapper';
 import Spinner from '../../UI/Spinner';
@@ -39,7 +39,8 @@ class FilesMenu extends Component{
                             id={e._id} key={e._id} 
                             selected={selected} 
                             clicked={this.selectHandler} 
-                            completedScenarios={e.completedScenarios}/>
+                            completedScenarios={e.completedScenarios}
+                            deleted={this.deleteHandler}/>
                         );
             })
         }
@@ -53,14 +54,16 @@ class FilesMenu extends Component{
     }
 
     submitHandler = (e)=>{
-        const {files,setCampaign,setCurrentFile}=this.props;
-        if(files.length>0){ 
+        const {files,setCampaign,setCurrentFile,fetchResults}=this.props;
+        const{selected}=this.state;
+        if(files.length>0 && selected !==null){ 
             e.preventDefault();
-            const{selected}=this.state;
+            
             
             const fileIdx= files.findIndex(e=>e._id===selected)
             setCurrentFile(files[fileIdx]);
-            setCampaign(files[fileIdx].campaignTitle)
+            setCampaign(files[fileIdx].campaignTitle);
+            fetchResults(files[fileIdx].campaignTitle);
             //this.props.history.push("/scenario");     //Tyler McGinnis says not to mess with history api unless absolutely necessary ,https://tylermcginnis.com/react-router-programmatically-navigate/
             this.setState({toScenario:true});
         }
@@ -68,6 +71,12 @@ class FilesMenu extends Component{
             e.preventDefault();
             return;
         }
+    }
+
+    deleteHandler =(fileid)=>{
+        
+        console.log('deleting ',fileid);
+        this.props.deleteByFileId(fileid);
     }
     render(){
         const {toScenario}= this.state;
@@ -112,7 +121,9 @@ const mapStateToProps=({auth,file})=>{
 const mapDispatchToProps={
     setCurrentFile:(file)=>setCurrentFile(file),
     fetchFiles:()=>fetchFiles(),
-    setCampaign:(camp)=>setCampaign(camp)
+    setCampaign:(camp)=>setCampaign(camp),
+    fetchResults:(campaign)=>fetchResults(campaign),
+    deleteByFileId:(fileid)=>deleteByFileId(fileid)
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(FilesMenu);

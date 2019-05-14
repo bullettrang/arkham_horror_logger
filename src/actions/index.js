@@ -17,7 +17,8 @@ export {
 
 export{
     setCurrentFile,
-    fetchFiles
+    fetchFiles,
+    deleteByFileId
 }from './file';
 
 export {

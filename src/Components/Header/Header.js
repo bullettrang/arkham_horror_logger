@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import shortid from "shortid";  //for animations, need a new key prop to render each animation
+import {TweenLite } from "gsap/all"; 
+import EldersignSvg from '../DashBoard/SVGs/EldersignSvg';
+import DrawerToggleButton from './DrawerToggleButton';
 import './Header.css';
 class Header extends Component{
     //TODO: turn these links into drop down menu or something
@@ -25,13 +27,27 @@ class Header extends Component{
 
     render(){
         return(
-            <div className="Header--wrapper" key={shortid.generate()}>
-                <h1 className="Header--title">ARKHAM HORROR LOGGER</h1>
-                <div className="Header--login">
-                    {this.renderContent()}
+            // <div className="Header--wrapper" key={shortid.generate()}>
+            <div className="Header__wrapper">
+                    <div className="Header__toggle--button">
+                        <DrawerToggleButton click={this.props.drawerClickHandler}/>
+                    </div>
+
+                <div className="Header__content">
+                <div className="Header__content--logo">
+                <EldersignSvg width={'55px'} height={'55px'}/>
                 </div>
-                <div className="Header--Results">
-                    <Link to="/results">Results</Link>
+                        <div className="Header__wrapper--title">
+                            <h1 className="Header--title" ref={h1 => this.headerRef=h1}> ARKHAM HORROR LOGGER</h1>
+                        </div>
+                        <div className="Header__content--links">
+                            <div className="Header--login" ref={div => this.loginRef=div}>
+                                {this.renderContent()}
+                            </div>
+                            <div className="Header--Results" ref={div =>this.resultRef=div}>
+                                <Link to="/results">Results</Link>
+                            </div>
+                    </div>
                 </div>
             </div>  
         );

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { Link} from "react-router-dom";
-
 import {connect} from 'react-redux';
 import FilesMenu from './FilesMenu/FilesMenu';
 import * as actions from '../../actions/index';
 import "./DashBoard.css"
+
 
 class Dashboard extends Component{
 
@@ -33,8 +33,8 @@ class Dashboard extends Component{
     render(){
         return(
             <div className="DashBoard_Wrapper">
+                
               {this.renderContent()}
-              
             </div>
           );
     }

@@ -37,7 +37,7 @@ class Header extends Component{
                 <EldersignSvg width={'55px'} height={'55px'}/>
                 </div>
                         <div className="Header__wrapper--title">
-                            <h1 className="Header--title" ref={h1 => this.headerRef=h1}> ARKHAM HORROR LOGGER</h1>
+                            <h1 className="Header--title" ref={h1 => this.headerRef=h1}> <span className="title-1">ARKHAM</span> <span className="title-2">HORROR</span> <span className="title-3">LOGGER</span> </h1>
                         </div>
                         <div className="Header__content--links">
                             <div className="Header--login" ref={div => this.loginRef=div}>

@@ -3,8 +3,17 @@
     position:fixed;
     height:100%;
     width:100%;
-    background:rgba(0,0,0,0.3);
+    background: url('../../Assets/staticScreen.gif');
     z-index:100;
     top:0;
     left:0;
+    opacity:.85;
+}
+
+.backdrop-overlay{
+    position:absolute;
+    background:rgba(0,0,0,.85);
+    z-index:101;
+    height:100%;
+    width:100%;
 }

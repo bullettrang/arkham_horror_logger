@@ -28,13 +28,15 @@ class ScenarioMenu extends Component{
     }
 
     componentDidMount(){
-        const {completedScenarios}=this.props.currentFile;
+        if(this.props.currentFile !==null){
+            const {completedScenarios}=this.props.currentFile;
 
-        let mergedAnswers;
-        if(completedScenarios.length!==0){
-            mergedAnswers = this.mergeAndReturnSetOfAnswers(completedScenarios)
-           this.props.setAnswers(mergedAnswers)
-        }  
+            let mergedAnswers;
+            if(completedScenarios.length!==0){
+                mergedAnswers = this.mergeAndReturnSetOfAnswers(completedScenarios)
+               this.props.setAnswers(mergedAnswers)
+            }  
+        }
     }
 
     mergeAndReturnSetOfAnswers(completedScenarios){
@@ -103,7 +105,7 @@ class ScenarioMenu extends Component{
                             <Scenarios
                                 chosen={this.state.selected} 
                                 clicked={this.selectHandler} 
-                                scenarios={SCENARIOCONSTANTS[selectedCampaign]}
+                                scenarios={unfinishedScenarios}
                             />
                         </div>
                             <div className="ScenarioMenu__form--button">

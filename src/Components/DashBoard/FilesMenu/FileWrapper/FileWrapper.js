@@ -52,7 +52,6 @@ const FileWrapper = (props)=>{
                 className="File_Wrapper"
                 onClick={()=>clicked(id)}
             >
-            
                 <div
                     style={{...styledBGSelected,...styledWrappedSelected} }
                     className={"DashBoard-File"} 

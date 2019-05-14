@@ -12,6 +12,7 @@ const ResultContent =(props)=>{
     const {answers,scenarioTitle,resultValues}=props;
     const allQuestionsForScenario = RESOLUTIONS[props.scenarioTitle];
     
+    //grab only questions user answered
    const resolutionStrings= allQuestionsForScenario.filter((q)=>{
         if(answers.findIndex((ans)=>{
            return ans.hasOwnProperty(q.qId)
@@ -22,8 +23,7 @@ const ResultContent =(props)=>{
             return false;
         }
     });
-    console.log(resultValues);
-    console.log(resolutionStrings);
+
     //console.log('resolutionStrings ',resolutionStrings);
     //only want to display results that user answered
     const resultValuesToDisplay = resultValues.filter((res)=>{
@@ -34,7 +34,7 @@ const ResultContent =(props)=>{
             return false;
         }
     })
-    console.log(resultValuesToDisplay);
+    
     const groupByEx = groupBy(resultValuesToDisplay,'questionID');
 
     resolutionStrings.map((rsStr)=>({
@@ -42,25 +42,32 @@ const ResultContent =(props)=>{
         
     }));
 
-    console.log(answers);
+    
 
     //add user choice property to each resolution object
     for(let resultStr of resolutionStrings){
         for(let ans of answers){
-            if(resultStr.qId===Object.keys(ans)[0] && resultStr.type==='radio'){
-                resultStr.userChoice = parseInt(ans[Object.keys(ans)[0]]);
+            const questionKey = Object.keys(ans)[0];
+            if(resultStr.qId===questionKey && resultStr.type==='radio'){
+                resultStr.userChoice = parseInt(ans[questionKey]);
+            }else if(resultStr.qId===questionKey && resultStr.type==='checkboxes'){
+                
+                // console.log(resultStr.qId);
+                // console.log(ans[questionKey]);
+                resultStr.userChoices = ans[questionKey];
             }
         }
     }
 
 
 
-    console.log('resolutionStrings ',resolutionStrings);
+    
     // console.log('percentages ',percentages);
     // console.log('resolutionStrings ',resolutionStrings);
 
     return(
         resolutionStrings.map((res)=>{
+            console.log(res);
             return(
                 <div className="Result-Content" key={res.qId}>
                     <ResultImage

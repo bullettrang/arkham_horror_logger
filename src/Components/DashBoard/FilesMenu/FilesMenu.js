@@ -63,7 +63,7 @@ class FilesMenu extends Component{
             const fileIdx= files.findIndex(e=>e._id===selected)
             setCurrentFile(files[fileIdx]);
             setCampaign(files[fileIdx].campaignTitle);
-            fetchResults(files[fileIdx].campaignTitle);
+            fetchResults(files[fileIdx].campaignTitle);     
             //this.props.history.push("/scenario");     //Tyler McGinnis says not to mess with history api unless absolutely necessary ,https://tylermcginnis.com/react-router-programmatically-navigate/
             this.setState({toScenario:true});
         }
@@ -74,8 +74,6 @@ class FilesMenu extends Component{
     }
 
     deleteHandler =(fileid)=>{
-        
-        console.log('deleting ',fileid);
         this.props.deleteByFileId(fileid);
     }
     render(){

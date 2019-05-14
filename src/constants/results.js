@@ -60,7 +60,18 @@ export const RESOLUTIONS={
             ],
             type:'radio'
         },
-       
+        {
+            qId:'NZ0204',
+            choices:[
+                {0:"You interrogated Wolfman Drew"},
+                {1:"You interrogated Herman Collins"},
+                {2:"You interrogated Peter Warren"},
+                {3:"You interrogated Victoria Devereux"},
+                {4:"You interrogated Ruth Turner"},
+                {5:"You interrogated Masked Hunter"},
+            ],
+            type:'checkboxes'
+        }
     ],
     "The Devourer Below":[
         {
@@ -339,7 +350,46 @@ export const RESOLUTIONS={
                 {1: "You restored Silas Bishop with Necronomicon."},
             ],
             type:'radio'
+        },
+        {        
+            qId:'DW0505',
+            choices:[
+                {0: "Zebulon Whateley was sacrificed."},
+                {1: "Earl Sawyer was sacrificed."},
+                {2: "Dr. Armitage was sacrificed."},
+                {3: "Dr.Morgan was sacrificed."},
+                {4: "Dr.Rice was sacrificed."},
+            ],
+            type:'checkboxes'
         }
+        // {
+        //     qString:"Check off all who were sacrificed to Yog-Sothoth ",             //if DW0303 is 0, we ask this question
+        //     type:"checkbox",                                                        // todo check if Dr. Morgan/Dr.Rice/Dr.Armitage was kidnapped
+        //     id:'DW0505',
+        //     choices:[
+        //       {
+        //         description:"Zebulon Whateley",      
+        //         value:0
+        //       },
+        //       {
+        //         description:"Earl Sawyer",                 
+        //         value:1
+        //       },
+        //       {
+        //         description:"Dr. Armitage",                 
+        //         value:2
+        //       },
+        //       {
+        //         description:"Dr.Morgan",                //check DW0204    
+        //         value:3
+        //       },
+        //       {
+        //         description:"Dr.Rice",                  //DW0104   
+        //         value:4
+        //       }
+        //     ],
+        //     skipQuestion:false,
+        //   }
         //TODO: HANDLE checkboxes type questions
     ],
     "Undimensioned and Unseen":[

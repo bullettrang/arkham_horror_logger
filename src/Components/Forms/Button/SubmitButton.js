@@ -2,9 +2,9 @@ import React from 'react';
 
 import "./SubmitButton.css";
 
- const SubmitButton =()=>{
+ const SubmitButton =(props)=>{
     return(
-        <button className="SubmitButton">Submit</button>
+        <button className="SubmitButton">{props.title}</button>
     );
 }
 

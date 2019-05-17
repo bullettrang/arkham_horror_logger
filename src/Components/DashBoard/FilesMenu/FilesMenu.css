@@ -1,7 +1,8 @@
 .DashBoard__Campaigns{
-    margin-bottom:10em;
+    margin-bottom:5em;
     border-radius: 3px;
     display:flex;
+    padding:5em;
 }
 
 .DashBoard-File{

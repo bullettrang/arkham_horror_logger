@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
-
+import { connect} from 'react-redux';
 import {CheckBoxes} from './CheckBoxes';
 import SubmitButton from '../Button/SubmitButton';
-import { connect} from 'react-redux';
+
 import * as actions from '../../../actions/index';
 import "./CheckBoxesContainer.css";
 export class CheckBoxesContainer extends Component{
@@ -42,7 +42,7 @@ export class CheckBoxesContainer extends Component{
                         handleChange={this.handleChange}
                         checkedItems={this.state.checkedItems}
                     />
-                <SubmitButton/>
+                <SubmitButton title={"Submit"}/>
             </form>
           </div>
         )

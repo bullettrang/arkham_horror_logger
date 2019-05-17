@@ -109,7 +109,7 @@ class ScenarioMenu extends Component{
                             />
                         </div>
                             <div className="ScenarioMenu__form--button">
-                                <SubmitButton/>
+                                <SubmitButton title={"Submit"}/>
                             </div>
                     </form>
                 </div>

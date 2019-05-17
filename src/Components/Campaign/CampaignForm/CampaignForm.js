@@ -20,7 +20,7 @@ const CampaignForm =({submitHandler,selection,campaign,selectHandler})=>{
                 clicked={selectHandler}
                 />
             <h1 className="campaign-menu_main--form--header" key={getId()}>{selection}</h1>
-            <SubmitButton/>
+            <SubmitButton title={"Submit"}/>
         </form>
     )
 }

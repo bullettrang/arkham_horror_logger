@@ -39,7 +39,7 @@ import './RadioButtonContainer.css';
                     />
                 </div>
                 <div className="Radio__form--submission">
-                    <SubmitButton/>
+                    <SubmitButton title={"Submit"}/>
                 </div>
             </form>
         </div>

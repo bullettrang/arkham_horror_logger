@@ -1,6 +1,7 @@
 .DashBoard_Wrapper{
     max-width:750px;
     margin:5em auto;
+    margin-top: 3em;
     text-align:center;
     animation: fadeIn ease 2.5s;
     -webkit-animation: fadeIn ease 2.5s;
@@ -75,7 +76,7 @@
 }
 
 .Campaign_Link--wrapper{
-    margin-top:2em;
+   
     transition: all .2s ease-in-out;
 }
 
@@ -84,7 +85,7 @@
     transform: translateY(0.4rem);
 }
 .Campaign_Link{
-    
+  margin-top:1em;
     color:black;
     transition: all .2s ease-in-out;
 }

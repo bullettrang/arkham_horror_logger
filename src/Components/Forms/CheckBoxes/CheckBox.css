@@ -1,0 +1,61 @@
+
+/*we use a custom class called check-custom to hide the element*/
+input[type='checkbox'].check-custom {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  input[type='checkbox'].check-custom ~ .check-toggle {
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    border: 2px solid #969696;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  input[type='checkbox'].check-custom ~ .check-toggle .eldersign__path {
+    fill:none;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    
+    
+  }
+
+  /* Styles for the hover state of the custom checkbox */
+input[type='checkbox'].check-custom:hover ~ .check-toggle {
+    border-color: #4a4a4a;
+  }
+
+/* Styles for the focus state of the custom checkbox */
+input[type='checkbox'].check-custom:focus ~ .check-toggle {
+    border-color: #b0d5ff;
+    box-shadow: 0 0 0 2px rgba(23, 133, 255, 0.25);
+    
+  }
+
+  input[type='checkbox'].check-custom:focus ~ .check-toggle .eldersign__path {
+
+  }
+
+  /* Styles for the checked state appearance of the custom checkbox */
+input[type='checkbox'].check-custom:checked ~ .check-toggle {
+    border-color: #1785ff;
+    background-size: 100%;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+      stroke:silver;
+    }
+  }
+
+
+  

@@ -1,52 +1,40 @@
 import React,{Component} from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import classnames from "classnames";
 import EldersignSvg from '../DashBoard/SVGs/EldersignSvg';
 import DrawerToggleButton from './DrawerToggleButton';
 import './Header.css';
-class Header extends Component{
-    //TODO: turn these links into drop down menu or something
-    renderContent(){
-        switch(this.props.auth){
-            case null:
-                return ;
-            case false:
-                return (
-                    <a href="/auth/google">Login With Google</a>
-                )
-            default: 
-                return (
-                    <React.Fragment>
-                        <a href="/api/logout">Logout</a>
-                        
-                    </React.Fragment>
-                );     
-        }
-    }
 
+class Header extends Component{
+
+    constructor(props) {
+        super(props);
+ 
+        this.myref = React.createRef();   //I needed this to capture the correct scroll height
+    
+      }
+
+      componentDidMount(){
+       // console.log(this.myref);
+      }
     render(){
+        const {styleheader}=this.props;
+   
         return(
-            // <div className="Header--wrapper" key={shortid.generate()}>
-            <div className="Header__wrapper">
+            <div         
+                className="Header__wrapper" style={styleheader}  ref={this.myref}>
                     <div className="Header__toggle--button">
                         <DrawerToggleButton click={this.props.drawerClickHandler}/>
                     </div>
 
                 <div className="Header__content">
-                <div className="Header__content--logo">
-                <EldersignSvg width={'55px'} height={'55px'}/>
-                </div>
+
                         <div className="Header__wrapper--title">
-                            <h1 className="Header--title" ref={h1 => this.headerRef=h1}> <span className="title-1">ARKHAM</span> <span className="title-2">HORROR</span> <span className="title-3">LOGGER</span> </h1>
+                            <div className="Header__content--logo">
+                                <EldersignSvg width={'75px'} height={'75px'} stroke={"#979797"}/>
+                            </div>
+                            <h1 className="Header--title"> <span className="title-1">ARKHAM</span> <span className="title-2">HORROR</span> <span className="title-3">LOGGER</span> </h1>
                         </div>
-                        <div className="Header__content--links">
-                            <div className="Header--login" ref={div => this.loginRef=div}>
-                                {this.renderContent()}
-                            </div>
-                            <div className="Header--Results" ref={div =>this.resultRef=div}>
-                                <Link to="/results">Results</Link>
-                            </div>
-                    </div>
                 </div>
             </div>  
         );

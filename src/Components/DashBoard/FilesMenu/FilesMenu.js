@@ -8,7 +8,7 @@ import Spinner from '../../UI/Spinner';
 import './FilesMenu.css';
 
 
-
+//todo turn files into slideshow
 class FilesMenu extends Component{
     constructor(props){
         super(props);
@@ -17,7 +17,8 @@ class FilesMenu extends Component{
             selected:null,
             toCampaign:false,
             toScenario:false,
-            loading:false
+            loading:false,
+            title:''
         }
     }
     componentDidMount(){
@@ -40,7 +41,8 @@ class FilesMenu extends Component{
                             selected={selected} 
                             clicked={this.selectHandler} 
                             completedScenarios={e.completedScenarios}
-                            deleted={this.deleteHandler}/>
+                            deleted={this.deleteHandler}
+                            />
                         );
             })
         }
@@ -49,9 +51,14 @@ class FilesMenu extends Component{
         }
     }
 
-    selectHandler=(e)=>{
+    selectHandler=(e,title)=>{
         this.setState({selected:e});
+        this.setState({title:title})
+        
     }
+
+
+
 
     submitHandler = (e)=>{
         const {files,setCampaign,setCurrentFile,fetchResults}=this.props;
@@ -77,17 +84,17 @@ class FilesMenu extends Component{
         this.props.deleteByFileId(fileid);
     }
     render(){
-        const {toScenario}= this.state;
+        const {toScenario,selected,title}= this.state;
 
         if(toScenario){
             return <Redirect to="scenario"/>
         }
 
-            let files=              <form onSubmit={this.submitHandler} style={{margin:"0 auto"}}>
+            let files=     <form onSubmit={this.submitHandler} style={{margin:"0 auto"}}>
             <div className="Files_Wrapper">
                 {this.renderFiles()}
             </div>
-            <SubmitButton/>
+            <SubmitButton title={`Continue ${title}`}/>
         </form>
         if(this.state.loading){
             files=<Spinner/>;

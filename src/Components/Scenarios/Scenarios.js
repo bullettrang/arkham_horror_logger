@@ -2,7 +2,7 @@ import React from 'react';
 import Scenario from './Scenario/Scenario';
 import {SCENARIO_IMGS} from '../../constants/ScenarioImages';
 
-import './Scenarios.css';
+
 const Scenarios=(props)=>{
     if(!props.scenarios){
         return null;

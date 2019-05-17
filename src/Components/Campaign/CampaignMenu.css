@@ -5,7 +5,7 @@
     -webkit-animation: fadeIn ease 2.0s;
     -moz-animation: fadeIn ease 2.0s;
     -o-animation: fadeIn ease 2.0s;
-    -ms-animation: fadeIn ease 2.0s;
+    -ms-animation: fadeIn ease 2.0s;  
 }
 
 @keyframes fadeIn{

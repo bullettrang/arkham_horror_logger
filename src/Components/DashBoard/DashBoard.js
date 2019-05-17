@@ -32,7 +32,7 @@ class Dashboard extends Component{
 
     render(){
         return(
-            <div className="DashBoard_Wrapper">
+            <div className="DashBoard_Wrapper" onScroll={()=>console.log(window.screenTop)}>
                 
               {this.renderContent()}
             </div>

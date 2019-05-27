@@ -33,7 +33,7 @@
     position:relative;
 } */
 
-.Radio__choice::after {
+/* .Radio__choice::after {
     position: absolute;
     z-index: -1;
     bottom: -5px;
@@ -45,7 +45,7 @@
     background-color: #343434;
     transition: all 250ms;
     color:#d3d3d3;
-}
+} */
 
 .Radio__choice:hover {
     color: white;

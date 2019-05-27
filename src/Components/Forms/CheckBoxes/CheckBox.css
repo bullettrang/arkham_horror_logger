@@ -18,15 +18,9 @@ input[type='checkbox'].check-custom {
     border: 2px solid #969696;
     border-radius: 50%;
     cursor: pointer;
+    margin-left:1em;
   }
 
-  input[type='checkbox'].check-custom ~ .check-toggle .eldersign__path {
-    fill:none;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    
-    
-  }
 
   /* Styles for the hover state of the custom checkbox */
 input[type='checkbox'].check-custom:hover ~ .check-toggle {
@@ -36,26 +30,19 @@ input[type='checkbox'].check-custom:hover ~ .check-toggle {
 /* Styles for the focus state of the custom checkbox */
 input[type='checkbox'].check-custom:focus ~ .check-toggle {
     border-color: #b0d5ff;
-    box-shadow: 0 0 0 2px rgba(23, 133, 255, 0.25);
+    /* box-shadow: 0 0 0 2px rgba(23, 133, 255, 0.25); */
     
   }
 
-  input[type='checkbox'].check-custom:focus ~ .check-toggle .eldersign__path {
 
-  }
 
   /* Styles for the checked state appearance of the custom checkbox */
 input[type='checkbox'].check-custom:checked ~ .check-toggle {
     border-color: #1785ff;
     background-size: 100%;
+    
   }
 
-  @keyframes dash {
-    to {
-      stroke-dashoffset: 0;
-      stroke:silver;
-    }
-  }
 
 
   

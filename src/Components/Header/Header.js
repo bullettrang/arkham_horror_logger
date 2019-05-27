@@ -9,20 +9,16 @@ class Header extends Component{
 
     constructor(props) {
         super(props);
- 
-        this.myref = React.createRef();   //I needed this to capture the correct scroll height
-    
+
       }
 
-      componentDidMount(){
-       // console.log(this.myref);
-      }
+
     render(){
         const {styleheader}=this.props;
    
         return(
             <div         
-                className="Header__wrapper" style={styleheader}  ref={this.myref}>
+                className="Header__wrapper" style={styleheader} >
                     <div className="Header__toggle--button">
                         <DrawerToggleButton click={this.props.drawerClickHandler}/>
                     </div>

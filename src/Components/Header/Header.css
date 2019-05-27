@@ -14,7 +14,7 @@
   -o-animation: fadeIn ease inease-in-out5s;
   -ms-animation: fadeIn ease inease-in-out5s; */
   z-index:200;
-  transition: top 0.6s;
+  transition: top 0.3s;
   background-image: linear-gradient(to right bottom, #132246, #1c2a4d, #253355, #2e3b5c, #374464);
   max-height:120px;
   
